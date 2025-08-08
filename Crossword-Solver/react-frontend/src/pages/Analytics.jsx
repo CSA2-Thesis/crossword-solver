@@ -24,11 +24,11 @@ const Analytics = () => {
 
   if (hasError) {
     return (
-      <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 transition-colors duration-200">
         <div className="max-w-md w-full space-y-8 text-center">
-          <FiBarChart2 className="w-16 h-16 text-red-500 mx-auto" />
-          <h3 className="text-xl font-semibold text-red-600">Analytics Data Not Found</h3>
-          <p className="text-gray-500">Please solve a puzzle first to view analytics.</p>
+          <FiBarChart2 className="w-16 h-16 text-red-500 dark:text-red-400 mx-auto" />
+          <h3 className="text-xl font-semibold text-red-600 dark:text-red-400">Analytics Data Not Found</h3>
+          <p className="text-gray-500 dark:text-gray-400">Please solve a puzzle first to view analytics.</p>
           <Button onClick={() => navigate(-1)} variant="secondary" className="mt-4">
             Go Back
           </Button>
@@ -57,6 +57,7 @@ const Analytics = () => {
     { name: 'Incorrect Cells', value: (analysisData.totalCells || 0) - (analysisData.correctCells || 0) },
   ];
   const COLORS = ['#10B981', '#EF4444'];
+  const DARK_COLORS = ['#059669', '#DC2626'];
 
   const puzzleDetails = [
     { name: 'Grid Size', value: `${originalPuzzle.grid?.length || 0}x${originalPuzzle.grid?.[0]?.length || 0}` },
@@ -65,14 +66,19 @@ const Analytics = () => {
     { name: 'Memory Usage', value: solvedResult.metrics?.memory_usage || 'N/A' }, 
   ];
 
+  const textColor = 'text-gray-800 dark:text-gray-200';
+  const cardBg = 'bg-white dark:bg-gray-800';
+  const borderColor = 'border-gray-200 dark:border-gray-700';
+  const tooltipBg = 'bg-white dark:bg-gray-700';
+  const gridStroke = '#e5e7eb dark:#374151';
 
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Solver Analytics</h1>
-            <p className="text-gray-600">Performance metrics for the {solvedResult.method} algorithm</p>
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Solver Analytics</h1>
+            <p className="text-gray-600 dark:text-gray-300">Performance metrics for the {solvedResult.method} algorithm</p>
           </div>
           <Button
             onClick={() => navigate(-1)}
@@ -84,27 +90,27 @@ const Analytics = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 text-center">
-            <h3 className="text-sm font-medium text-gray-500">Execution Time</h3>
-            <p className="text-2xl font-bold text-blue-600 mt-1">
+          <div className={`${cardBg} rounded-xl shadow-sm p-6 border ${borderColor} text-center transition-colors duration-200`}>
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Execution Time</h3>
+            <p className="text-2xl font-bold text-blue-600 dark:text-blue-400 mt-1">
               {solvedResult.metrics?.execution_time || 'N/A'} ms
             </p>
           </div>
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 text-center">
-            <h3 className="text-sm font-medium text-gray-500">Cell Accuracy</h3>
-            <p className="text-2xl font-bold text-green-600 mt-1">
+          <div className={`${cardBg} rounded-xl shadow-sm p-6 border ${borderColor} text-center transition-colors duration-200`}>
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Cell Accuracy</h3>
+            <p className="text-2xl font-bold text-green-600 dark:text-green-400 mt-1">
               {Math.round((analysisData.accuracy || 0) * 100)}%
             </p>
           </div>
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 text-center">
-            <h3 className="text-sm font-medium text-gray-500">Word Accuracy</h3>
-            <p className="text-2xl font-bold text-purple-600 mt-1">
+          <div className={`${cardBg} rounded-xl shadow-sm p-6 border ${borderColor} text-center transition-colors duration-200`}>
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Word Accuracy</h3>
+            <p className="text-2xl font-bold text-purple-600 dark:text-purple-400 mt-1">
               {Math.round((analysisData.wordAccuracy || 0) * 100)}%
             </p>
           </div>
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 text-center">
-            <h3 className="text-sm font-medium text-gray-500">Algorithm</h3>
-            <p className="text-xl font-semibold text-orange-600 mt-1">
+          <div className={`${cardBg} rounded-xl shadow-sm p-6 border ${borderColor} text-center transition-colors duration-200`}>
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Algorithm</h3>
+            <p className="text-xl font-semibold text-orange-600 dark:text-orange-400 mt-1">
               {solvedResult.method || 'Unknown'}
             </p>
           </div>
@@ -112,37 +118,72 @@ const Analytics = () => {
 
         <div className="space-y-12">
 
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">Execution Time</h2>
+          <div className={`${cardBg} rounded-xl shadow-sm p-6 border ${borderColor} transition-colors duration-200`}>
+            <h2 className={`text-xl font-semibold ${textColor} mb-4`}>Execution Time</h2>
             <div className="h-80">
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart
                   data={executionTimeData}
                   margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis label={{ value: 'Time (ms)', angle: -90, position: 'insideLeft' }} />
-                  <Tooltip formatter={(value) => [`${value} ms`, 'Execution Time']} />
+                  <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
+                  <XAxis dataKey="name" stroke={textColor} />
+                  <YAxis 
+                    stroke={textColor}
+                    label={{ 
+                      value: 'Time (ms)', 
+                      angle: -90, 
+                      position: 'insideLeft',
+                      fill: textColor
+                    }} 
+                  />
+                  <Tooltip 
+                    contentStyle={{
+                      backgroundColor: tooltipBg,
+                      borderColor: borderColor,
+                      borderRadius: '0.5rem'
+                    }}
+                    formatter={(value) => [`${value} ms`, 'Execution Time']} 
+                  />
                   <Legend />
-                  <Bar dataKey="Execution Time (ms)" fill="#3B82F6" name="Execution Time (ms)" />
+                  <Bar 
+                    dataKey="Execution Time (ms)" 
+                    fill="#3B82F6" 
+                    name="Execution Time (ms)" 
+                  />
                 </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
 
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">Accuracy Metrics</h2>
+          <div className={`${cardBg} rounded-xl shadow-sm p-6 border ${borderColor} transition-colors duration-200`}>
+            <h2 className={`text-xl font-semibold ${textColor} mb-4`}>Accuracy Metrics</h2>
             <div className="h-80">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart
                   data={accuracyData}
                   margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="name" />
-                  <YAxis domain={[0, 100]} label={{ value: 'Percentage (%)', angle: -90, position: 'insideLeft' }} />
-                  <Tooltip formatter={(value) => [`${value}%`, 'Accuracy']} />
+                  <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
+                  <XAxis dataKey="name" stroke={textColor} />
+                  <YAxis 
+                    domain={[0, 100]} 
+                    stroke={textColor}
+                    label={{ 
+                      value: 'Percentage (%)', 
+                      angle: -90, 
+                      position: 'insideLeft',
+                      fill: textColor
+                    }} 
+                  />
+                  <Tooltip 
+                    contentStyle={{
+                      backgroundColor: tooltipBg,
+                      borderColor: borderColor,
+                      borderRadius: '0.5rem'
+                    }}
+                    formatter={(value) => [`${value}%`, 'Accuracy']} 
+                  />
                   <Legend />
                   <Line 
                     type="monotone" 
@@ -163,8 +204,8 @@ const Analytics = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Cell Composition</h2>
+            <div className={`${cardBg} rounded-xl shadow-sm p-6 border ${borderColor} transition-colors duration-200`}>
+              <h2 className={`text-xl font-semibold ${textColor} mb-4`}>Cell Composition</h2>
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
@@ -179,23 +220,33 @@ const Analytics = () => {
                       label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
                     >
                       {compositionData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        <Cell 
+                          key={`cell-${index}`} 
+                          fill={document.documentElement.classList.contains('dark') ? DARK_COLORS[index % DARK_COLORS.length] : COLORS[index % COLORS.length]} 
+                        />
                       ))}
                     </Pie>
-                    <Tooltip formatter={(value) => [value, 'Cells']} />
+                    <Tooltip 
+                      contentStyle={{
+                        backgroundColor: tooltipBg,
+                        borderColor: borderColor,
+                        borderRadius: '0.5rem'
+                      }}
+                      formatter={(value) => [value, 'Cells']} 
+                    />
                     <Legend />
                   </PieChart>
                 </ResponsiveContainer>
               </div>
             </div>
 
-            <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-800 mb-4">Puzzle Details</h2>
+            <div className={`${cardBg} rounded-xl shadow-sm p-6 border ${borderColor} transition-colors duration-200`}>
+              <h2 className={`text-xl font-semibold ${textColor} mb-4`}>Puzzle Details</h2>
               <div className="space-y-4">
                 {puzzleDetails.map((detail, index) => (
-                  <div key={index} className="flex justify-between items-center py-2 border-b border-gray-100 last:border-0">
-                    <span className="text-gray-600">{detail.name}</span>
-                    <span className="font-medium text-gray-900">{detail.value}</span>
+                  <div key={index} className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700 last:border-0">
+                    <span className="text-gray-600 dark:text-gray-400">{detail.name}</span>
+                    <span className="font-medium text-gray-900 dark:text-white">{detail.value}</span>
                   </div>
                 ))}
               </div>

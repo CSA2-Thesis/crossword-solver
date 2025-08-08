@@ -33,7 +33,7 @@ const AlgorithmSelector = ({
 
   return (
     <div className="space-y-4">
-      <p className="text-gray-600 text-sm">
+      <p className="text-gray-600 dark:text-gray-400 text-sm">
         Choose the algorithm that best fits your puzzle:
       </p>
       <div className="space-y-3 max-h-80 overflow-y-auto pr-2">
@@ -43,8 +43,8 @@ const AlgorithmSelector = ({
             onClick={() => !isLoading && onAlgorithmChange(algorithm.id)}
             className={`p-4 border rounded-lg cursor-pointer transition-all duration-200 ${
               selectedAlgorithm === algorithm.id
-                ? "border-blue-500 bg-blue-50 shadow-sm"
-                : "border-gray-200 hover:border-gray-300 hover:bg-gray-50"
+                ? "border-blue-500 bg-blue-50 dark:bg-blue-900/30 shadow-sm"
+                : "border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-700/50"
             } ${isLoading ? "cursor-not-allowed opacity-70" : ""}`}
           >
             <div className="flex items-start">
@@ -76,7 +76,7 @@ const AlgorithmSelector = ({
                     className={`font-medium ${
                       selectedAlgorithm === algorithm.id
                         ? "text-blue-900 dark:text-blue-300"
-                        : "text-gray-900 dark:text-white"
+                        : "text-gray-900 dark:text-gray-100"
                     }`}
                   >
                     {algorithm.name}
@@ -85,7 +85,7 @@ const AlgorithmSelector = ({
                     className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                       selectedAlgorithm === algorithm.id
                         ? "bg-blue-200 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                        : "bg-gray-100 text-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                        : "bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300"
                     }`}
                   >
                     {algorithm.id}
@@ -105,7 +105,7 @@ const AlgorithmSelector = ({
       </div>
 
       {footer && (
-        <div className="pt-4 border-t border-gray-200 mt-2">
+        <div className="pt-4 border-t border-gray-200 dark:border-gray-700 mt-2">
           {footer}
         </div>
       )}

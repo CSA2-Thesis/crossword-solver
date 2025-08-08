@@ -100,9 +100,9 @@ const Solution = () => {
 
   if (hasError) {
     return (
-      <div className="text-center py-12">
-        <FiXCircle className="w-16 h-16 text-red-500 mx-auto" />
-        <h3 className="text-xl font-semibold text-red-600 mt-4">Error Displaying Solution</h3>
+      <div className="text-center py-12 bg-white dark:bg-gray-900 transition-colors duration-200">
+        <FiXCircle className="w-16 h-16 text-red-500 dark:text-red-400 mx-auto" />
+        <h3 className="text-xl font-semibold text-red-600 dark:text-red-400 mt-4">Error Displaying Solution</h3>
         <Button onClick={() => navigate(-1)} className="mt-4">Go Back</Button>
       </div>
     );
@@ -147,14 +147,14 @@ const Solution = () => {
   };
 
   const handleShowAnalytics = () => {
-  navigate('/analytics', { 
-    state: { 
-      analysisData: analysis,
-      originalPuzzle: originalPuzzle, 
-      solvedResult: solvedResult 
-    } 
-  });
-};
+    navigate('/analytics', { 
+      state: { 
+        analysisData: analysis,
+        originalPuzzle: originalPuzzle, 
+        solvedResult: solvedResult 
+      } 
+    });
+  };
 
   const handleDownloadSolution = () => {
     try {
@@ -177,35 +177,35 @@ const Solution = () => {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
       <div className="max-w-4xl mx-auto text-center mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Solution Analysis</h1>
-        <p className="text-gray-600 mb-6">Review your crossword solution performance</p>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Solution Analysis</h1>
+        <p className="text-gray-600 dark:text-gray-300 mb-6">Review your crossword solution performance</p>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-          <div>
-            <h3 className="text-sm font-medium text-gray-500">Cell Accuracy</h3>
-            <p className="text-2xl font-bold text-blue-600">
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Cell Accuracy</h3>
+            <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
               {totalCells > 0 ? `${Math.round(accuracy * 100)}%` : "N/A"}
             </p>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-gray-500 dark:text-gray-400">
               {correctCells} / {totalCells} cells correct
             </p>
           </div>
-          <div>
-            <h3 className="text-sm font-medium text-gray-500">Word Accuracy</h3>
-            <p className="text-2xl font-bold text-purple-600">
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Word Accuracy</h3>
+            <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
               {totalWords > 0 ? `${Math.round(wordAccuracy * 100)}%` : "N/A"}
             </p>
-            <p className="text-xs text-gray-500">
+            <p className="text-xs text-gray-500 dark:text-gray-400">
               {correctWords} / {totalWords} words correct
             </p>
           </div>
-          <div>
-            <h3 className="text-sm font-medium text-gray-500">Method</h3>
-            <p className="text-xl font-semibold text-purple-600 mt-1">{solvedResult?.method || "N/A"}</p>
-            <h3 className="text-sm font-medium text-gray-500 mt-2">Execution Time</h3>
-            <p className="text-xl font-semibold text-orange-600 mt-1">{solvedResult?.metrics?.execution_time || "N/A"}</p>
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Method</h3>
+            <p className="text-xl font-semibold text-purple-600 dark:text-purple-400 mt-1">{solvedResult?.method || "N/A"}</p>
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mt-2">Execution Time</h3>
+            <p className="text-xl font-semibold text-orange-600 dark:text-orange-400 mt-1">{solvedResult?.metrics?.execution_time || "N/A"}</p>
           </div>
         </div>
       </div>
@@ -222,19 +222,19 @@ const Solution = () => {
             className={`px-4 py-2 rounded-lg font-medium text-sm transition ${
               view === tab.id
                 ? "bg-blue-600 text-white"
-                : "bg-white text-gray-700 hover:bg-gray-100"
-            } border border-gray-300`}
+                : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+            } border border-gray-300 dark:border-gray-600`}
           >
             {tab.label}
           </button>
         ))}
       </div>
 
-      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200 mb-8">
+      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-gray-700/50 p-6 border border-gray-200 dark:border-gray-700 mb-8 transition-colors duration-200">
         {view === "side-by-side" && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4 text-center">
                 Your Solution
               </h3>
               {renderGrid(
@@ -248,7 +248,7 @@ const Solution = () => {
               )}
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">
+              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4 text-center">
                 Correct Answers
               </h3>
               {renderGrid(
@@ -265,7 +265,7 @@ const Solution = () => {
         )}
         {view === "overlay" && (
           <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4 text-center">
               Solution Overlay (Green = Correct, Red = Incorrect)
             </h3>
             <div className="flex justify-center">
@@ -281,19 +281,19 @@ const Solution = () => {
             </div>
             <div className="flex justify-center mt-4 space-x-6 text-sm">
                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-green-200 border border-gray-300 mr-1"></div>
-                    <span>Correct Letter</span>
+                    <div className="w-4 h-4 bg-green-200 dark:bg-green-800 border border-gray-300 dark:border-gray-600 mr-1"></div>
+                    <span className="text-gray-700 dark:text-gray-300">Correct Letter</span>
                  </div>
                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-red-200 border border-gray-300 mr-1"></div>
-                    <span>Incorrect Letter</span>
+                    <div className="w-4 h-4 bg-red-200 dark:bg-red-800 border border-gray-300 dark:border-gray-600 mr-1"></div>
+                    <span className="text-gray-700 dark:text-gray-300">Incorrect Letter</span>
                  </div>
             </div>
           </div>
         )}
         {view === "differences" && incorrectPositions.length > 0 && (
           <div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-4 text-center">
+            <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4 text-center">
               Incorrect Cells
             </h3>
             <div className="flex justify-center">
@@ -308,12 +308,12 @@ const Solution = () => {
               )}
               <div className="flex justify-center mt-4 space-x-6 text-sm">
                    <div className="flex items-center">
-                      <div className="w-4 h-4 bg-white border border-gray-300 mr-1"></div>
-                      <span>Correct Cell</span>
+                      <div className="w-4 h-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 mr-1"></div>
+                      <span className="text-gray-700 dark:text-gray-300">Correct Cell</span>
                    </div>
                    <div className="flex items-center">
-                      <div className="w-4 h-4 bg-red-200 border border-gray-300 mr-1"></div>
-                      <span>Incorrect Cell</span>
+                      <div className="w-4 h-4 bg-red-200 dark:bg-red-800 border border-gray-300 dark:border-gray-600 mr-1"></div>
+                      <span className="text-gray-700 dark:text-gray-300">Incorrect Cell</span>
                    </div>
               </div>
             </div>
@@ -321,9 +321,9 @@ const Solution = () => {
         )}
         {view === "differences" && incorrectPositions.length === 0 && (
           <div className="text-center py-12">
-            <FiCheckCircle className="w-16 h-16 text-green-500 mx-auto" />
-            <h3 className="text-xl font-semibold text-green-600 mt-4">Perfect Solution!</h3>
-            <p className="text-gray-500">No errors found.</p>
+            <FiCheckCircle className="w-16 h-16 text-green-500 dark:text-green-400 mx-auto" />
+            <h3 className="text-xl font-semibold text-green-600 dark:text-green-400 mt-4">Perfect Solution!</h3>
+            <p className="text-gray-500 dark:text-gray-400">No errors found.</p>
           </div>
         )}
       </div>

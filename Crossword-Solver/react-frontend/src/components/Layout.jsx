@@ -112,7 +112,7 @@ function Layout() {
                     onClick={() =>
                       setShowSettingsDropdown(!showSettingsDropdown)
                     }
-                    className="p-2 mr-4 text-gray-500 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                    className="p-2 mr-4 text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
                     aria-label="Settings"
                   >
                     <FiSettings size={20} />
@@ -169,7 +169,7 @@ function Layout() {
           </nav>
         </header>
 
-        <main className="flex-1 pb-12 /*bg-white dark:bg-gray-800*/ ">
+        <main className="flex-1 bg-white/80/10 dark:bg-gray-800/10 backdrop-blur-md">
           <Outlet />
         </main>
       </div>

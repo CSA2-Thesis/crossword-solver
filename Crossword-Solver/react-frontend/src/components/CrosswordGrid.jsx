@@ -13,21 +13,22 @@ const CrosswordGrid = ({
   correctPositions = [],
   highlightSpecific = false,
   specificPositions = [],
-  specificHighlightColor = 'bg-yellow-200',
+  specificHighlightColor = 'bg-yellow-200 dark:bg-yellow-800',
   theme = {
-    cellBackground: 'bg-white',
-    cellBorder: 'border border-gray-300',
-    activeCell: 'ring-2 ring-blue-500',
-    textColor: 'text-gray-900',
-    blackCellTextColor: 'text-white',
-    numberColor: 'text-gray-500',
-    errorHighlight: 'bg-red-200',
-    correctHighlight: 'bg-green-200'
+    cellBackground: 'bg-white dark:bg-gray-800',
+    cellBorder: 'border border-gray-300 dark:border-gray-600',
+    activeCell: 'ring-2 ring-blue-500 dark:ring-blue-400',
+    textColor: 'text-gray-900 dark:text-gray-100',
+    blackCellBackground: 'bg-black dark:bg-gray-900',
+    blackCellTextColor: 'text-white dark:text-gray-300',
+    numberColor: 'text-gray-500 dark:text-gray-400',
+    errorHighlight: 'bg-red-200 dark:bg-red-800',
+    correctHighlight: 'bg-green-200 dark:bg-green-800'
   }
 }) => {
   if (!Array.isArray(grid) || grid.some(row => !Array.isArray(row))) {
     return (
-      <div className="text-red-500 p-4 border border-red-200 rounded-lg bg-red-50">
+      <div className="text-red-500 dark:text-red-400 p-4 border border-red-200 dark:border-red-800 rounded-lg bg-red-50 dark:bg-red-900/20">
         Invalid grid structure provided
       </div>
     );
@@ -49,7 +50,6 @@ const CrosswordGrid = ({
     if (!highlightSpecific || !Array.isArray(specificPositions)) return new Set();
     return new Set(specificPositions.map(pos => `${pos.x},${pos.y}`));
   }, [highlightSpecific, specificPositions]);
-
 
   const numberMap = {};
   [...(clues.across || []), ...(clues.down || [])].forEach(clue => {

@@ -168,7 +168,7 @@ export default function PuzzleGenerator() {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 flex-1 pb-12 bg-white/10 dark:bg-gray-800/10 backdrop-blur-md transition-colors duration-200">
+    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 flex-1 pb-12 transition-colors duration-200">
       <div className="max-w-7xl mx-auto">
         <header className="mb-8 text-center">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">

@@ -11,12 +11,12 @@ const PuzzleConfigPanel = ({
   onReset
 }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-xl font-semibold mb-4 text-gray-800">Puzzle Configuration</h2>
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-gray-700/50 p-6 transition-colors duration-200">
+      <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Puzzle Configuration</h2>
       
       <div className="space-y-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Grid Size: <span className="font-bold">{gridSize}x{gridSize}</span>
           </label>
           <div className="flex items-center gap-4">
@@ -27,26 +27,26 @@ const PuzzleConfigPanel = ({
               step="1"
               value={gridSize}
               onChange={(e) => onGridSizeChange(parseInt(e.target.value))}
-              className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+              className="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer"
             />
-            <span className="text-sm w-12 text-center font-medium bg-gray-100 px-2 py-1 rounded">
+            <span className="text-sm w-12 text-center font-medium bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
               {gridSize}
             </span>
           </div>
-          <div className="flex justify-between text-xs text-gray-500 mt-1">
+          <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
             <span>Small</span>
             <span>Large</span>
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
             Word Density
           </label>
           <select
             value={difficulty}
             onChange={(e) => onDifficultyChange(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md text-sm"
+            className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md text-sm bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
           >
             <option value="easy">Easy (More black spaces)</option>
             <option value="medium">Medium (Balanced)</option>
@@ -77,6 +77,5 @@ const PuzzleConfigPanel = ({
     </div>
   );
 };
-
 
 export default PuzzleConfigPanel;

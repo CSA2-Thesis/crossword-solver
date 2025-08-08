@@ -29,7 +29,7 @@ const About = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-50 to-blue-100 dark:from-gray-800 dark:to-gray-900 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-50/10 to-blue-100/10 dark:from-gray-800/10 dark:to-gray-900/10 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-200 backdrop-blur-md">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white mb-6">
