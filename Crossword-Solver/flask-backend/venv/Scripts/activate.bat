@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set "VIRTUAL_ENV=D:\T\CSA2 Thesis\Crossword-Solver\flask-backend\venv"
+set "VIRTUAL_ENV=D:\Thesis\flash-backend\venv"
 
 if not defined PROMPT set PROMPT=$P$G
 
