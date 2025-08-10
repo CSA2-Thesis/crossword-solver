@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV 'D:\T\CSA2 Thesis\Crossword-Solver\flask-backend\venv'
+set -gx VIRTUAL_ENV 'D:\Thesis\flash-backend\venv'
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/"Scripts $PATH
