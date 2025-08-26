@@ -9,13 +9,16 @@ from flask_cors import CORS
 from solver.dfs_solver import solve_with_dfs
 from solver.astar_solver import solve_with_astar
 from solver.hybrid_solver import solve_with_hybrid
-from wordnet_helper import get_possible_words, get_words_by_length
+from dictionary_helper import DictionaryHelper
 from generate_downloadables import generate_png_image, generate_pdf
 
 from generator.crossword_generator import CrosswordGenerator
 
 app = Flask(__name__)
 CORS(app) 
+
+dict_helper = DictionaryHelper("dictionary")
+
 
 @app.route("/solve", methods=["POST", "OPTIONS"])
 def solve():
@@ -78,7 +81,7 @@ def suggest_words():
         
     clue = request.args.get("clue", "")
     max_words = int(request.args.get("max", 20))
-    words = get_possible_words(clue=clue, max_words=max_words)
+    words = dict_helper.get_possible_words(clue=clue, max_words=max_words)
     return _corsify_actual_response(jsonify(words))
 
 @app.route('/generate', methods=['POST'])
@@ -115,7 +118,7 @@ def generate():
         target_word_count = int(base_word_count * word_count_multiplier)
 
         initial_length = random.randint(min_word_length, min(max_word_length, size//2))
-        possible_words = get_words_by_length(length=initial_length, max_words=100)
+        possible_words = dict_helper.get_words_by_length(length=initial_length, max_words=100)
         if not possible_words:
             return jsonify({
                 "success": False,
@@ -134,7 +137,7 @@ def generate():
             word_list = []
             dynamic_max_len = max_word_length + (attempt % 2)
             for length in range(min_word_length, dynamic_max_len + 1):
-                words = get_words_by_length(
+                words = dict_helper.get_words_by_length(
                     length=length,
                     max_words=int(target_word_count / 2) + random.randint(0, 20)
                 )

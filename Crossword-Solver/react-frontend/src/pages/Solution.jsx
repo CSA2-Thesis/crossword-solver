@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import CrosswordGrid from '../components/CrosswordGrid';
 import Button from '../components/Button';
-import { FiXCircle, FiCheckCircle, FiBarChart2, FiDownload } from 'react-icons/fi';
+import { FiXCircle, FiCheckCircle, FiBarChart2, FiDownload, FiCpu } from 'react-icons/fi';
 
 function analyzeSolution(solvedGrid = [[]], correctGrid = [[]], clues = { across: [], down: [] }) {
   if (!Array.isArray(solvedGrid)) solvedGrid = [[]];
@@ -37,25 +37,40 @@ function analyzeSolution(solvedGrid = [[]], correctGrid = [[]], clues = { across
   allClues.forEach(clue => {
     const { number, direction, x, y, length, answer } = clue;
     let solvedWord = "";
+    let correctWord = "";
+    let isComplete = true;
+
     try {
       if (direction === "across") {
-        solvedWord = solvedGrid[y]?.slice(x, x + length).join("") || "";
+        for (let i = 0; i < length; i++) {
+          const solvedChar = solvedGrid[y]?.[x + i] || "";
+          const correctChar = correctGrid[y]?.[x + i] || "";
+          solvedWord += solvedChar;
+          correctWord += correctChar;
+          if (!solvedChar) isComplete = false;
+        }
       } else if (direction === "down") {
         for (let i = 0; i < length; i++) {
-          solvedWord += solvedGrid[y + i]?.[x] || "";
+          const solvedChar = solvedGrid[y + i]?.[x] || "";
+          const correctChar = correctGrid[y + i]?.[x] || "";
+          solvedWord += solvedChar;
+          correctWord += correctChar;
+          if (!solvedChar) isComplete = false;
         }
       }
     } catch (e) {
-      console.error(`Error extracting solved word for clue ${number} ${direction}:`, e);
-      solvedWord = "";
+      console.error(`Error extracting words for clue ${number} ${direction}:`, e);
+      isComplete = false;
     }
-    if (solvedWord.toUpperCase() === (answer || "").toUpperCase()) {
+
+    if (isComplete && solvedWord.toUpperCase() === correctWord.toUpperCase()) {
       correctWords++;
     }
   });
 
   const accuracy = totalCells > 0 ? correctCells / totalCells : 1;
   const wordAccuracy = totalWords > 0 ? correctWords / totalWords : 1;
+  
   return {
     correctCells,
     totalCells,
@@ -97,6 +112,13 @@ const Solution = () => {
     totalWords,
     wordAccuracy
   } = analysis;
+
+  const formatMemoryUsage = (kb) => {
+    if (kb >= 1024) {
+      return `${(kb / 1024).toFixed(2)} MB`;
+    }
+    return `${kb.toFixed(2)} KB`;
+  };
 
   if (hasError) {
     return (
@@ -143,7 +165,12 @@ const Solution = () => {
   };
 
   const handleBackToPuzzle = () => {
-    navigate("/generate", { state: { puzzle: originalPuzzle } });
+    navigate("/generate", { 
+      state: { 
+        puzzle: originalPuzzle,
+        keepPuzzle: true
+      } 
+    });
   };
 
   const handleShowAnalytics = () => {
@@ -177,12 +204,12 @@ const Solution = () => {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900 transition-colors duration-200">
+    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
       <div className="max-w-4xl mx-auto text-center mb-8">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Solution Analysis</h1>
         <p className="text-gray-600 dark:text-gray-300 mb-6">Review your crossword solution performance</p>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
           <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
             <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Cell Accuracy</h3>
             <p className="text-2xl font-bold text-blue-600 dark:text-blue-400">
@@ -206,6 +233,17 @@ const Solution = () => {
             <p className="text-xl font-semibold text-purple-600 dark:text-purple-400 mt-1">{solvedResult?.method || "N/A"}</p>
             <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mt-2">Execution Time</h3>
             <p className="text-xl font-semibold text-orange-600 dark:text-orange-400 mt-1">{solvedResult?.metrics?.execution_time || "N/A"}</p>
+          </div>
+          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Memory Usage</h3>
+            <p className="text-2xl font-bold text-green-600 dark:text-green-400">
+              {solvedResult?.metrics?.memory_usage_kb ? 
+                formatMemoryUsage(solvedResult.metrics.memory_usage_kb) : "N/A"}
+            </p>
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mt-2">Words Placed</h3>
+            <p className="text-xl font-semibold text-cyan-600 dark:text-cyan-400 mt-1">
+              {solvedResult?.metrics?.words_placed || "N/A"}
+            </p>
           </div>
         </div>
       </div>
@@ -232,7 +270,7 @@ const Solution = () => {
 
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-gray-700/50 p-6 border border-gray-200 dark:border-gray-700 mb-8 transition-colors duration-200">
         {view === "side-by-side" && (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 justify-items-center">
             <div>
               <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4 text-center">
                 Your Solution
@@ -343,13 +381,13 @@ const Solution = () => {
         >
           Export Solution
         </Button>
-        {/* <Button
+        <Button
           onClick={handleShowAnalytics}
           variant="primary"
           icon={<FiBarChart2 size={18} />}
         >
           Show Analytics
-        </Button> */}
+        </Button>
       </div>
     </div>
   );

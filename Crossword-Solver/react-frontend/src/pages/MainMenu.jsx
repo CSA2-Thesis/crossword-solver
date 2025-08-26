@@ -15,10 +15,10 @@ function MainMenu() {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 ">
       <div className="text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 transition-colors duration-200">
-          Crossword Puzzle Solver
+          Puzzly Logic
         </h1>
         <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto transition-colors duration-200">
-          Generate and solve crossword puzzles using A*, DFS, and hybrid algorithms
+          An algorthmic stressing of DFS (Backtracking), A* and Hybrid DFS-A* Algorithm in solving crossword puzzles.
         </p>
 
         {/* Options Container */}

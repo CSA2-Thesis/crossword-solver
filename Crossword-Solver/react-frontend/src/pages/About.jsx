@@ -33,7 +33,7 @@ const About = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white mb-6">
-            What is <span className="text-blue-600 dark:text-blue-400">Crossword Solver</span> ?
+            What is <span className="text-blue-600 dark:text-blue-400">Puzzly Logic</span> ?
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
             It is an app made to explore the technicalities and performances of
@@ -46,7 +46,7 @@ const About = () => {
           <div className="grid md:grid-cols-2 gap-8">
             <div>
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-                Crossword Solver is an experimental stressing of the
+                Puzzly Logic is an experimental stressing of the
                 capabilities of pathfinding algorithms DFS (Backtracking), A*
                 search, and a Hybrid DFS-A* algorithm crossword puzzle
                 application that to solve crossword puzzles with unprecedented
@@ -55,7 +55,7 @@ const About = () => {
               <p className="text-lg text-gray-600 dark:text-gray-300">
                 Whether you're a puzzle enthusiast looking for a challenge or a
                 developer interested in algorithmic implementations, the
-                Crossword Solver app offers an engaging experience.
+                Puzzly Logic app offers an engaging experience.
               </p>
             </div>
             <div className="bg-blue-50 dark:bg-gray-700 rounded-xl p-6 border border-blue-100 dark:border-gray-600">

@@ -19,7 +19,7 @@ const CrosswordGrid = ({
     cellBorder: 'border border-gray-300 dark:border-gray-600',
     activeCell: 'ring-2 ring-blue-500 dark:ring-blue-400',
     textColor: 'text-gray-900 dark:text-gray-100',
-    blackCellBackground: 'bg-black dark:bg-gray-900',
+    blackCellBackground: 'bg-black/0 dark:bg-gray-900/0',
     blackCellTextColor: 'text-white dark:text-gray-300',
     numberColor: 'text-gray-500 dark:text-gray-400',
     errorHighlight: 'bg-red-200 dark:bg-red-800',

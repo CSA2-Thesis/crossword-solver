@@ -70,7 +70,7 @@ function Layout() {
                 to="/"
                 className="text-xl font-bold text-gray-900 dark:text-white flex-shrink-0"
               >
-                Crossword Solver
+                Puzzly Logic
               </Link>
 
               <div className="hidden md:flex justify-center flex-1">
@@ -84,7 +84,7 @@ function Layout() {
               <div className="flex items-center gap-4">
                 <button
                   onClick={toggleTheme}
-                  className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+                  className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:bg-gray-700 transition-colors duration-200"
                   aria-label="Toggle dark mode"
                 >
                   <div className="relative w-5 h-5">
@@ -106,13 +106,13 @@ function Layout() {
                     />
                   </div>
                 </button>
-
+                
                 <div className="relative" ref={dropdownRef}>
                   <button
                     onClick={() =>
                       setShowSettingsDropdown(!showSettingsDropdown)
                     }
-                    className="p-2 mr-4 text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                    className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:bg-gray-700 transition-colors"
                     aria-label="Settings"
                   >
                     <FiSettings size={20} />
