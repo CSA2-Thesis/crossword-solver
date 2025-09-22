@@ -1,395 +1,286 @@
 import json
 import os
-import random
+import logging
 import re
-from collections import defaultdict
-from typing import List, Dict, Optional, Tuple
-import string
+import random
+from typing import List, Dict, Optional
+from collections import defaultdict, Counter
 
-LETTER_SCORES = {
-    'E': 13, 'T': 12, 'A': 11, 'O': 10, 'I': 9, 'N': 8,
-    'S': 7, 'H': 6, 'R': 5, 'D': 4, 'L': 3, 'C': 2,
-    'U': 1, 'M': 1, 'W': 1, 'F': 1, 'G': 1, 'Y': 1,
-    'P': 1, 'B': 1, 'V': 1, 'K': 1, 'J': 1, 'X': 1,
-    'Q': 1, 'Z': 1
-}
-
-BLACKLIST_WORDS = {
-    'a', 'i', 'me', 'my', 'we', 'us', 'our', 'you', 'your', 'he', 
-    'him', 'his', 'she', 'her', 'it', 'its', 'they', 'them', 'their',
-    'this', 'that', 'these', 'those', 'am', 'is', 'are', 'was', 'were',
-    'be', 'being', 'been', 'have', 'has', 'had', 'do', 'does', 'did',
-    'will', 'would', 'shall', 'should', 'may', 'might', 'must', 'can',
-    'could', 'and', 'but', 'or', 'nor', 'for', 'so', 'yet', 'as', 'at',
-    'by', 'in', 'of', 'on', 'to', 'with', 'from', 'into', 'about', 'over',
-    'anal'
-}
+logger = logging.getLogger(__name__)
 
 class DictionaryHelper:
-    def __init__(self, dictionary_path: str = "Dictionary"):
-        """Initialize the dictionary helper with the path to the JSON files"""
-        self.dictionary_path = os.path.abspath(dictionary_path)  # Store the absolute path
-        self.dictionary = {}
-        self.word_length_index = defaultdict(list)
-        self.letter_index = defaultdict(list)
-        self.load_dictionary(self.dictionary_path)  # Pass the stored path
-        
-    def load_dictionary(self, directory: str):
-        """Load all JSON dictionary files from the specified directory"""
-        for letter in string.ascii_lowercase:
-            file_path = os.path.join(directory, f"{letter}.json")
-            try:
-                with open(file_path, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                    for word, entry in data.items():
-                        # Skip words that are exactly two letters (too short)
-                        if len(word) <= 2:
-                            continue
-                            
-                        # Skip words with apostrophes or other non-alphabetic characters
-                        if not word.isalpha():
-                            continue
-                            
-                        # Skip blacklisted words
-                        if word.lower() in BLACKLIST_WORDS:
-                            continue
-                            
-                        # Store the word in our dictionary
-                        self.dictionary[word.lower()] = entry
-                        
-                        # Index by word length
-                        self.word_length_index[len(word)].append(word.lower())
-                        
-                        # Index by first letter
-                        first_char = word[0].lower()
-                        self.letter_index[first_char].append(word.lower())
-            except FileNotFoundError:
-                print(f"Warning: Dictionary file not found for letter {letter}")
-            except json.JSONDecodeError:
-                print(f"Error: Could not parse JSON file for letter {letter}")
+    # Letter frequency scores for word placement optimization
+    LETTER_SCORES = {
+        'A': 1, 'B': 3, 'C': 3, 'D': 2, 'E': 1, 'F': 4, 'G': 2, 'H': 4, 'I': 1,
+        'J': 8, 'K': 5, 'L': 1, 'M': 3, 'N': 1, 'O': 1, 'P': 3, 'Q': 10, 'R': 1,
+        'S': 1, 'T': 1, 'U': 1, 'V': 4, 'W': 4, 'X': 8, 'Y': 4, 'Z': 10
+    }
     
-    def _is_valid_word(self, word: str, length_range: Tuple[int, int] = (3, 12)) -> bool:
-        """Check if a word meets our criteria"""
-        min_len, max_len = length_range
-        return (word.isalpha() and 
-                min_len <= len(word) <= max_len and 
-                word == word.lower() and
-                not word.endswith('s') and
-                word in self.dictionary)
+    # Letter frequency in English language (for more natural word distribution)
+    LETTER_FREQUENCY = {
+        'A': 8.2, 'B': 1.5, 'C': 2.8, 'D': 4.3, 'E': 12.7, 'F': 2.2, 'G': 2.0, 'H': 6.1, 'I': 7.0,
+        'J': 0.15, 'K': 0.77, 'L': 4.0, 'M': 2.4, 'N': 6.7, 'O': 7.5, 'P': 1.9, 'Q': 0.095, 'R': 6.0,
+        'S': 6.3, 'T': 9.1, 'U': 2.8, 'V': 0.98, 'W': 2.4, 'X': 0.15, 'Y': 2.0, 'Z': 0.074
+    }
     
-    def get_best_starting_letter(self, existing_words: List[str] = []) -> str:
-        if not existing_words:
-            letter_weights = {
-                'a': 10, 'b': 5, 'c': 8, 'd': 7, 'e': 9, 'f': 5,
-                'g': 6, 'h': 7, 'i': 7, 'j': 3, 'k': 4, 'l': 8,
-                'm': 6, 'n': 8, 'o': 7, 'p': 7, 'q': 2, 'r': 8,
-                's': 9, 't': 9, 'u': 5, 'v': 4, 'w': 5, 'x': 2,
-                'y': 4, 'z': 2
-            }
-            letters = list(letter_weights.keys())
-            weights = list(letter_weights.values())
-            return random.choices(letters, weights=weights, k=1)[0]
+    def __init__(self, dictionary_path: str):
+        self.dictionary_path = dictionary_path
+        self.words_by_length = defaultdict(list)
+        self.words_by_first_letter = defaultdict(list)
+        self.word_count_by_length = defaultdict(int)
+        self.all_words = []
+        self.word_to_data = {}  # Mapping from word to its data
+        self._load_dictionary()
         
-        letter_counts = defaultdict(int)
-        for word in existing_words:
-            for letter in word.lower():
-                if letter.isalpha():
-                    letter_counts[letter] += 1
+    def _load_dictionary(self):
+        """Load and index the dictionary for faster lookups"""
+        logger.info("Loading dictionary...")
         
-        connection_scores = defaultdict(int)
-        for letter in string.ascii_lowercase:
-            if letter not in self.letter_index:
-                continue
-                
-            for word in self.letter_index[letter]:
-                unique_letters = set(word)
-                for l in unique_letters:
-                    connection_scores[letter] += letter_counts.get(l, 0)
+        # Load all dictionary files
+        for filename in os.listdir(self.dictionary_path):
+            if filename.endswith('.json'):
+                file_path = os.path.join(self.dictionary_path, filename)
+                try:
+                    with open(file_path, 'r', encoding='utf-8') as f:
+                        data = json.load(f)
+                        
+                        # Your JSON structure: {word: {word_data}, word2: {word_data}, ...}
+                        for word_key, word_data in data.items():
+                            # Extract the word from the data
+                            word = word_data.get('word', word_key).upper()
+                            
+                            # Skip words with spaces or non-alphabetic characters
+                            if ' ' in word or not self._is_valid_crossword_word(word):
+                                continue
+                                
+                            length = len(word)
+                            
+                            # Create a standardized word data structure with score
+                            standardized_data = {
+                                'word': word,
+                                'clue': self._extract_clue(word_data),
+                                'definition': self._extract_definition(word_data),
+                                'length': length,
+                                'score': self._calculate_word_score(word)  # Add score field
+                            }
+                            
+                            # Add to various indexes
+                            self.words_by_length[length].append(standardized_data)
+                            if word:  # Ensure word is not empty
+                                self.words_by_first_letter[word[0]].append(standardized_data)
+                            self.word_count_by_length[length] += 1
+                            self.all_words.append(standardized_data)
+                            self.word_to_data[word] = standardized_data
+                            
+                except Exception as e:
+                    logger.error(f"Error loading dictionary file {filename}: {e}")
         
-        if not connection_scores:
-            return random.choice(['e', 's', 't', 'a', 'r']) 
+        logger.info(f"Dictionary loaded: {len(self.all_words)} valid crossword words")
         
-        top_letters = sorted(connection_scores.items(), key=lambda x: -x[1])[:3]
-        return random.choice(top_letters)[0]
-
-    def _word_score(self, word: str) -> int:
-        """Calculate a score for the word based on letter frequency, with less penalty for uncommon letters"""
-        score = sum(LETTER_SCORES.get(c.upper(), 0) for c in word)
+    def _is_valid_crossword_word(self, word: str) -> bool:
+        """Check if a word is valid for crossword puzzles"""
+        # Must contain only letters (no spaces, hyphens, apostrophes, etc.)
+        if not word.isalpha():
+            return False
+            
+        # Must be between 2 and 15 letters long (typical crossword word lengths)
+        if len(word) < 2 or len(word) > 15:
+            return False
+            
+        # Should not be too obscure (you can add more filters as needed)
+        return True
         
-        obscure_letters = {'q', 'z', 'x', 'j', 'k', 'v'}
-        unique_letters = set(word.lower())
-        score -= len(unique_letters & obscure_letters)
+    def _calculate_word_score(self, word: str) -> int:
+        """Calculate a score for a word based on letter frequency"""
+        score = 0
+        vowels = {'A', 'E', 'I', 'O', 'U'}
+        word_upper = word.upper()
         
+        # Base score from letter values
+        for char in word_upper:
+            score += self.LETTER_SCORES.get(char, 0)
+        
+        # Bonus for vowels in the middle of words
+        for i in range(1, len(word)-1):
+            if word_upper[i] in vowels:
+                score += 2
+        
+        # Penalty for words with too many repeated letters
+        unique_letters = set(word_upper)
+        if len(unique_letters) < len(word)/2:
+            score -= 3
+            
+        # Bonus for words starting with rare letters (but not too much)
+        first_char = word[0].upper()
+        rare_bonus = max(1, 10 - self.LETTER_FREQUENCY.get(first_char, 5) * 0.5)
+        score += int(rare_bonus)
+        
+        # Ensure score is always positive
         return max(1, score)
-    
-    def get_possible_words(self, clue: str = "", max_words: int = 100, length_range: Tuple[int, int] = (3, 12)) -> List[Dict]:
-        """Get possible words that match the clue and length requirements.
         
-        Args:
-            clue: The clue/definition to match words against
-            max_words: Maximum number of words to return
-            length_range: Tuple of (min_length, max_length) for words
+    def _extract_clue(self, word_data: Dict) -> str:
+        """Extract a clue from the word data"""
+        # Try to get a clue from the meanings
+        if 'meanings' in word_data and word_data['meanings']:
+            first_meaning = word_data['meanings'][0]
+            if 'def' in first_meaning:
+                return first_meaning['def']
+        
+        # Fallback to the word itself
+        return f"Definition related to {word_data.get('word', 'unknown')}"
+    
+    def _extract_definition(self, word_data: Dict) -> str:
+        """Extract a full definition from the word data"""
+        if 'meanings' in word_data:
+            definitions = []
+            for meaning in word_data['meanings']:
+                if 'def' in meaning:
+                    definitions.append(meaning['def'])
+            return "; ".join(definitions)
+        
+        return f"Definition related to {word_data.get('word', 'unknown')}"
+        
+    def get_word_count_by_length(self, length: int) -> int:
+        """Get the count of words of a specific length"""
+        return self.word_count_by_length.get(length, 0)
+        
+    def get_words_by_length(self, length: int, max_words: int = None) -> List[Dict]:
+        """Get words of a specific length with optional limit"""
+        words = self.words_by_length.get(length, [])
+        
+        # Ensure diverse selection by first letter
+        if max_words and len(words) > max_words:
+            # Group by first letter
+            by_first_letter = defaultdict(list)
+            for word in words:
+                by_first_letter[word['word'][0]].append(word)
             
-        Returns:
-            List of dictionaries containing word, definition, and relevance score
-        """
-        def score_word_definition(word: str, meaning: Dict, clue_words: List[str]) -> int:
-            """Calculate relevance score between word meaning and clue words."""
-            definition = meaning['def'].lower()
-            example = meaning.get('example', '').lower()
+            # Calculate how many words to take from each letter group
+            total_letters = len(by_first_letter)
+            words_per_letter = max(1, max_words // total_letters)
             
-            # Calculate base relevance from definition matches
-            relevance = sum(
-                10 for cw in clue_words 
-                if cw in definition
-            )
+            # Select words from each group
+            selected_words = []
+            for letter, letter_words in by_first_letter.items():
+                # Sort by score and take the best ones
+                letter_words.sort(key=lambda x: x['score'], reverse=True)
+                selected_words.extend(letter_words[:words_per_letter])
             
-            # Bonus for example matches
-            if example:
-                relevance += sum(
-                    5 for cw in clue_words
-                    if cw in example
-                )
+            # If we need more words, add the highest scoring ones regardless of letter
+            if len(selected_words) < max_words:
+                remaining = max_words - len(selected_words)
+                all_words_sorted = sorted(words, key=lambda x: x['score'], reverse=True)
+                for word in all_words_sorted:
+                    if word not in selected_words:
+                        selected_words.append(word)
+                        remaining -= 1
+                        if remaining <= 0:
+                            break
             
-            # Bonus for noun meanings
-            if meaning.get('speech_part') == 'noun':
-                relevance += 2
+            return selected_words[:max_words]
+        
+        return words
+        
+    def get_words_by_first_letter(self, letter: str, max_words: int = None) -> List[Dict]:
+        """Get words starting with a specific letter with optional limit"""
+        words = self.words_by_first_letter.get(letter.upper(), [])
+        return words[:max_words] if max_words else words
+        
+    def find_word_by_exact_clue(self, clue: str) -> Optional[Dict]:
+        """Find a word by exact clue match"""
+        for word_data in self.all_words:
+            if word_data['clue'].lower() == clue.lower():
+                return word_data
+        return None
+        
+    def get_possible_words(self, clue: str, max_words: int = 50, 
+                          length_range: tuple = None) -> List[Dict]:
+        """Get possible words for a clue with optional length constraint"""
+        results = []
+        clue_lower = clue.lower()
+        
+        # First try exact clue match
+        exact_match = self.find_word_by_exact_clue(clue)
+        if exact_match:
+            results.append(exact_match)
+        
+        # Then try partial matches
+        for word_data in self.all_words:
+            if clue_lower in word_data['clue'].lower():
+                # Check length constraint if provided
+                if length_range:
+                    word_len = len(word_data['word'])
+                    if word_len < length_range[0] or word_len > length_range[1]:
+                        continue
                 
-            return relevance
-
-        def get_fallback_words() -> List[Dict]:
-            """Get fallback words when no matches are found."""
-            fallback_list = [
-                {'word': 'AGILE', 'definition': 'moving quickly and lightly', 'relevance_score': 10},
-                {'word': 'APT', 'definition': 'at risk of or subject to experiencing something usually unpleasant', 'relevance_score': 10},
-                {'word': 'IRA', 'definition': 'Irish Republican Army or Individual Retirement Account', 'relevance_score': 10},
-                {'word': 'REAL', 'definition': 'actually existing as a thing or occurring in fact', 'relevance_score': 10},
-                {'word': 'ACTIVE', 'definition': 'engaged in or ready for action', 'relevance_score': 10},
-                {'word': 'EASY', 'definition': 'posing no difficulty', 'relevance_score': 10},
-                {'word': 'WAN', 'definition': '(of light) lacking in intensity or brightness', 'relevance_score': 10},
-                {'word': 'ABLE', 'definition': 'having the necessary means or skill', 'relevance_score': 10},
-                {'word': 'PYTHON', 'definition': 'a large snake or programming language', 'relevance_score': 10},
-                {'word': 'JAVA', 'definition': 'coffee or programming language', 'relevance_score': 10},
-            ]
-            return [
-                w for w in fallback_list 
-                if length_range[0] <= len(w['word']) <= length_range[1]
-            ][:max_words]
-
-        try:
-            # Handle case when no clue is provided
-            if not clue:
-                words = []
-                for length in range(length_range[0], length_range[1] + 1):
-                    if length in self.word_length_index:
-                        for word in self.word_length_index[length]:
-                            entry = self.dictionary[word]
-                            score = self._word_score(word)
-                            if any(m['speech_part'] == 'noun' for m in entry['meanings']):
-                                score += 2
-                            words.append({
-                                'word': word.upper(),
-                                'definition': entry['meanings'][0]['def'][:200] if entry['meanings'] else "",
-                                'relevance_score': score
-                            })
-                words.sort(key=lambda w: -w['relevance_score'])
-                return words[:max_words]
-
-            # Process clue and find matching words
-            normalized_clue = re.sub(r'[^\w\s]', '', clue.lower())
-            clue_words = {
-                w for w in normalized_clue.split() 
-                if w not in BLACKLIST_WORDS and len(w) > 1
-            }
+                results.append(word_data)
+                if len(results) >= max_words:
+                    break
+        
+        return results
+        
+    def get_words_by_pattern(self, pattern: str, clue: str = None, 
+                           max_words: int = 50) -> List[Dict]:
+        """Get words matching a pattern (e.g., ".A..E" for 5-letter words with A and E)"""
+        results = []
+        pattern_len = len(pattern)
+        
+        # Get words of the right length
+        candidate_words = self.words_by_length.get(pattern_len, [])
+        
+        for word_data in candidate_words:
+            word = word_data['word'].upper()
+            matches = True
             
-            if not clue_words:
-                return get_fallback_words()
-
-            # Find all potential matches across word lengths
-            matches = []
-            for length in range(length_range[0], length_range[1] + 1):
-                if length not in self.word_length_index:
+            # Check if word matches pattern
+            for i, char in enumerate(pattern):
+                if char != '.' and char != word[i]:
+                    matches = False
+                    break
+            
+            if matches:
+                # Additional clue filtering if provided
+                if clue and clue.lower() not in word_data['clue'].lower():
                     continue
                     
-                for word in self.word_length_index[length]:
-                    entry = self.dictionary[word]
-                    for meaning in entry['meanings']:
-                        score = score_word_definition(word, meaning, clue_words)
-                        if score > 0:
-                            matches.append({
-                                'word': word.upper(),
-                                'definition': meaning['def'][:200],
-                                'relevance_score': score,
-                                'speech_part': meaning['speech_part']
-                            })
-
-            # Deduplicate and select best matches
-            best_matches = {}
-            for match in matches:
-                word = match['word']
-                if word not in best_matches or match['relevance_score'] > best_matches[word]['relevance_score']:
-                    best_matches[word] = match
-
-            results = sorted(
-                best_matches.values(), 
-                key=lambda x: -x['relevance_score']
-            )[:max_words]
-
-            # Add fallback words if we don't have enough matches
-            if len(results) < max(5, max_words // 2):
-                fallback = self.get_possible_words("", max_words, length_range)
-                results.extend(fallback[:max_words - len(results)])
-                results = sorted(results, key=lambda x: -x.get('relevance_score', 0))[:max_words]
-
-            return results
-
-        except Exception as e:
-            print(f"Error in get_possible_words: {str(e)}")
-            return get_fallback_words()
-    
-    def get_clue_for_word(self, word: str) -> Dict[str, str]:
-        """Get a clue/definition for a given word with exact matching from JSON files."""
-        if not word:
-            return {"word": "", "clue": ""}
+                results.append(word_data)
+                if len(results) >= max_words:
+                    break
         
-        word_lower = word.lower()
+        return results
         
-        # First try exact match in our preloaded dictionary
-        if word_lower in self.dictionary:
-            entry = self.dictionary[word_lower]
-            return {
-                "word": word.upper(),
-                "clue": entry['meanings'][0]['def'][:200]
-            }
+    def get_clue_for_word(self, word: str) -> Dict:
+        """Get clue for a specific word"""
+        word_upper = word.upper()
+        return self.word_to_data.get(word_upper, {
+            'word': word_upper, 
+            'clue': f"Definition related to {word_upper}",
+            'score': self._calculate_word_score(word_upper)
+        })
         
-        # If not found, try direct JSON file lookup
-        first_char = word_lower[0] if word_lower else 'a'
-        json_file = f"{first_char}.json"
-        json_path = os.path.join(self.dictionary_path, json_file)
-        
-        try:
-            with open(json_path, 'r', encoding='utf-8') as f:
-                data = json.load(f)
-                if word_lower in data:
-                    entry = data[word_lower]
-                    return {
-                        "word": word.upper(),
-                        "clue": entry['meanings'][0]['def'][:200]
-                    }
-        except (FileNotFoundError, json.JSONDecodeError, KeyError):
-            pass
-        
-        # Fallback to first definition found
-        if word_lower in self.dictionary:
-            entry = self.dictionary[word_lower]
-            if entry['meanings']:
-                return {
-                    "word": word.upper(),
-                    "clue": entry['meanings'][0]['def'][:200]
-                }
-        
-        # Final fallback
-        return {
-            "word": word.upper(),
-            "clue": f"Definition related to {word.lower()}"
-        }
-    
-    def find_word_by_exact_clue(self, clue: str) -> Optional[Dict]:
-        if not clue:
-            return None
-        
-        for letter in string.ascii_lowercase:
-            json_file = f"{letter}.json"
-            json_path = os.path.join(self.dictionary_path, json_file)
+    def get_random_word(self, length: int = None, max_words: int = None) -> Dict:
+        """Get a random word, optionally of specific length"""
+        if length:
+            words = self.words_by_length.get(length, [])
+            if max_words:
+                words = words[:max_words]
+            return random.choice(words) if words else None
+        else:
+            words = self.all_words
+            if max_words:
+                words = words[:max_words]
+            return random.choice(words) if words else None
             
-            try:
-                with open(json_path, 'r', encoding='utf-8') as f:
-                    data = json.load(f)
-                    for word, entry in data.items():
-                        for meaning in entry.get('meanings', []):
-                            if meaning['def'].lower() == clue.lower():
-                                return {
-                                    'word': word.upper(),
-                                    'definition': meaning['def'],
-                                    'speech_part': meaning.get('speech_part', '')
-                                }
-            except (FileNotFoundError, json.JSONDecodeError):
-                continue
+    def get_words_with_common_letters(self, letters: str, max_words: int = 20) -> List[Dict]:
+        """Get words that contain the specified letters"""
+        results = []
+        letters_set = set(letters.upper())
         
-        return None
-
-    def get_words_by_length(self, length: int, max_words: int = 50) -> List[Dict]:
-        """Get words of a specific length"""
-        if length not in self.word_length_index:
-            return []
+        for word_data in self.all_words:
+            word_letters = set(word_data['word'].upper())
+            if letters_set.issubset(word_letters):
+                results.append(word_data)
+                if len(results) >= max_words:
+                    break
         
-        words = []
-        for word in self.word_length_index[length]:
-            entry = self.dictionary[word]
-            definition = entry['meanings'][0]['def'] if entry['meanings'] else ""
-            
-            words.append({
-                'word': word.upper(),
-                'definition': definition[:200],
-                'score': self._word_score(word)
-            })
-            
-            if len(words) >= max_words:
-                break
-        
-        words.sort(key=lambda w: -w['score'])
-        return words
-    
-    def verify_solution(self, solution_word: str, expected_word: str) -> bool:
-        """Check if the solution matches the expected word"""
-        if not solution_word or not expected_word:
-            return False
-        
-        if solution_word.upper() == expected_word.upper():
-            return True
-        
-        # Check if words are synonyms by looking at their definitions
-        sol_lower = solution_word.lower()
-        exp_lower = expected_word.lower()
-        
-        if sol_lower not in self.dictionary or exp_lower not in self.dictionary:
-            return False
-        
-        # Get all definitions for both words
-        sol_defs = set()
-        for meaning in self.dictionary[sol_lower]['meanings']:
-            sol_defs.add(meaning['def'].lower())
-        
-        exp_defs = set()
-        for meaning in self.dictionary[exp_lower]['meanings']:
-            exp_defs.add(meaning['def'].lower())
-        
-        # Check if any definitions are similar
-        for sol_def in sol_defs:
-            for exp_def in exp_defs:
-                # Simple check for shared words in definitions
-                sol_words = set(re.findall(r'\w+', sol_def))
-                exp_words = set(re.findall(r'\w+', exp_def))
-                if len(sol_words & exp_words) >= 2:  # At least 2 shared words
-                    return True
-        
-        return False
-    
-    def get_random_word_by_letter(self, letter: str, length: int) -> Dict:
-        """Get a random word starting with the specified letter and of the specified length"""
-        letter = letter.lower()
-        if letter not in self.letter_index:
-            return None
-            
-        candidates = [w for w in self.letter_index[letter] if len(w) == length]
-        if not candidates:
-            return None
-            
-        word = random.choice(candidates)
-        entry = self.dictionary[word]
-        definition = entry['meanings'][0]['def'] if entry['meanings'] else ""
-        
-        return {
-            'word': word.upper(),
-            'definition': definition[:200]
-        }
+        return results

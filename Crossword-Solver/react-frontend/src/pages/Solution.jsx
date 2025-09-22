@@ -386,7 +386,7 @@ const Solution = () => {
           variant="primary"
           icon={<FiBarChart2 size={18} />}
         >
-          Show Analytics
+          Save to Analytics
         </Button>
       </div>
     </div>

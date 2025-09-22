@@ -1,0 +1,2324 @@
+2025-08-27 03:36:22,254 - DEBUG - matplotlib data path: C:\Users\Pj Sios-e\AppData\Local\Programs\Python\Python313\Lib\site-packages\matplotlib\mpl-data
+2025-08-27 03:36:22,519 - DEBUG - CONFIGDIR=C:\Users\Pj Sios-e\.matplotlib
+2025-08-27 03:36:22,521 - DEBUG - interactive is False
+2025-08-27 03:36:22,521 - DEBUG - platform is win32
+2025-08-27 03:36:22,603 - DEBUG - CACHEDIR=C:\Users\Pj Sios-e\.matplotlib
+2025-08-27 03:36:22,607 - DEBUG - Using fontManager instance from C:\Users\Pj Sios-e\.matplotlib\fontlist-v390.json
+2025-08-27 03:36:23,764 - WARNING -  * Debugger is active!
+2025-08-27 03:36:23,770 - INFO -  * Debugger PIN: 115-932-035
+2025-08-27 03:36:28,565 - INFO - 127.0.0.1 - - [27/Aug/2025 03:36:28] "OPTIONS /solve HTTP/1.1" 200 -
+2025-08-27 03:36:28,817 - INFO - DFSSolver initialized with 24 slots
+2025-08-27 03:36:28,818 - DEBUG - Initial grid state:
+2025-08-27 03:36:28,819 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:36:28,820 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:36:28,820 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:36:28,821 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:36:28,822 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:36:28,823 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:36:28,823 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:36:28,824 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:36:28,825 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:36:28,826 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:36:28,826 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:36:28,827 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:36:28,828 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:36:28,829 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:36:28,831 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:36:28,833 - INFO - Starting DFS solve
+2025-08-27 03:36:28,834 - DEBUG - Getting candidates for slot 3 across
+2025-08-27 03:36:29,082 - DEBUG - Found 1 candidates for slot 3
+2025-08-27 03:36:29,083 - DEBUG - Getting candidates for slot 4 across
+2025-08-27 03:36:29,292 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 03:36:29,293 - DEBUG - Getting candidates for slot 5 across
+2025-08-27 03:36:29,518 - DEBUG - Found 1 candidates for slot 5
+2025-08-27 03:36:29,519 - DEBUG - Getting candidates for slot 6 across
+2025-08-27 03:36:29,737 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 03:36:29,737 - DEBUG - Getting candidates for slot 7 across
+2025-08-27 03:36:29,960 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 03:36:29,961 - DEBUG - Getting candidates for slot 8 across
+2025-08-27 03:36:30,180 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 03:36:30,181 - DEBUG - Getting candidates for slot 11 across
+2025-08-27 03:36:30,386 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 03:36:30,386 - DEBUG - Getting candidates for slot 12 across
+2025-08-27 03:36:30,639 - DEBUG - Found 1 candidates for slot 12
+2025-08-27 03:36:30,639 - DEBUG - Getting candidates for slot 14 across
+2025-08-27 03:36:30,883 - DEBUG - Found 1 candidates for slot 14
+2025-08-27 03:36:30,884 - DEBUG - Getting candidates for slot 15 across
+2025-08-27 03:36:31,150 - DEBUG - Found 1 candidates for slot 15
+2025-08-27 03:36:31,150 - DEBUG - Getting candidates for slot 16 across
+2025-08-27 03:36:31,460 - DEBUG - Found 1 candidates for slot 16
+2025-08-27 03:36:31,460 - DEBUG - Getting candidates for slot 17 across
+2025-08-27 03:36:31,722 - DEBUG - Found 1 candidates for slot 17
+2025-08-27 03:36:31,722 - DEBUG - Getting candidates for slot 18 across
+2025-08-27 03:36:32,306 - DEBUG - Found 1 candidates for slot 18
+2025-08-27 03:36:32,306 - DEBUG - Getting candidates for slot 1 down
+2025-08-27 03:36:32,510 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 03:36:32,511 - DEBUG - Getting candidates for slot 2 down
+2025-08-27 03:36:32,688 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 03:36:32,689 - DEBUG - Getting candidates for slot 3 down
+2025-08-27 03:36:32,877 - DEBUG - Found 1 candidates for slot 3
+2025-08-27 03:36:32,878 - DEBUG - Getting candidates for slot 4 down
+2025-08-27 03:36:33,075 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 03:36:33,076 - DEBUG - Getting candidates for slot 7 down
+2025-08-27 03:36:33,254 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 03:36:33,255 - DEBUG - Getting candidates for slot 8 down
+2025-08-27 03:36:33,477 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 03:36:33,478 - DEBUG - Getting candidates for slot 9 down
+2025-08-27 03:36:33,681 - DEBUG - Found 1 candidates for slot 9
+2025-08-27 03:36:33,681 - DEBUG - Getting candidates for slot 10 down
+2025-08-27 03:36:33,896 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 03:36:33,897 - DEBUG - Getting candidates for slot 11 down
+2025-08-27 03:36:34,110 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 03:36:34,110 - DEBUG - Getting candidates for slot 12 down
+2025-08-27 03:36:34,329 - DEBUG - Found 1 candidates for slot 12
+2025-08-27 03:36:34,330 - DEBUG - Getting candidates for slot 13 down
+2025-08-27 03:36:34,553 - DEBUG - Found 1 candidates for slot 13
+2025-08-27 03:36:34,554 - INFO - Slot processing order:
+2025-08-27 03:36:34,555 - INFO -   1. Slot 8 across: 1 candidates
+2025-08-27 03:36:34,555 - INFO -   2. Slot 9 down: 1 candidates
+2025-08-27 03:36:34,556 - INFO -   3. Slot 12 across: 1 candidates
+2025-08-27 03:36:34,556 - INFO -   4. Slot 3 down: 1 candidates
+2025-08-27 03:36:34,556 - INFO -   5. Slot 7 down: 1 candidates
+2025-08-27 03:36:34,557 - INFO -   6. Slot 5 across: 1 candidates
+2025-08-27 03:36:34,557 - INFO -   7. Slot 6 across: 1 candidates
+2025-08-27 03:36:34,558 - INFO -   8. Slot 11 across: 1 candidates
+2025-08-27 03:36:34,558 - INFO -   9. Slot 14 across: 1 candidates
+2025-08-27 03:36:34,559 - INFO -   10. Slot 16 across: 1 candidates
+2025-08-27 03:36:34,559 - INFO -   11. Slot 2 down: 1 candidates
+2025-08-27 03:36:34,560 - INFO -   12. Slot 4 down: 1 candidates
+2025-08-27 03:36:34,560 - INFO -   13. Slot 8 down: 1 candidates
+2025-08-27 03:36:34,560 - INFO -   14. Slot 12 down: 1 candidates
+2025-08-27 03:36:34,560 - INFO -   15. Slot 13 down: 1 candidates
+2025-08-27 03:36:34,561 - INFO -   16. Slot 3 across: 1 candidates
+2025-08-27 03:36:34,561 - INFO -   17. Slot 4 across: 1 candidates
+2025-08-27 03:36:34,561 - INFO -   18. Slot 7 across: 1 candidates
+2025-08-27 03:36:34,562 - INFO -   19. Slot 15 across: 1 candidates
+2025-08-27 03:36:34,562 - INFO -   20. Slot 17 across: 1 candidates
+2025-08-27 03:36:34,563 - INFO -   21. Slot 18 across: 1 candidates
+2025-08-27 03:36:34,563 - INFO -   22. Slot 1 down: 1 candidates
+2025-08-27 03:36:34,563 - INFO -   23. Slot 10 down: 1 candidates
+2025-08-27 03:36:34,564 - INFO -   24. Slot 11 down: 1 candidates
+2025-08-27 03:36:34,564 - DEBUG - Processing slot 8 across (index 0)
+2025-08-27 03:36:34,565 - DEBUG - Trying word 'ADVERBIALLY' in slot 8
+2025-08-27 03:36:34,565 - DEBUG - Placed word 'ADVERBIALLY', affected 11 positions
+2025-08-27 03:36:34,565 - ERROR - Solve error: too many values to unpack (expected 2)
+Traceback (most recent call last):
+  File "D:\T\CSA2 Thesis\Crossword-Solver\flask-backend\server.py", line 53, in solve
+    result = solver.solve()
+  File "D:\T\CSA2 Thesis\Crossword-Solver\flask-backend\solver\algorithms\dfs_solver.py", line 53, in solve
+    success = self._optimized_dfs(0, slot_candidates)
+  File "D:\T\CSA2 Thesis\Crossword-Solver\flask-backend\solver\algorithms\dfs_solver.py", line 158, in _optimized_dfs
+    affected_slots = self._get_affected_slots(slot)
+  File "D:\T\CSA2 Thesis\Crossword-Solver\flask-backend\solver\algorithms\dfs_solver.py", line 207, in _get_affected_slots
+    for idx, (slot, _) in enumerate(self.slots):
+             ^^^^^^^^^
+ValueError: too many values to unpack (expected 2)
+2025-08-27 03:36:34,573 - INFO - 127.0.0.1 - - [27/Aug/2025 03:36:34] "[35m[1mPOST /solve HTTP/1.1[0m" 500 -
+2025-08-27 03:39:34,635 - INFO -  * Detected change in 'D:\\T\\CSA2 Thesis\\Crossword-Solver\\flask-backend\\solver\\algorithms\\dfs_solver.py', reloading
+2025-08-27 03:39:37,944 - DEBUG - matplotlib data path: C:\Users\Pj Sios-e\AppData\Local\Programs\Python\Python313\Lib\site-packages\matplotlib\mpl-data
+2025-08-27 03:39:37,959 - DEBUG - CONFIGDIR=C:\Users\Pj Sios-e\.matplotlib
+2025-08-27 03:39:37,960 - DEBUG - interactive is False
+2025-08-27 03:39:37,961 - DEBUG - platform is win32
+2025-08-27 03:39:38,039 - DEBUG - CACHEDIR=C:\Users\Pj Sios-e\.matplotlib
+2025-08-27 03:39:38,043 - DEBUG - Using fontManager instance from C:\Users\Pj Sios-e\.matplotlib\fontlist-v390.json
+2025-08-27 03:39:39,324 - WARNING -  * Debugger is active!
+2025-08-27 03:39:39,331 - INFO -  * Debugger PIN: 115-932-035
+2025-08-27 03:39:40,422 - INFO - 127.0.0.1 - - [27/Aug/2025 03:39:40] "OPTIONS /solve HTTP/1.1" 200 -
+2025-08-27 03:39:40,674 - INFO - DFSSolver initialized with 24 slots
+2025-08-27 03:39:40,675 - DEBUG - Initial grid state:
+2025-08-27 03:39:40,675 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:39:40,675 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:39:40,675 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:39:40,676 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:39:40,676 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:39:40,676 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:39:40,676 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:39:40,676 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:39:40,676 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:39:40,677 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:39:40,677 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:39:40,677 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:39:40,677 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:39:40,677 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:39:40,678 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:39:40,678 - INFO - Starting DFS solve
+2025-08-27 03:39:40,678 - DEBUG - Getting candidates for slot 3 across
+2025-08-27 03:39:40,941 - DEBUG - Found 1 candidates for slot 3
+2025-08-27 03:39:40,942 - DEBUG - Getting candidates for slot 4 across
+2025-08-27 03:39:41,159 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 03:39:41,159 - DEBUG - Getting candidates for slot 5 across
+2025-08-27 03:39:41,395 - DEBUG - Found 1 candidates for slot 5
+2025-08-27 03:39:41,396 - DEBUG - Getting candidates for slot 6 across
+2025-08-27 03:39:41,600 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 03:39:41,601 - DEBUG - Getting candidates for slot 7 across
+2025-08-27 03:39:41,810 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 03:39:41,810 - DEBUG - Getting candidates for slot 8 across
+2025-08-27 03:39:42,010 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 03:39:42,011 - DEBUG - Getting candidates for slot 11 across
+2025-08-27 03:39:42,206 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 03:39:42,207 - DEBUG - Getting candidates for slot 12 across
+2025-08-27 03:39:42,409 - DEBUG - Found 1 candidates for slot 12
+2025-08-27 03:39:42,410 - DEBUG - Getting candidates for slot 14 across
+2025-08-27 03:39:42,642 - DEBUG - Found 1 candidates for slot 14
+2025-08-27 03:39:42,642 - DEBUG - Getting candidates for slot 15 across
+2025-08-27 03:39:42,842 - DEBUG - Found 1 candidates for slot 15
+2025-08-27 03:39:42,842 - DEBUG - Getting candidates for slot 16 across
+2025-08-27 03:39:43,045 - DEBUG - Found 1 candidates for slot 16
+2025-08-27 03:39:43,046 - DEBUG - Getting candidates for slot 17 across
+2025-08-27 03:39:43,246 - DEBUG - Found 1 candidates for slot 17
+2025-08-27 03:39:43,247 - DEBUG - Getting candidates for slot 18 across
+2025-08-27 03:39:43,866 - DEBUG - Found 1 candidates for slot 18
+2025-08-27 03:39:43,866 - DEBUG - Getting candidates for slot 1 down
+2025-08-27 03:39:44,069 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 03:39:44,070 - DEBUG - Getting candidates for slot 2 down
+2025-08-27 03:39:44,265 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 03:39:44,265 - DEBUG - Getting candidates for slot 3 down
+2025-08-27 03:39:44,458 - DEBUG - Found 1 candidates for slot 3
+2025-08-27 03:39:44,458 - DEBUG - Getting candidates for slot 4 down
+2025-08-27 03:39:44,665 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 03:39:44,665 - DEBUG - Getting candidates for slot 7 down
+2025-08-27 03:39:44,858 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 03:39:44,859 - DEBUG - Getting candidates for slot 8 down
+2025-08-27 03:39:45,066 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 03:39:45,066 - DEBUG - Getting candidates for slot 9 down
+2025-08-27 03:39:45,267 - DEBUG - Found 1 candidates for slot 9
+2025-08-27 03:39:45,268 - DEBUG - Getting candidates for slot 10 down
+2025-08-27 03:39:45,460 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 03:39:45,460 - DEBUG - Getting candidates for slot 11 down
+2025-08-27 03:39:45,660 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 03:39:45,660 - DEBUG - Getting candidates for slot 12 down
+2025-08-27 03:39:45,855 - DEBUG - Found 1 candidates for slot 12
+2025-08-27 03:39:45,856 - DEBUG - Getting candidates for slot 13 down
+2025-08-27 03:39:46,056 - DEBUG - Found 1 candidates for slot 13
+2025-08-27 03:39:46,056 - INFO - Slot processing order:
+2025-08-27 03:39:46,057 - INFO -   1. Slot 8 across: 1 candidates
+2025-08-27 03:39:46,057 - INFO -   2. Slot 9 down: 1 candidates
+2025-08-27 03:39:46,058 - INFO -   3. Slot 12 across: 1 candidates
+2025-08-27 03:39:46,058 - INFO -   4. Slot 3 down: 1 candidates
+2025-08-27 03:39:46,058 - INFO -   5. Slot 7 down: 1 candidates
+2025-08-27 03:39:46,059 - INFO -   6. Slot 5 across: 1 candidates
+2025-08-27 03:39:46,059 - INFO -   7. Slot 6 across: 1 candidates
+2025-08-27 03:39:46,059 - INFO -   8. Slot 11 across: 1 candidates
+2025-08-27 03:39:46,060 - INFO -   9. Slot 14 across: 1 candidates
+2025-08-27 03:39:46,060 - INFO -   10. Slot 16 across: 1 candidates
+2025-08-27 03:39:46,060 - INFO -   11. Slot 2 down: 1 candidates
+2025-08-27 03:39:46,060 - INFO -   12. Slot 4 down: 1 candidates
+2025-08-27 03:39:46,061 - INFO -   13. Slot 8 down: 1 candidates
+2025-08-27 03:39:46,061 - INFO -   14. Slot 12 down: 1 candidates
+2025-08-27 03:39:46,061 - INFO -   15. Slot 13 down: 1 candidates
+2025-08-27 03:39:46,062 - INFO -   16. Slot 3 across: 1 candidates
+2025-08-27 03:39:46,062 - INFO -   17. Slot 4 across: 1 candidates
+2025-08-27 03:39:46,063 - INFO -   18. Slot 7 across: 1 candidates
+2025-08-27 03:39:46,063 - INFO -   19. Slot 15 across: 1 candidates
+2025-08-27 03:39:46,064 - INFO -   20. Slot 17 across: 1 candidates
+2025-08-27 03:39:46,064 - INFO -   21. Slot 18 across: 1 candidates
+2025-08-27 03:39:46,064 - INFO -   22. Slot 1 down: 1 candidates
+2025-08-27 03:39:46,065 - INFO -   23. Slot 10 down: 1 candidates
+2025-08-27 03:39:46,065 - INFO -   24. Slot 11 down: 1 candidates
+2025-08-27 03:39:46,065 - DEBUG - Processing slot 8 across (index 0)
+2025-08-27 03:39:46,066 - DEBUG - Trying word 'ADVERBIALLY' in slot 8
+2025-08-27 03:39:46,066 - DEBUG - Placed word 'ADVERBIALLY', affected 11 positions
+2025-08-27 03:39:47,020 - DEBUG - Processing slot 9 down (index 1)
+2025-08-27 03:39:47,020 - DEBUG - Trying word 'APPEALINGLY' in slot 9
+2025-08-27 03:39:47,021 - DEBUG - Placed word 'APPEALINGLY', affected 10 positions
+2025-08-27 03:39:48,048 - DEBUG - Processing slot 12 across (index 2)
+2025-08-27 03:39:48,048 - DEBUG - Trying word 'ALARMED' in slot 12
+2025-08-27 03:39:48,048 - DEBUG - Placed word 'ALARMED', affected 6 positions
+2025-08-27 03:39:48,658 - DEBUG - Processing slot 3 down (index 3)
+2025-08-27 03:39:48,658 - DEBUG - Trying word 'APACE' in slot 3
+2025-08-27 03:39:48,659 - DEBUG - Placed word 'APACE', affected 4 positions
+2025-08-27 03:39:49,284 - DEBUG - Processing slot 7 down (index 4)
+2025-08-27 03:39:49,284 - DEBUG - Trying word 'ATYPICALLY' in slot 7
+2025-08-27 03:39:49,285 - DEBUG - Placed word 'ATYPICALLY', affected 9 positions
+2025-08-27 03:39:49,906 - DEBUG - Processing slot 5 across (index 5)
+2025-08-27 03:39:49,906 - DEBUG - Trying word 'ACE' in slot 5
+2025-08-27 03:39:49,907 - DEBUG - Placed word 'ACE', affected 3 positions
+2025-08-27 03:39:50,351 - DEBUG - Processing slot 6 across (index 6)
+2025-08-27 03:39:50,352 - DEBUG - Trying word 'ASHORE' in slot 6
+2025-08-27 03:39:50,353 - DEBUG - Placed word 'ASHORE', affected 5 positions
+2025-08-27 03:39:50,765 - DEBUG - Processing slot 11 across (index 7)
+2025-08-27 03:39:50,765 - DEBUG - Trying word 'ATOP' in slot 11
+2025-08-27 03:39:50,766 - DEBUG - Placed word 'ATOP', affected 4 positions
+2025-08-27 03:39:51,171 - DEBUG - Processing slot 14 across (index 8)
+2025-08-27 03:39:51,171 - DEBUG - Trying word 'ASS' in slot 14
+2025-08-27 03:39:51,172 - DEBUG - Placed word 'ASS', affected 2 positions
+2025-08-27 03:39:51,659 - DEBUG - Processing slot 16 across (index 9)
+2025-08-27 03:39:51,660 - DEBUG - Trying word 'ACT' in slot 16
+2025-08-27 03:39:51,660 - DEBUG - Placed word 'ACT', affected 3 positions
+2025-08-27 03:39:52,118 - DEBUG - Processing slot 2 down (index 10)
+2025-08-27 03:39:52,118 - DEBUG - Trying word 'AHEAD' in slot 2
+2025-08-27 03:39:52,119 - DEBUG - Placed word 'AHEAD', affected 3 positions
+2025-08-27 03:39:52,624 - DEBUG - Processing slot 4 down (index 11)
+2025-08-27 03:39:52,624 - DEBUG - Trying word 'AIR' in slot 4
+2025-08-27 03:39:52,625 - DEBUG - Placed word 'AIR', affected 2 positions
+2025-08-27 03:39:53,273 - DEBUG - Processing slot 8 down (index 12)
+2025-08-27 03:39:53,274 - DEBUG - Trying word 'ANONYMOUSLY' in slot 8
+2025-08-27 03:39:53,274 - DEBUG - Placed word 'ANONYMOUSLY', affected 9 positions
+2025-08-27 03:39:53,852 - DEBUG - Processing slot 12 down (index 13)
+2025-08-27 03:39:53,853 - DEBUG - Trying word 'ACTUALLY' in slot 12
+2025-08-27 03:39:53,853 - DEBUG - Placed word 'ACTUALLY', affected 6 positions
+2025-08-27 03:39:54,355 - DEBUG - Processing slot 13 down (index 14)
+2025-08-27 03:39:54,356 - DEBUG - Trying word 'ALERTLY' in slot 13
+2025-08-27 03:39:54,356 - DEBUG - Placed word 'ALERTLY', affected 5 positions
+2025-08-27 03:39:54,851 - DEBUG - Processing slot 3 across (index 15)
+2025-08-27 03:39:54,851 - DEBUG - Trying word 'ART' in slot 3
+2025-08-27 03:39:54,852 - DEBUG - Placed word 'ART', affected 2 positions
+2025-08-27 03:39:55,084 - DEBUG - Processing slot 4 across (index 16)
+2025-08-27 03:39:55,084 - DEBUG - Trying word 'AWHILE' in slot 4
+2025-08-27 03:39:55,084 - DEBUG - Placed word 'AWHILE', affected 5 positions
+2025-08-27 03:39:55,311 - DEBUG - Processing slot 7 across (index 17)
+2025-08-27 03:39:55,312 - DEBUG - Trying word 'AZO' in slot 7
+2025-08-27 03:39:55,312 - DEBUG - Placed word 'AZO', affected 2 positions
+2025-08-27 03:39:55,580 - DEBUG - Processing slot 15 across (index 18)
+2025-08-27 03:39:55,581 - DEBUG - Trying word 'ALL' in slot 15
+2025-08-27 03:39:55,581 - DEBUG - Placed word 'ALL', affected 2 positions
+2025-08-27 03:39:55,819 - DEBUG - Processing slot 17 across (index 19)
+2025-08-27 03:39:55,819 - DEBUG - Trying word 'ANY' in slot 17
+2025-08-27 03:39:55,820 - DEBUG - Placed word 'ANY', affected 2 positions
+2025-08-27 03:39:56,063 - DEBUG - Processing slot 18 across (index 20)
+2025-08-27 03:39:56,064 - DEBUG - Trying word 'ANYWAYS' in slot 18
+2025-08-27 03:39:56,064 - DEBUG - Placed word 'ANYWAYS', affected 6 positions
+2025-08-27 03:39:56,303 - DEBUG - Processing slot 1 down (index 21)
+2025-08-27 03:39:56,303 - DEBUG - Trying word 'ALA' in slot 1
+2025-08-27 03:39:56,304 - DEBUG - Placed word 'ALA', affected 2 positions
+2025-08-27 03:39:56,551 - DEBUG - Processing slot 10 down (index 22)
+2025-08-27 03:39:56,551 - DEBUG - Trying word 'ABUSIVELY' in slot 10
+2025-08-27 03:39:56,552 - DEBUG - Placed word 'ABUSIVELY', affected 8 positions
+2025-08-27 03:39:56,812 - DEBUG - Processing slot 11 down (index 23)
+2025-08-27 03:39:56,813 - DEBUG - Trying word 'ANON' in slot 11
+2025-08-27 03:39:56,813 - DEBUG - Placed word 'ANON', affected 3 positions
+2025-08-27 03:39:57,067 - INFO - Solution found!
+2025-08-27 03:39:57,067 - DEBUG - Final grid state:
+2025-08-27 03:39:57,068 - DEBUG - . A . A . A R T . A W H I L E
+2025-08-27 03:39:57,068 - DEBUG - . L . H . P . . . I . . . . .
+2025-08-27 03:39:57,069 - DEBUG - . A C E . A S H O R E . A Z O
+2025-08-27 03:39:57,069 - DEBUG - . . . A . C . . . . . . T . .
+2025-08-27 03:39:57,070 - DEBUG - . . A D V E R B I A L L Y . .
+2025-08-27 03:39:57,070 - DEBUG - . . N . . . . . . P . . P . A
+2025-08-27 03:39:57,071 - DEBUG - A T O P . . . . . P . . I . B
+2025-08-27 03:39:57,071 - DEBUG - N . N . A L A R M E D . C . U
+2025-08-27 03:39:57,072 - DEBUG - O . Y . C . L . . A . . A S S
+2025-08-27 03:39:57,072 - DEBUG - N . M . T . E . A L L . L . I
+2025-08-27 03:39:57,072 - DEBUG - . . O . U . R . . I . . L . V
+2025-08-27 03:39:57,073 - DEBUG - . . U . A C T . A N Y . Y . E
+2025-08-27 03:39:57,073 - DEBUG - . . S . L . L . . G . . . . L
+2025-08-27 03:39:57,073 - DEBUG - . . L . L . Y . . L . . . . Y
+2025-08-27 03:39:57,074 - DEBUG - . . Y . Y . . A N Y W A Y S .
+2025-08-27 03:39:57,077 - INFO - 127.0.0.1 - - [27/Aug/2025 03:39:57] "POST /solve HTTP/1.1" 200 -
+2025-08-27 03:40:04,048 - INFO - 127.0.0.1 - - [27/Aug/2025 03:40:04] "OPTIONS /generate HTTP/1.1" 200 -
+2025-08-27 03:40:04,360 - INFO - Attempt 1/15 [diff=medium]
+2025-08-27 03:40:04,458 - INFO - Attempt 2/15 [diff=medium]
+2025-08-27 03:40:04,490 - INFO - Attempt 3/15 [diff=medium]
+2025-08-27 03:40:04,519 - INFO - Attempt 4/15 [diff=medium]
+2025-08-27 03:40:04,553 - INFO - Attempt 5/15 [diff=medium]
+2025-08-27 03:40:04,588 - INFO - Attempt 6/15 [diff=medium]
+2025-08-27 03:40:04,625 - INFO - Attempt 7/15 [diff=medium]
+2025-08-27 03:40:04,663 - INFO - Attempt 8/15 [diff=medium]
+2025-08-27 03:40:04,694 - INFO - Attempt 9/15 [diff=medium]
+2025-08-27 03:40:04,726 - INFO - Attempt 10/15 [diff=medium]
+2025-08-27 03:40:04,759 - INFO - Attempt 11/15 [diff=medium]
+2025-08-27 03:40:04,789 - INFO - Attempt 12/15 [diff=medium]
+2025-08-27 03:40:04,817 - INFO - Attempt 13/15 [diff=medium]
+2025-08-27 03:40:04,867 - INFO - Attempt 14/15 [diff=medium]
+2025-08-27 03:40:04,896 - INFO - Attempt 15/15 [diff=medium]
+2025-08-27 03:40:04,928 - WARNING - Used fallback puzzle with density=53.33% (target: 60.00%-69.00%)
+2025-08-27 03:40:04,929 - INFO - 127.0.0.1 - - [27/Aug/2025 03:40:04] "POST /generate HTTP/1.1" 200 -
+2025-08-27 03:40:08,670 - INFO - 127.0.0.1 - - [27/Aug/2025 03:40:08] "OPTIONS /solve HTTP/1.1" 200 -
+2025-08-27 03:40:08,938 - INFO - DFSSolver initialized with 31 slots
+2025-08-27 03:40:08,939 - DEBUG - Initial grid state:
+2025-08-27 03:40:08,939 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:40:08,939 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:40:08,940 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:40:08,940 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:40:08,941 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:40:08,941 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:40:08,942 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:40:08,942 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:40:08,942 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:40:08,943 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:40:08,943 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:40:08,943 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:40:08,944 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:40:08,944 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:40:08,944 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:40:08,944 - INFO - Starting DFS solve
+2025-08-27 03:40:08,945 - DEBUG - Getting candidates for slot 1 across
+2025-08-27 03:40:09,156 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 03:40:09,157 - DEBUG - Getting candidates for slot 2 across
+2025-08-27 03:40:09,349 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 03:40:09,350 - DEBUG - Getting candidates for slot 4 across
+2025-08-27 03:40:09,560 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 03:40:09,561 - DEBUG - Getting candidates for slot 5 across
+2025-08-27 03:40:09,772 - DEBUG - Found 1 candidates for slot 5
+2025-08-27 03:40:09,772 - DEBUG - Getting candidates for slot 6 across
+2025-08-27 03:40:09,965 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 03:40:09,966 - DEBUG - Getting candidates for slot 8 across
+2025-08-27 03:40:10,165 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 03:40:10,165 - DEBUG - Getting candidates for slot 9 across
+2025-08-27 03:40:10,358 - DEBUG - Found 1 candidates for slot 9
+2025-08-27 03:40:10,358 - DEBUG - Getting candidates for slot 10 across
+2025-08-27 03:40:10,558 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 03:40:10,558 - DEBUG - Getting candidates for slot 11 across
+2025-08-27 03:40:10,756 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 03:40:10,761 - DEBUG - Getting candidates for slot 12 across
+2025-08-27 03:40:10,985 - DEBUG - Found 1 candidates for slot 12
+2025-08-27 03:40:10,986 - DEBUG - Getting candidates for slot 13 across
+2025-08-27 03:40:11,189 - DEBUG - Found 1 candidates for slot 13
+2025-08-27 03:40:11,189 - DEBUG - Getting candidates for slot 14 across
+2025-08-27 03:40:11,399 - DEBUG - Found 1 candidates for slot 14
+2025-08-27 03:40:11,399 - DEBUG - Getting candidates for slot 15 across
+2025-08-27 03:40:11,607 - DEBUG - Found 1 candidates for slot 15
+2025-08-27 03:40:11,608 - DEBUG - Getting candidates for slot 16 across
+2025-08-27 03:40:11,805 - DEBUG - Found 1 candidates for slot 16
+2025-08-27 03:40:11,805 - DEBUG - Getting candidates for slot 18 across
+2025-08-27 03:40:12,006 - DEBUG - Found 1 candidates for slot 18
+2025-08-27 03:40:12,007 - DEBUG - Getting candidates for slot 19 across
+2025-08-27 03:40:12,200 - DEBUG - Found 1 candidates for slot 19
+2025-08-27 03:40:12,201 - DEBUG - Getting candidates for slot 21 across
+2025-08-27 03:40:12,398 - DEBUG - Found 1 candidates for slot 21
+2025-08-27 03:40:12,399 - DEBUG - Getting candidates for slot 22 across
+2025-08-27 03:40:12,591 - DEBUG - Found 1 candidates for slot 22
+2025-08-27 03:40:12,592 - DEBUG - Getting candidates for slot 1 down
+2025-08-27 03:40:12,792 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 03:40:12,793 - DEBUG - Getting candidates for slot 2 down
+2025-08-27 03:40:12,993 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 03:40:12,994 - DEBUG - Getting candidates for slot 3 down
+2025-08-27 03:40:13,196 - DEBUG - Found 1 candidates for slot 3
+2025-08-27 03:40:13,197 - DEBUG - Getting candidates for slot 4 down
+2025-08-27 03:40:13,391 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 03:40:13,392 - DEBUG - Getting candidates for slot 6 down
+2025-08-27 03:40:13,592 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 03:40:13,593 - DEBUG - Getting candidates for slot 7 down
+2025-08-27 03:40:13,789 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 03:40:13,789 - DEBUG - Getting candidates for slot 9 down
+2025-08-27 03:40:13,984 - DEBUG - Found 1 candidates for slot 9
+2025-08-27 03:40:13,985 - DEBUG - Getting candidates for slot 10 down
+2025-08-27 03:40:14,182 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 03:40:14,183 - DEBUG - Getting candidates for slot 12 down
+2025-08-27 03:40:14,374 - DEBUG - Found 1 candidates for slot 12
+2025-08-27 03:40:14,375 - DEBUG - Getting candidates for slot 13 down
+2025-08-27 03:40:14,582 - DEBUG - Found 1 candidates for slot 13
+2025-08-27 03:40:14,583 - DEBUG - Getting candidates for slot 15 down
+2025-08-27 03:40:14,774 - DEBUG - Found 1 candidates for slot 15
+2025-08-27 03:40:14,775 - DEBUG - Getting candidates for slot 17 down
+2025-08-27 03:40:14,976 - DEBUG - Found 1 candidates for slot 17
+2025-08-27 03:40:14,976 - DEBUG - Getting candidates for slot 20 down
+2025-08-27 03:40:15,182 - DEBUG - Found 1 candidates for slot 20
+2025-08-27 03:40:15,183 - INFO - Slot processing order:
+2025-08-27 03:40:15,183 - INFO -   1. Slot 1 down: 1 candidates
+2025-08-27 03:40:15,184 - INFO -   2. Slot 9 down: 1 candidates
+2025-08-27 03:40:15,184 - INFO -   3. Slot 12 down: 1 candidates
+2025-08-27 03:40:15,185 - INFO -   4. Slot 9 across: 1 candidates
+2025-08-27 03:40:15,185 - INFO -   5. Slot 15 across: 1 candidates
+2025-08-27 03:40:15,186 - INFO -   6. Slot 3 down: 1 candidates
+2025-08-27 03:40:15,186 - INFO -   7. Slot 7 down: 1 candidates
+2025-08-27 03:40:15,187 - INFO -   8. Slot 2 across: 1 candidates
+2025-08-27 03:40:15,187 - INFO -   9. Slot 4 across: 1 candidates
+2025-08-27 03:40:15,187 - INFO -   10. Slot 6 across: 1 candidates
+2025-08-27 03:40:15,188 - INFO -   11. Slot 8 across: 1 candidates
+2025-08-27 03:40:15,188 - INFO -   12. Slot 10 across: 1 candidates
+2025-08-27 03:40:15,189 - INFO -   13. Slot 11 across: 1 candidates
+2025-08-27 03:40:15,189 - INFO -   14. Slot 12 across: 1 candidates
+2025-08-27 03:40:15,189 - INFO -   15. Slot 13 across: 1 candidates
+2025-08-27 03:40:15,189 - INFO -   16. Slot 16 across: 1 candidates
+2025-08-27 03:40:15,190 - INFO -   17. Slot 19 across: 1 candidates
+2025-08-27 03:40:15,190 - INFO -   18. Slot 21 across: 1 candidates
+2025-08-27 03:40:15,190 - INFO -   19. Slot 2 down: 1 candidates
+2025-08-27 03:40:15,191 - INFO -   20. Slot 4 down: 1 candidates
+2025-08-27 03:40:15,191 - INFO -   21. Slot 10 down: 1 candidates
+2025-08-27 03:40:15,191 - INFO -   22. Slot 13 down: 1 candidates
+2025-08-27 03:40:15,191 - INFO -   23. Slot 15 down: 1 candidates
+2025-08-27 03:40:15,191 - INFO -   24. Slot 17 down: 1 candidates
+2025-08-27 03:40:15,192 - INFO -   25. Slot 1 across: 1 candidates
+2025-08-27 03:40:15,192 - INFO -   26. Slot 5 across: 1 candidates
+2025-08-27 03:40:15,192 - INFO -   27. Slot 14 across: 1 candidates
+2025-08-27 03:40:15,192 - INFO -   28. Slot 18 across: 1 candidates
+2025-08-27 03:40:15,192 - INFO -   29. Slot 22 across: 1 candidates
+2025-08-27 03:40:15,193 - INFO -   30. Slot 6 down: 1 candidates
+2025-08-27 03:40:15,193 - INFO -   31. Slot 20 down: 1 candidates
+2025-08-27 03:40:15,193 - DEBUG - Processing slot 1 down (index 0)
+2025-08-27 03:40:15,194 - DEBUG - Trying word 'ADAXIAL' in slot 1
+2025-08-27 03:40:15,194 - DEBUG - Placed word 'ADAXIAL', affected 7 positions
+2025-08-27 03:40:16,177 - DEBUG - Processing slot 9 down (index 1)
+2025-08-27 03:40:16,177 - DEBUG - Trying word 'ARTLESSLY' in slot 9
+2025-08-27 03:40:16,178 - DEBUG - Placed word 'ARTLESSLY', affected 9 positions
+2025-08-27 03:40:16,988 - DEBUG - Processing slot 12 down (index 2)
+2025-08-27 03:40:16,989 - DEBUG - Trying word 'ANYWHERE' in slot 12
+2025-08-27 03:40:16,989 - DEBUG - Placed word 'ANYWHERE', affected 8 positions
+2025-08-27 03:40:18,082 - DEBUG - Processing slot 9 across (index 3)
+2025-08-27 03:40:18,082 - DEBUG - Trying word 'AWHILE' in slot 9
+2025-08-27 03:40:18,083 - DEBUG - Placed word 'AWHILE', affected 5 positions
+2025-08-27 03:40:18,735 - DEBUG - Processing slot 15 across (index 4)
+2025-08-27 03:40:18,735 - DEBUG - Trying word 'ARCO' in slot 15
+2025-08-27 03:40:18,736 - DEBUG - Placed word 'ARCO', affected 4 positions
+2025-08-27 03:40:19,414 - DEBUG - Processing slot 3 down (index 5)
+2025-08-27 03:40:19,414 - DEBUG - Trying word 'ADORINGLY' in slot 3
+2025-08-27 03:40:19,415 - DEBUG - Placed word 'ADORINGLY', affected 8 positions
+2025-08-27 03:40:20,092 - DEBUG - Processing slot 7 down (index 6)
+2025-08-27 03:40:20,092 - DEBUG - Trying word 'AERIALLY' in slot 7
+2025-08-27 03:40:20,093 - DEBUG - Placed word 'AERIALLY', affected 7 positions
+2025-08-27 03:40:20,906 - DEBUG - Processing slot 2 across (index 7)
+2025-08-27 03:40:20,907 - DEBUG - Trying word 'AXIALLY' in slot 2
+2025-08-27 03:40:20,907 - DEBUG - Placed word 'AXIALLY', affected 6 positions
+2025-08-27 03:40:21,444 - DEBUG - Processing slot 4 across (index 8)
+2025-08-27 03:40:21,444 - DEBUG - Trying word 'AID' in slot 4
+2025-08-27 03:40:21,445 - DEBUG - Placed word 'AID', affected 2 positions
+2025-08-27 03:40:21,906 - DEBUG - Processing slot 6 across (index 9)
+2025-08-27 03:40:21,907 - DEBUG - Trying word 'ANEW' in slot 6
+2025-08-27 03:40:21,907 - DEBUG - Placed word 'ANEW', affected 4 positions
+2025-08-27 03:40:22,381 - DEBUG - Processing slot 8 across (index 10)
+2025-08-27 03:40:22,382 - DEBUG - Trying word 'AMISS' in slot 8
+2025-08-27 03:40:22,382 - DEBUG - Placed word 'AMISS', affected 4 positions
+2025-08-27 03:40:22,847 - DEBUG - Processing slot 10 across (index 11)
+2025-08-27 03:40:22,847 - DEBUG - Trying word 'ALSO' in slot 10
+2025-08-27 03:40:22,848 - DEBUG - Placed word 'ALSO', affected 3 positions
+2025-08-27 03:40:23,315 - DEBUG - Processing slot 11 across (index 12)
+2025-08-27 03:40:23,315 - DEBUG - Trying word 'AGAIN' in slot 11
+2025-08-27 03:40:23,316 - DEBUG - Placed word 'AGAIN', affected 3 positions
+2025-08-27 03:40:24,192 - DEBUG - Processing slot 12 across (index 13)
+2025-08-27 03:40:24,192 - DEBUG - Trying word 'AWOL' in slot 12
+2025-08-27 03:40:24,193 - DEBUG - Placed word 'AWOL', affected 2 positions
+2025-08-27 03:40:24,613 - DEBUG - Processing slot 13 across (index 14)
+2025-08-27 03:40:24,614 - DEBUG - Trying word 'AIN' in slot 13
+2025-08-27 03:40:24,614 - DEBUG - Placed word 'AIN', affected 2 positions
+2025-08-27 03:40:25,074 - DEBUG - Processing slot 16 across (index 15)
+2025-08-27 03:40:25,075 - DEBUG - Trying word 'AWAY' in slot 16
+2025-08-27 03:40:25,075 - DEBUG - Placed word 'AWAY', affected 3 positions
+2025-08-27 03:40:25,589 - DEBUG - Processing slot 19 across (index 16)
+2025-08-27 03:40:25,589 - DEBUG - Trying word 'ABAXIAL' in slot 19
+2025-08-27 03:40:25,590 - DEBUG - Word 'ABAXIAL' no longer fits due to changed constraints
+2025-08-27 03:40:25,590 - DEBUG - Exhausted all candidates for slot 19
+2025-08-27 03:40:25,590 - DEBUG - Backtracked word 'AWAY' from slot 16
+2025-08-27 03:40:25,591 - DEBUG - Exhausted all candidates for slot 16
+2025-08-27 03:40:25,591 - DEBUG - Backtracked word 'AIN' from slot 13
+2025-08-27 03:40:25,592 - DEBUG - Exhausted all candidates for slot 13
+2025-08-27 03:40:25,592 - DEBUG - Backtracked word 'AWOL' from slot 12
+2025-08-27 03:40:25,592 - DEBUG - Exhausted all candidates for slot 12
+2025-08-27 03:40:25,593 - DEBUG - Backtracked word 'AGAIN' from slot 11
+2025-08-27 03:40:25,593 - DEBUG - Exhausted all candidates for slot 11
+2025-08-27 03:40:25,593 - DEBUG - Backtracked word 'ALSO' from slot 10
+2025-08-27 03:40:25,594 - DEBUG - Exhausted all candidates for slot 10
+2025-08-27 03:40:25,594 - DEBUG - Backtracked word 'AMISS' from slot 8
+2025-08-27 03:40:25,594 - DEBUG - Exhausted all candidates for slot 8
+2025-08-27 03:40:25,595 - DEBUG - Backtracked word 'ANEW' from slot 6
+2025-08-27 03:40:25,595 - DEBUG - Exhausted all candidates for slot 6
+2025-08-27 03:40:25,595 - DEBUG - Backtracked word 'AID' from slot 4
+2025-08-27 03:40:25,596 - DEBUG - Exhausted all candidates for slot 4
+2025-08-27 03:40:25,596 - DEBUG - Backtracked word 'AXIALLY' from slot 2
+2025-08-27 03:40:25,597 - DEBUG - Exhausted all candidates for slot 2
+2025-08-27 03:40:25,597 - DEBUG - Backtracked word 'AERIALLY' from slot 7
+2025-08-27 03:40:25,597 - DEBUG - Exhausted all candidates for slot 7
+2025-08-27 03:40:25,598 - DEBUG - Backtracked word 'ADORINGLY' from slot 3
+2025-08-27 03:40:25,598 - DEBUG - Exhausted all candidates for slot 3
+2025-08-27 03:40:25,598 - DEBUG - Backtracked word 'ARCO' from slot 15
+2025-08-27 03:40:25,599 - DEBUG - Exhausted all candidates for slot 15
+2025-08-27 03:40:25,599 - DEBUG - Backtracked word 'AWHILE' from slot 9
+2025-08-27 03:40:25,599 - DEBUG - Exhausted all candidates for slot 9
+2025-08-27 03:40:25,600 - DEBUG - Backtracked word 'ANYWHERE' from slot 12
+2025-08-27 03:40:25,600 - DEBUG - Exhausted all candidates for slot 12
+2025-08-27 03:40:25,601 - DEBUG - Backtracked word 'ARTLESSLY' from slot 9
+2025-08-27 03:40:25,601 - DEBUG - Exhausted all candidates for slot 9
+2025-08-27 03:40:25,602 - DEBUG - Backtracked word 'ADAXIAL' from slot 1
+2025-08-27 03:40:25,602 - DEBUG - Exhausted all candidates for slot 1
+2025-08-27 03:40:25,603 - WARNING - No solution found
+2025-08-27 03:40:25,605 - INFO - 127.0.0.1 - - [27/Aug/2025 03:40:25] "POST /solve HTTP/1.1" 200 -
+2025-08-27 03:52:31,443 - INFO -  * Detected change in 'D:\\T\\CSA2 Thesis\\Crossword-Solver\\flask-backend\\solver\\algorithms\\dfs_solver.py', reloading
+2025-08-27 03:52:34,823 - DEBUG - matplotlib data path: C:\Users\Pj Sios-e\AppData\Local\Programs\Python\Python313\Lib\site-packages\matplotlib\mpl-data
+2025-08-27 03:52:34,836 - DEBUG - CONFIGDIR=C:\Users\Pj Sios-e\.matplotlib
+2025-08-27 03:52:34,839 - DEBUG - interactive is False
+2025-08-27 03:52:34,839 - DEBUG - platform is win32
+2025-08-27 03:52:34,927 - DEBUG - CACHEDIR=C:\Users\Pj Sios-e\.matplotlib
+2025-08-27 03:52:34,930 - DEBUG - Using fontManager instance from C:\Users\Pj Sios-e\.matplotlib\fontlist-v390.json
+2025-08-27 03:52:36,162 - WARNING -  * Debugger is active!
+2025-08-27 03:52:36,168 - INFO -  * Debugger PIN: 115-932-035
+2025-08-27 03:52:38,552 - INFO - 127.0.0.1 - - [27/Aug/2025 03:52:38] "OPTIONS /solve HTTP/1.1" 200 -
+2025-08-27 03:52:38,820 - INFO - DFSSolver initialized with 31 slots
+2025-08-27 03:52:38,821 - DEBUG - Initial grid state:
+2025-08-27 03:52:38,821 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:38,822 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:38,822 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:38,822 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:38,823 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:38,823 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:38,824 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:38,824 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:38,825 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:38,825 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:38,825 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:38,826 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:38,826 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:38,826 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:38,827 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:38,827 - INFO - Starting DFS solve
+2025-08-27 03:52:38,828 - DEBUG - Getting candidates for slot 1 across
+2025-08-27 03:52:39,050 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 03:52:39,051 - DEBUG - Getting candidates for slot 2 across
+2025-08-27 03:52:39,248 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 03:52:39,248 - DEBUG - Getting candidates for slot 4 across
+2025-08-27 03:52:39,468 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 03:52:39,468 - DEBUG - Getting candidates for slot 5 across
+2025-08-27 03:52:39,676 - DEBUG - Found 1 candidates for slot 5
+2025-08-27 03:52:39,677 - DEBUG - Getting candidates for slot 6 across
+2025-08-27 03:52:39,879 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 03:52:39,879 - DEBUG - Getting candidates for slot 8 across
+2025-08-27 03:52:40,073 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 03:52:40,074 - DEBUG - Getting candidates for slot 9 across
+2025-08-27 03:52:40,273 - DEBUG - Found 1 candidates for slot 9
+2025-08-27 03:52:40,273 - DEBUG - Getting candidates for slot 10 across
+2025-08-27 03:52:40,473 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 03:52:40,473 - DEBUG - Getting candidates for slot 11 across
+2025-08-27 03:52:40,685 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 03:52:40,686 - DEBUG - Getting candidates for slot 12 across
+2025-08-27 03:52:40,921 - DEBUG - Found 1 candidates for slot 12
+2025-08-27 03:52:40,922 - DEBUG - Getting candidates for slot 13 across
+2025-08-27 03:52:41,129 - DEBUG - Found 1 candidates for slot 13
+2025-08-27 03:52:41,130 - DEBUG - Getting candidates for slot 14 across
+2025-08-27 03:52:41,354 - DEBUG - Found 1 candidates for slot 14
+2025-08-27 03:52:41,354 - DEBUG - Getting candidates for slot 15 across
+2025-08-27 03:52:41,991 - DEBUG - Found 1 candidates for slot 15
+2025-08-27 03:52:41,992 - DEBUG - Getting candidates for slot 16 across
+2025-08-27 03:52:42,200 - DEBUG - Found 1 candidates for slot 16
+2025-08-27 03:52:42,201 - DEBUG - Getting candidates for slot 18 across
+2025-08-27 03:52:42,411 - DEBUG - Found 1 candidates for slot 18
+2025-08-27 03:52:42,412 - DEBUG - Getting candidates for slot 19 across
+2025-08-27 03:52:42,621 - DEBUG - Found 1 candidates for slot 19
+2025-08-27 03:52:42,622 - DEBUG - Getting candidates for slot 21 across
+2025-08-27 03:52:42,832 - DEBUG - Found 1 candidates for slot 21
+2025-08-27 03:52:42,833 - DEBUG - Getting candidates for slot 22 across
+2025-08-27 03:52:43,042 - DEBUG - Found 1 candidates for slot 22
+2025-08-27 03:52:43,043 - DEBUG - Getting candidates for slot 1 down
+2025-08-27 03:52:43,257 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 03:52:43,257 - DEBUG - Getting candidates for slot 2 down
+2025-08-27 03:52:43,561 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 03:52:43,562 - DEBUG - Getting candidates for slot 3 down
+2025-08-27 03:52:43,763 - DEBUG - Found 1 candidates for slot 3
+2025-08-27 03:52:43,764 - DEBUG - Getting candidates for slot 4 down
+2025-08-27 03:52:43,961 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 03:52:43,962 - DEBUG - Getting candidates for slot 6 down
+2025-08-27 03:52:44,142 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 03:52:44,142 - DEBUG - Getting candidates for slot 7 down
+2025-08-27 03:52:44,325 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 03:52:44,325 - DEBUG - Getting candidates for slot 9 down
+2025-08-27 03:52:44,550 - DEBUG - Found 1 candidates for slot 9
+2025-08-27 03:52:44,551 - DEBUG - Getting candidates for slot 10 down
+2025-08-27 03:52:44,740 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 03:52:44,741 - DEBUG - Getting candidates for slot 12 down
+2025-08-27 03:52:44,938 - DEBUG - Found 1 candidates for slot 12
+2025-08-27 03:52:44,939 - DEBUG - Getting candidates for slot 13 down
+2025-08-27 03:52:45,139 - DEBUG - Found 1 candidates for slot 13
+2025-08-27 03:52:45,140 - DEBUG - Getting candidates for slot 15 down
+2025-08-27 03:52:45,317 - DEBUG - Found 1 candidates for slot 15
+2025-08-27 03:52:45,318 - DEBUG - Getting candidates for slot 17 down
+2025-08-27 03:52:45,500 - DEBUG - Found 1 candidates for slot 17
+2025-08-27 03:52:45,501 - DEBUG - Getting candidates for slot 20 down
+2025-08-27 03:52:45,709 - DEBUG - Found 1 candidates for slot 20
+2025-08-27 03:52:45,710 - INFO - Slot processing order:
+2025-08-27 03:52:45,710 - INFO -   1. Slot 1 down: 1 candidates
+2025-08-27 03:52:45,711 - INFO -   2. Slot 9 down: 1 candidates
+2025-08-27 03:52:45,711 - INFO -   3. Slot 12 down: 1 candidates
+2025-08-27 03:52:45,712 - INFO -   4. Slot 9 across: 1 candidates
+2025-08-27 03:52:45,712 - INFO -   5. Slot 15 across: 1 candidates
+2025-08-27 03:52:45,713 - INFO -   6. Slot 3 down: 1 candidates
+2025-08-27 03:52:45,713 - INFO -   7. Slot 7 down: 1 candidates
+2025-08-27 03:52:45,713 - INFO -   8. Slot 2 across: 1 candidates
+2025-08-27 03:52:45,714 - INFO -   9. Slot 4 across: 1 candidates
+2025-08-27 03:52:45,714 - INFO -   10. Slot 6 across: 1 candidates
+2025-08-27 03:52:45,714 - INFO -   11. Slot 8 across: 1 candidates
+2025-08-27 03:52:45,715 - INFO -   12. Slot 10 across: 1 candidates
+2025-08-27 03:52:45,715 - INFO -   13. Slot 11 across: 1 candidates
+2025-08-27 03:52:45,716 - INFO -   14. Slot 12 across: 1 candidates
+2025-08-27 03:52:45,716 - INFO -   15. Slot 13 across: 1 candidates
+2025-08-27 03:52:45,717 - INFO -   16. Slot 16 across: 1 candidates
+2025-08-27 03:52:45,717 - INFO -   17. Slot 19 across: 1 candidates
+2025-08-27 03:52:45,718 - INFO -   18. Slot 21 across: 1 candidates
+2025-08-27 03:52:45,718 - INFO -   19. Slot 2 down: 1 candidates
+2025-08-27 03:52:45,718 - INFO -   20. Slot 4 down: 1 candidates
+2025-08-27 03:52:45,719 - INFO -   21. Slot 10 down: 1 candidates
+2025-08-27 03:52:45,719 - INFO -   22. Slot 13 down: 1 candidates
+2025-08-27 03:52:45,720 - INFO -   23. Slot 15 down: 1 candidates
+2025-08-27 03:52:45,720 - INFO -   24. Slot 17 down: 1 candidates
+2025-08-27 03:52:45,720 - INFO -   25. Slot 1 across: 1 candidates
+2025-08-27 03:52:45,721 - INFO -   26. Slot 5 across: 1 candidates
+2025-08-27 03:52:45,721 - INFO -   27. Slot 14 across: 1 candidates
+2025-08-27 03:52:45,722 - INFO -   28. Slot 18 across: 1 candidates
+2025-08-27 03:52:45,722 - INFO -   29. Slot 22 across: 1 candidates
+2025-08-27 03:52:45,723 - INFO -   30. Slot 6 down: 1 candidates
+2025-08-27 03:52:45,723 - INFO -   31. Slot 20 down: 1 candidates
+2025-08-27 03:52:45,724 - DEBUG - Processing slot 1 down (index 0)
+2025-08-27 03:52:45,724 - DEBUG - Trying word 'ADAXIAL' in slot 1
+2025-08-27 03:52:45,725 - DEBUG - Placed word 'ADAXIAL', affected 7 positions
+2025-08-27 03:52:46,745 - DEBUG - Processing slot 9 down (index 1)
+2025-08-27 03:52:46,746 - DEBUG - Trying word 'ARTLESSLY' in slot 9
+2025-08-27 03:52:46,747 - DEBUG - Placed word 'ARTLESSLY', affected 9 positions
+2025-08-27 03:52:47,634 - DEBUG - Processing slot 12 down (index 2)
+2025-08-27 03:52:47,635 - DEBUG - Trying word 'ANYWHERE' in slot 12
+2025-08-27 03:52:47,636 - DEBUG - Placed word 'ANYWHERE', affected 8 positions
+2025-08-27 03:52:48,795 - DEBUG - Processing slot 9 across (index 3)
+2025-08-27 03:52:48,795 - DEBUG - Trying word 'AWHILE' in slot 9
+2025-08-27 03:52:48,796 - DEBUG - Placed word 'AWHILE', affected 5 positions
+2025-08-27 03:52:49,219 - DEBUG - Processing slot 15 across (index 4)
+2025-08-27 03:52:49,220 - DEBUG - Trying word 'ARCO' in slot 15
+2025-08-27 03:52:49,221 - DEBUG - Placed word 'ARCO', affected 4 positions
+2025-08-27 03:52:49,946 - DEBUG - Processing slot 3 down (index 5)
+2025-08-27 03:52:49,947 - DEBUG - Trying word 'ADORINGLY' in slot 3
+2025-08-27 03:52:49,947 - DEBUG - Placed word 'ADORINGLY', affected 8 positions
+2025-08-27 03:52:50,372 - DEBUG - Processing slot 7 down (index 6)
+2025-08-27 03:52:50,373 - DEBUG - Trying word 'AERIALLY' in slot 7
+2025-08-27 03:52:50,373 - DEBUG - Placed word 'AERIALLY', affected 7 positions
+2025-08-27 03:52:50,808 - DEBUG - Processing slot 2 across (index 7)
+2025-08-27 03:52:50,809 - DEBUG - Trying word 'AXIALLY' in slot 2
+2025-08-27 03:52:50,809 - DEBUG - Placed word 'AXIALLY', affected 6 positions
+2025-08-27 03:52:51,040 - DEBUG - Processing slot 4 across (index 8)
+2025-08-27 03:52:51,041 - DEBUG - Trying word 'AID' in slot 4
+2025-08-27 03:52:51,041 - DEBUG - Placed word 'AID', affected 2 positions
+2025-08-27 03:52:51,263 - DEBUG - Processing slot 6 across (index 9)
+2025-08-27 03:52:51,263 - DEBUG - Trying word 'ANEW' in slot 6
+2025-08-27 03:52:51,264 - DEBUG - Placed word 'ANEW', affected 4 positions
+2025-08-27 03:52:51,712 - DEBUG - Processing slot 8 across (index 10)
+2025-08-27 03:52:51,712 - DEBUG - Trying word 'AMISS' in slot 8
+2025-08-27 03:52:51,713 - DEBUG - Placed word 'AMISS', affected 4 positions
+2025-08-27 03:52:52,106 - DEBUG - Processing slot 10 across (index 11)
+2025-08-27 03:52:52,106 - DEBUG - Trying word 'ALSO' in slot 10
+2025-08-27 03:52:52,106 - DEBUG - Placed word 'ALSO', affected 3 positions
+2025-08-27 03:52:52,356 - DEBUG - Processing slot 11 across (index 12)
+2025-08-27 03:52:52,357 - DEBUG - Trying word 'AGAIN' in slot 11
+2025-08-27 03:52:52,357 - DEBUG - Placed word 'AGAIN', affected 3 positions
+2025-08-27 03:52:52,358 - DEBUG - Processing slot 12 across (index 13)
+2025-08-27 03:52:52,358 - DEBUG - Trying word 'AWOL' in slot 12
+2025-08-27 03:52:52,359 - DEBUG - Placed word 'AWOL', affected 2 positions
+2025-08-27 03:52:52,359 - DEBUG - Processing slot 13 across (index 14)
+2025-08-27 03:52:52,359 - DEBUG - Trying word 'AIN' in slot 13
+2025-08-27 03:52:52,360 - DEBUG - Placed word 'AIN', affected 2 positions
+2025-08-27 03:52:52,593 - DEBUG - Processing slot 16 across (index 15)
+2025-08-27 03:52:52,593 - DEBUG - Trying word 'AWAY' in slot 16
+2025-08-27 03:52:52,594 - DEBUG - Placed word 'AWAY', affected 3 positions
+2025-08-27 03:52:52,813 - DEBUG - Processing slot 19 across (index 16)
+2025-08-27 03:52:52,813 - DEBUG - Trying word 'ABAXIAL' in slot 19
+2025-08-27 03:52:52,814 - DEBUG - Word 'ABAXIAL' no longer fits due to changed constraints
+2025-08-27 03:52:52,814 - DEBUG - Exhausted all candidates for slot 19
+2025-08-27 03:52:52,815 - DEBUG - Backtracked word 'AWAY' from slot 16
+2025-08-27 03:52:52,815 - DEBUG - Exhausted all candidates for slot 16
+2025-08-27 03:52:52,816 - DEBUG - Backtracked word 'AIN' from slot 13
+2025-08-27 03:52:52,817 - DEBUG - Exhausted all candidates for slot 13
+2025-08-27 03:52:52,817 - DEBUG - Backtracked word 'AWOL' from slot 12
+2025-08-27 03:52:52,818 - DEBUG - Exhausted all candidates for slot 12
+2025-08-27 03:52:52,818 - DEBUG - Backtracked word 'AGAIN' from slot 11
+2025-08-27 03:52:52,819 - DEBUG - Exhausted all candidates for slot 11
+2025-08-27 03:52:52,819 - DEBUG - Backtracked word 'ALSO' from slot 10
+2025-08-27 03:52:52,820 - DEBUG - Exhausted all candidates for slot 10
+2025-08-27 03:52:52,820 - DEBUG - Backtracked word 'AMISS' from slot 8
+2025-08-27 03:52:52,821 - DEBUG - Exhausted all candidates for slot 8
+2025-08-27 03:52:52,821 - DEBUG - Backtracked word 'ANEW' from slot 6
+2025-08-27 03:52:52,821 - DEBUG - Exhausted all candidates for slot 6
+2025-08-27 03:52:52,822 - DEBUG - Backtracked word 'AID' from slot 4
+2025-08-27 03:52:52,822 - DEBUG - Exhausted all candidates for slot 4
+2025-08-27 03:52:52,822 - DEBUG - Backtracked word 'AXIALLY' from slot 2
+2025-08-27 03:52:52,822 - DEBUG - Exhausted all candidates for slot 2
+2025-08-27 03:52:52,823 - DEBUG - Backtracked word 'AERIALLY' from slot 7
+2025-08-27 03:52:52,823 - DEBUG - Exhausted all candidates for slot 7
+2025-08-27 03:52:52,823 - DEBUG - Backtracked word 'ADORINGLY' from slot 3
+2025-08-27 03:52:52,824 - DEBUG - Exhausted all candidates for slot 3
+2025-08-27 03:52:52,824 - DEBUG - Backtracked word 'ARCO' from slot 15
+2025-08-27 03:52:52,824 - DEBUG - Exhausted all candidates for slot 15
+2025-08-27 03:52:52,824 - DEBUG - Backtracked word 'AWHILE' from slot 9
+2025-08-27 03:52:52,824 - DEBUG - Exhausted all candidates for slot 9
+2025-08-27 03:52:52,825 - DEBUG - Backtracked word 'ANYWHERE' from slot 12
+2025-08-27 03:52:52,825 - DEBUG - Exhausted all candidates for slot 12
+2025-08-27 03:52:52,825 - DEBUG - Backtracked word 'ARTLESSLY' from slot 9
+2025-08-27 03:52:52,825 - DEBUG - Exhausted all candidates for slot 9
+2025-08-27 03:52:52,826 - DEBUG - Backtracked word 'ADAXIAL' from slot 1
+2025-08-27 03:52:52,826 - DEBUG - Exhausted all candidates for slot 1
+2025-08-27 03:52:52,826 - WARNING - No solution found
+2025-08-27 03:52:52,829 - INFO - 127.0.0.1 - - [27/Aug/2025 03:52:52] "POST /solve HTTP/1.1" 200 -
+2025-08-27 03:52:58,734 - INFO - 127.0.0.1 - - [27/Aug/2025 03:52:58] "OPTIONS /solve HTTP/1.1" 200 -
+2025-08-27 03:52:59,050 - INFO - DFSSolver initialized with 31 slots
+2025-08-27 03:52:59,050 - DEBUG - Initial grid state:
+2025-08-27 03:52:59,051 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:59,051 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:59,052 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:59,052 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:59,053 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:59,053 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:59,054 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:59,054 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:59,055 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:59,055 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:59,056 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:59,056 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:59,056 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:59,057 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:59,057 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 03:52:59,058 - INFO - Starting DFS solve
+2025-08-27 03:52:59,058 - DEBUG - Getting candidates for slot 1 across
+2025-08-27 03:52:59,256 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 03:52:59,257 - DEBUG - Getting candidates for slot 2 across
+2025-08-27 03:52:59,607 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 03:52:59,607 - DEBUG - Getting candidates for slot 4 across
+2025-08-27 03:52:59,841 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 03:52:59,842 - DEBUG - Getting candidates for slot 5 across
+2025-08-27 03:53:00,046 - DEBUG - Found 1 candidates for slot 5
+2025-08-27 03:53:00,047 - DEBUG - Getting candidates for slot 6 across
+2025-08-27 03:53:00,262 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 03:53:00,262 - DEBUG - Getting candidates for slot 8 across
+2025-08-27 03:53:00,470 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 03:53:00,471 - DEBUG - Getting candidates for slot 9 across
+2025-08-27 03:53:00,665 - DEBUG - Found 1 candidates for slot 9
+2025-08-27 03:53:00,666 - DEBUG - Getting candidates for slot 10 across
+2025-08-27 03:53:00,863 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 03:53:00,864 - DEBUG - Getting candidates for slot 11 across
+2025-08-27 03:53:01,080 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 03:53:01,080 - DEBUG - Getting candidates for slot 12 across
+2025-08-27 03:53:01,294 - DEBUG - Found 1 candidates for slot 12
+2025-08-27 03:53:01,294 - DEBUG - Getting candidates for slot 13 across
+2025-08-27 03:53:01,496 - DEBUG - Found 1 candidates for slot 13
+2025-08-27 03:53:01,497 - DEBUG - Getting candidates for slot 14 across
+2025-08-27 03:53:01,698 - DEBUG - Found 1 candidates for slot 14
+2025-08-27 03:53:01,699 - DEBUG - Getting candidates for slot 15 across
+2025-08-27 03:53:02,103 - DEBUG - Found 1 candidates for slot 15
+2025-08-27 03:53:02,104 - DEBUG - Getting candidates for slot 16 across
+2025-08-27 03:53:02,318 - DEBUG - Found 1 candidates for slot 16
+2025-08-27 03:53:02,319 - DEBUG - Getting candidates for slot 18 across
+2025-08-27 03:53:02,528 - DEBUG - Found 1 candidates for slot 18
+2025-08-27 03:53:02,528 - DEBUG - Getting candidates for slot 19 across
+2025-08-27 03:53:02,721 - DEBUG - Found 1 candidates for slot 19
+2025-08-27 03:53:02,722 - DEBUG - Getting candidates for slot 21 across
+2025-08-27 03:53:02,957 - DEBUG - Found 1 candidates for slot 21
+2025-08-27 03:53:02,958 - DEBUG - Getting candidates for slot 22 across
+2025-08-27 03:53:03,149 - DEBUG - Found 1 candidates for slot 22
+2025-08-27 03:53:03,150 - DEBUG - Getting candidates for slot 1 down
+2025-08-27 03:53:03,357 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 03:53:03,358 - DEBUG - Getting candidates for slot 2 down
+2025-08-27 03:53:03,594 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 03:53:03,594 - DEBUG - Getting candidates for slot 3 down
+2025-08-27 03:53:03,806 - DEBUG - Found 1 candidates for slot 3
+2025-08-27 03:53:03,807 - DEBUG - Getting candidates for slot 4 down
+2025-08-27 03:53:04,031 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 03:53:04,033 - DEBUG - Getting candidates for slot 6 down
+2025-08-27 03:53:04,272 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 03:53:04,273 - DEBUG - Getting candidates for slot 7 down
+2025-08-27 03:53:04,491 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 03:53:04,492 - DEBUG - Getting candidates for slot 9 down
+2025-08-27 03:53:04,704 - DEBUG - Found 1 candidates for slot 9
+2025-08-27 03:53:04,705 - DEBUG - Getting candidates for slot 10 down
+2025-08-27 03:53:04,906 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 03:53:04,907 - DEBUG - Getting candidates for slot 12 down
+2025-08-27 03:53:05,102 - DEBUG - Found 1 candidates for slot 12
+2025-08-27 03:53:05,103 - DEBUG - Getting candidates for slot 13 down
+2025-08-27 03:53:05,335 - DEBUG - Found 1 candidates for slot 13
+2025-08-27 03:53:05,336 - DEBUG - Getting candidates for slot 15 down
+2025-08-27 03:53:05,628 - DEBUG - Found 1 candidates for slot 15
+2025-08-27 03:53:05,629 - DEBUG - Getting candidates for slot 17 down
+2025-08-27 03:53:05,839 - DEBUG - Found 1 candidates for slot 17
+2025-08-27 03:53:05,840 - DEBUG - Getting candidates for slot 20 down
+2025-08-27 03:53:06,050 - DEBUG - Found 1 candidates for slot 20
+2025-08-27 03:53:06,051 - INFO - Slot processing order:
+2025-08-27 03:53:06,051 - INFO -   1. Slot 1 down: 1 candidates
+2025-08-27 03:53:06,052 - INFO -   2. Slot 9 down: 1 candidates
+2025-08-27 03:53:06,052 - INFO -   3. Slot 12 down: 1 candidates
+2025-08-27 03:53:06,052 - INFO -   4. Slot 9 across: 1 candidates
+2025-08-27 03:53:06,053 - INFO -   5. Slot 15 across: 1 candidates
+2025-08-27 03:53:06,053 - INFO -   6. Slot 3 down: 1 candidates
+2025-08-27 03:53:06,053 - INFO -   7. Slot 7 down: 1 candidates
+2025-08-27 03:53:06,054 - INFO -   8. Slot 2 across: 1 candidates
+2025-08-27 03:53:06,054 - INFO -   9. Slot 4 across: 1 candidates
+2025-08-27 03:53:06,055 - INFO -   10. Slot 6 across: 1 candidates
+2025-08-27 03:53:06,055 - INFO -   11. Slot 8 across: 1 candidates
+2025-08-27 03:53:06,056 - INFO -   12. Slot 10 across: 1 candidates
+2025-08-27 03:53:06,056 - INFO -   13. Slot 11 across: 1 candidates
+2025-08-27 03:53:06,057 - INFO -   14. Slot 12 across: 1 candidates
+2025-08-27 03:53:06,057 - INFO -   15. Slot 13 across: 1 candidates
+2025-08-27 03:53:06,058 - INFO -   16. Slot 16 across: 1 candidates
+2025-08-27 03:53:06,058 - INFO -   17. Slot 19 across: 1 candidates
+2025-08-27 03:53:06,058 - INFO -   18. Slot 21 across: 1 candidates
+2025-08-27 03:53:06,058 - INFO -   19. Slot 2 down: 1 candidates
+2025-08-27 03:53:06,059 - INFO -   20. Slot 4 down: 1 candidates
+2025-08-27 03:53:06,059 - INFO -   21. Slot 10 down: 1 candidates
+2025-08-27 03:53:06,059 - INFO -   22. Slot 13 down: 1 candidates
+2025-08-27 03:53:06,060 - INFO -   23. Slot 15 down: 1 candidates
+2025-08-27 03:53:06,060 - INFO -   24. Slot 17 down: 1 candidates
+2025-08-27 03:53:06,060 - INFO -   25. Slot 1 across: 1 candidates
+2025-08-27 03:53:06,061 - INFO -   26. Slot 5 across: 1 candidates
+2025-08-27 03:53:06,061 - INFO -   27. Slot 14 across: 1 candidates
+2025-08-27 03:53:06,062 - INFO -   28. Slot 18 across: 1 candidates
+2025-08-27 03:53:06,062 - INFO -   29. Slot 22 across: 1 candidates
+2025-08-27 03:53:06,062 - INFO -   30. Slot 6 down: 1 candidates
+2025-08-27 03:53:06,063 - INFO -   31. Slot 20 down: 1 candidates
+2025-08-27 03:53:06,063 - DEBUG - Processing slot 1 down (index 0)
+2025-08-27 03:53:06,063 - DEBUG - Trying word 'ADAXIAL' in slot 1
+2025-08-27 03:53:06,064 - DEBUG - Placed word 'ADAXIAL', affected 7 positions
+2025-08-27 03:53:07,146 - DEBUG - Processing slot 9 down (index 1)
+2025-08-27 03:53:07,147 - DEBUG - Trying word 'ARTLESSLY' in slot 9
+2025-08-27 03:53:07,148 - DEBUG - Placed word 'ARTLESSLY', affected 9 positions
+2025-08-27 03:53:08,036 - DEBUG - Processing slot 12 down (index 2)
+2025-08-27 03:53:08,037 - DEBUG - Trying word 'ANYWHERE' in slot 12
+2025-08-27 03:53:08,037 - DEBUG - Placed word 'ANYWHERE', affected 8 positions
+2025-08-27 03:53:09,238 - DEBUG - Processing slot 9 across (index 3)
+2025-08-27 03:53:09,239 - DEBUG - Trying word 'AWHILE' in slot 9
+2025-08-27 03:53:09,239 - DEBUG - Placed word 'AWHILE', affected 5 positions
+2025-08-27 03:53:09,708 - DEBUG - Processing slot 15 across (index 4)
+2025-08-27 03:53:09,709 - DEBUG - Trying word 'ARCO' in slot 15
+2025-08-27 03:53:09,709 - DEBUG - Placed word 'ARCO', affected 4 positions
+2025-08-27 03:53:10,407 - DEBUG - Processing slot 3 down (index 5)
+2025-08-27 03:53:10,408 - DEBUG - Trying word 'ADORINGLY' in slot 3
+2025-08-27 03:53:10,408 - DEBUG - Placed word 'ADORINGLY', affected 8 positions
+2025-08-27 03:53:10,856 - DEBUG - Processing slot 7 down (index 6)
+2025-08-27 03:53:10,857 - DEBUG - Trying word 'AERIALLY' in slot 7
+2025-08-27 03:53:10,857 - DEBUG - Placed word 'AERIALLY', affected 7 positions
+2025-08-27 03:53:11,323 - DEBUG - Processing slot 2 across (index 7)
+2025-08-27 03:53:11,324 - DEBUG - Trying word 'AXIALLY' in slot 2
+2025-08-27 03:53:11,324 - DEBUG - Placed word 'AXIALLY', affected 6 positions
+2025-08-27 03:53:11,594 - DEBUG - Processing slot 4 across (index 8)
+2025-08-27 03:53:11,594 - DEBUG - Trying word 'AID' in slot 4
+2025-08-27 03:53:11,595 - DEBUG - Placed word 'AID', affected 2 positions
+2025-08-27 03:53:11,854 - DEBUG - Processing slot 6 across (index 9)
+2025-08-27 03:53:11,854 - DEBUG - Trying word 'ANEW' in slot 6
+2025-08-27 03:53:11,855 - DEBUG - Placed word 'ANEW', affected 4 positions
+2025-08-27 03:53:12,339 - DEBUG - Processing slot 8 across (index 10)
+2025-08-27 03:53:12,339 - DEBUG - Trying word 'AMISS' in slot 8
+2025-08-27 03:53:12,340 - DEBUG - Placed word 'AMISS', affected 4 positions
+2025-08-27 03:53:12,550 - DEBUG - Processing slot 10 across (index 11)
+2025-08-27 03:53:12,551 - DEBUG - Trying word 'ALSO' in slot 10
+2025-08-27 03:53:12,551 - DEBUG - Placed word 'ALSO', affected 3 positions
+2025-08-27 03:53:12,788 - DEBUG - Processing slot 11 across (index 12)
+2025-08-27 03:53:12,789 - DEBUG - Trying word 'AGAIN' in slot 11
+2025-08-27 03:53:12,790 - DEBUG - Placed word 'AGAIN', affected 3 positions
+2025-08-27 03:53:12,790 - DEBUG - Processing slot 12 across (index 13)
+2025-08-27 03:53:12,791 - DEBUG - Trying word 'AWOL' in slot 12
+2025-08-27 03:53:12,791 - DEBUG - Placed word 'AWOL', affected 2 positions
+2025-08-27 03:53:12,791 - DEBUG - Processing slot 13 across (index 14)
+2025-08-27 03:53:12,792 - DEBUG - Trying word 'AIN' in slot 13
+2025-08-27 03:53:12,792 - DEBUG - Placed word 'AIN', affected 2 positions
+2025-08-27 03:53:13,042 - DEBUG - Processing slot 16 across (index 15)
+2025-08-27 03:53:13,043 - DEBUG - Trying word 'AWAY' in slot 16
+2025-08-27 03:53:13,043 - DEBUG - Placed word 'AWAY', affected 3 positions
+2025-08-27 03:53:13,260 - DEBUG - Processing slot 19 across (index 16)
+2025-08-27 03:53:13,260 - DEBUG - Trying word 'ABAXIAL' in slot 19
+2025-08-27 03:53:13,261 - DEBUG - Word 'ABAXIAL' no longer fits due to changed constraints
+2025-08-27 03:53:13,261 - DEBUG - Exhausted all candidates for slot 19
+2025-08-27 03:53:13,262 - DEBUG - Backtracked word 'AWAY' from slot 16
+2025-08-27 03:53:13,262 - DEBUG - Exhausted all candidates for slot 16
+2025-08-27 03:53:13,263 - DEBUG - Backtracked word 'AIN' from slot 13
+2025-08-27 03:53:13,263 - DEBUG - Exhausted all candidates for slot 13
+2025-08-27 03:53:13,263 - DEBUG - Backtracked word 'AWOL' from slot 12
+2025-08-27 03:53:13,264 - DEBUG - Exhausted all candidates for slot 12
+2025-08-27 03:53:13,264 - DEBUG - Backtracked word 'AGAIN' from slot 11
+2025-08-27 03:53:13,265 - DEBUG - Exhausted all candidates for slot 11
+2025-08-27 03:53:13,265 - DEBUG - Backtracked word 'ALSO' from slot 10
+2025-08-27 03:53:13,265 - DEBUG - Exhausted all candidates for slot 10
+2025-08-27 03:53:13,266 - DEBUG - Backtracked word 'AMISS' from slot 8
+2025-08-27 03:53:13,266 - DEBUG - Exhausted all candidates for slot 8
+2025-08-27 03:53:13,266 - DEBUG - Backtracked word 'ANEW' from slot 6
+2025-08-27 03:53:13,267 - DEBUG - Exhausted all candidates for slot 6
+2025-08-27 03:53:13,267 - DEBUG - Backtracked word 'AID' from slot 4
+2025-08-27 03:53:13,267 - DEBUG - Exhausted all candidates for slot 4
+2025-08-27 03:53:13,267 - DEBUG - Backtracked word 'AXIALLY' from slot 2
+2025-08-27 03:53:13,268 - DEBUG - Exhausted all candidates for slot 2
+2025-08-27 03:53:13,268 - DEBUG - Backtracked word 'AERIALLY' from slot 7
+2025-08-27 03:53:13,268 - DEBUG - Exhausted all candidates for slot 7
+2025-08-27 03:53:13,268 - DEBUG - Backtracked word 'ADORINGLY' from slot 3
+2025-08-27 03:53:13,269 - DEBUG - Exhausted all candidates for slot 3
+2025-08-27 03:53:13,269 - DEBUG - Backtracked word 'ARCO' from slot 15
+2025-08-27 03:53:13,269 - DEBUG - Exhausted all candidates for slot 15
+2025-08-27 03:53:13,269 - DEBUG - Backtracked word 'AWHILE' from slot 9
+2025-08-27 03:53:13,270 - DEBUG - Exhausted all candidates for slot 9
+2025-08-27 03:53:13,270 - DEBUG - Backtracked word 'ANYWHERE' from slot 12
+2025-08-27 03:53:13,270 - DEBUG - Exhausted all candidates for slot 12
+2025-08-27 03:53:13,270 - DEBUG - Backtracked word 'ARTLESSLY' from slot 9
+2025-08-27 03:53:13,271 - DEBUG - Exhausted all candidates for slot 9
+2025-08-27 03:53:13,271 - DEBUG - Backtracked word 'ADAXIAL' from slot 1
+2025-08-27 03:53:13,271 - DEBUG - Exhausted all candidates for slot 1
+2025-08-27 03:53:13,272 - WARNING - No solution found
+2025-08-27 03:53:13,274 - INFO - 127.0.0.1 - - [27/Aug/2025 03:53:13] "POST /solve HTTP/1.1" 200 -
+2025-08-27 06:20:08,178 - INFO -  * Detected change in 'D:\\T\\CSA2 Thesis\\Crossword-Solver\\flask-backend\\solver\\algorithms\\dfs_solver.py', reloading
+2025-08-27 06:20:13,729 - DEBUG - matplotlib data path: C:\Users\Pj Sios-e\AppData\Local\Programs\Python\Python313\Lib\site-packages\matplotlib\mpl-data
+2025-08-27 06:20:13,749 - DEBUG - CONFIGDIR=C:\Users\Pj Sios-e\.matplotlib
+2025-08-27 06:20:13,750 - DEBUG - interactive is False
+2025-08-27 06:20:13,751 - DEBUG - platform is win32
+2025-08-27 06:20:13,847 - DEBUG - CACHEDIR=C:\Users\Pj Sios-e\.matplotlib
+2025-08-27 06:20:13,852 - DEBUG - Using fontManager instance from C:\Users\Pj Sios-e\.matplotlib\fontlist-v390.json
+2025-08-27 06:20:15,037 - WARNING -  * Debugger is active!
+2025-08-27 06:20:15,044 - INFO -  * Debugger PIN: 115-932-035
+2025-08-27 06:20:25,653 - INFO - 127.0.0.1 - - [27/Aug/2025 06:20:25] "OPTIONS /generate HTTP/1.1" 200 -
+2025-08-27 06:20:25,903 - INFO - Attempt 1/15 [diff=medium]
+2025-08-27 06:20:25,936 - INFO - Attempt 2/15 [diff=medium]
+2025-08-27 06:20:25,989 - INFO - Attempt 3/15 [diff=medium]
+2025-08-27 06:20:26,028 - INFO - Attempt 4/15 [diff=medium]
+2025-08-27 06:20:26,065 - INFO - Attempt 5/15 [diff=medium]
+2025-08-27 06:20:26,099 - INFO - Attempt 6/15 [diff=medium]
+2025-08-27 06:20:26,133 - INFO - Attempt 7/15 [diff=medium]
+2025-08-27 06:20:26,168 - INFO - Attempt 8/15 [diff=medium]
+2025-08-27 06:20:26,199 - INFO - Attempt 9/15 [diff=medium]
+2025-08-27 06:20:26,230 - INFO - Attempt 10/15 [diff=medium]
+2025-08-27 06:20:26,266 - INFO - Attempt 11/15 [diff=medium]
+2025-08-27 06:20:26,299 - INFO - Attempt 12/15 [diff=medium]
+2025-08-27 06:20:26,330 - INFO - Attempt 13/15 [diff=medium]
+2025-08-27 06:20:26,364 - INFO - Attempt 14/15 [diff=medium]
+2025-08-27 06:20:26,400 - INFO - Attempt 15/15 [diff=medium]
+2025-08-27 06:20:26,440 - WARNING - Used fallback puzzle with density=51.56% (target: 60.00%-69.00%)
+2025-08-27 06:20:26,441 - INFO - 127.0.0.1 - - [27/Aug/2025 06:20:26] "POST /generate HTTP/1.1" 200 -
+2025-08-27 06:20:29,293 - INFO - 127.0.0.1 - - [27/Aug/2025 06:20:29] "OPTIONS /solve HTTP/1.1" 200 -
+2025-08-27 06:20:29,597 - INFO - DFSSolver initialized with 27 slots
+2025-08-27 06:20:29,597 - DEBUG - Initial grid state:
+2025-08-27 06:20:29,598 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:29,598 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:29,598 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:29,599 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:29,599 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:29,599 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:29,600 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:29,600 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:29,600 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:29,600 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:29,601 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:29,601 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:29,601 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:29,601 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:29,601 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:29,601 - INFO - Starting DFS solve
+2025-08-27 06:20:29,602 - ERROR - Solve error: 'DFSSolver' object has no attribute 'grid'
+Traceback (most recent call last):
+  File "D:\T\CSA2 Thesis\Crossword-Solver\flask-backend\server.py", line 53, in solve
+    result = solver.solve()
+  File "D:\T\CSA2 Thesis\Crossword-Solver\flask-backend\solver\algorithms\dfs_solver.py", line 43, in solve
+    if not self.grid or not self.grid[0]:
+           ^^^^^^^^^
+AttributeError: 'DFSSolver' object has no attribute 'grid'
+2025-08-27 06:20:29,611 - INFO - 127.0.0.1 - - [27/Aug/2025 06:20:29] "[35m[1mPOST /solve HTTP/1.1[0m" 500 -
+2025-08-27 06:20:33,868 - INFO - DFSSolver initialized with 27 slots
+2025-08-27 06:20:33,868 - DEBUG - Initial grid state:
+2025-08-27 06:20:33,869 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:33,869 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:33,869 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:33,870 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:33,870 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:33,870 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:33,871 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:33,871 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:33,872 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:33,873 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:33,873 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:33,874 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:33,875 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:33,875 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:33,876 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:33,876 - INFO - Starting DFS solve
+2025-08-27 06:20:33,877 - ERROR - Solve error: 'DFSSolver' object has no attribute 'grid'
+Traceback (most recent call last):
+  File "D:\T\CSA2 Thesis\Crossword-Solver\flask-backend\server.py", line 53, in solve
+    result = solver.solve()
+  File "D:\T\CSA2 Thesis\Crossword-Solver\flask-backend\solver\algorithms\dfs_solver.py", line 43, in solve
+    if not self.grid or not self.grid[0]:
+           ^^^^^^^^^
+AttributeError: 'DFSSolver' object has no attribute 'grid'
+2025-08-27 06:20:33,881 - INFO - 127.0.0.1 - - [27/Aug/2025 06:20:33] "[35m[1mPOST /solve HTTP/1.1[0m" 500 -
+2025-08-27 06:20:50,639 - INFO -  * Detected change in 'D:\\T\\CSA2 Thesis\\Crossword-Solver\\flask-backend\\solver\\algorithms\\dfs_solver.py', reloading
+2025-08-27 06:20:54,036 - DEBUG - matplotlib data path: C:\Users\Pj Sios-e\AppData\Local\Programs\Python\Python313\Lib\site-packages\matplotlib\mpl-data
+2025-08-27 06:20:54,050 - DEBUG - CONFIGDIR=C:\Users\Pj Sios-e\.matplotlib
+2025-08-27 06:20:54,052 - DEBUG - interactive is False
+2025-08-27 06:20:54,052 - DEBUG - platform is win32
+2025-08-27 06:20:54,129 - DEBUG - CACHEDIR=C:\Users\Pj Sios-e\.matplotlib
+2025-08-27 06:20:54,134 - DEBUG - Using fontManager instance from C:\Users\Pj Sios-e\.matplotlib\fontlist-v390.json
+2025-08-27 06:20:55,277 - WARNING -  * Debugger is active!
+2025-08-27 06:20:55,282 - INFO -  * Debugger PIN: 115-932-035
+2025-08-27 06:20:55,302 - INFO - 127.0.0.1 - - [27/Aug/2025 06:20:55] "OPTIONS /solve HTTP/1.1" 200 -
+2025-08-27 06:20:55,305 - INFO - DFSSolver initialized with 27 slots
+2025-08-27 06:20:55,308 - DEBUG - Initial grid state:
+2025-08-27 06:20:55,308 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:55,308 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:55,309 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:55,309 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:55,309 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:55,310 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:55,310 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:55,310 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:55,311 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:55,311 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:55,311 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:55,312 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:55,312 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:55,312 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:55,313 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:20:55,313 - INFO - Starting DFS solve
+2025-08-27 06:20:55,314 - DEBUG - Getting candidates for slot 1 across
+2025-08-27 06:20:55,529 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 06:20:55,529 - DEBUG - Getting candidates for slot 3 across
+2025-08-27 06:20:55,745 - DEBUG - Found 1 candidates for slot 3
+2025-08-27 06:20:55,745 - DEBUG - Getting candidates for slot 4 across
+2025-08-27 06:20:55,950 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 06:20:55,950 - DEBUG - Getting candidates for slot 5 across
+2025-08-27 06:20:56,210 - DEBUG - Found 1 candidates for slot 5
+2025-08-27 06:20:56,211 - DEBUG - Getting candidates for slot 6 across
+2025-08-27 06:20:56,442 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 06:20:56,443 - DEBUG - Getting candidates for slot 7 across
+2025-08-27 06:20:56,676 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 06:20:56,677 - DEBUG - Getting candidates for slot 8 across
+2025-08-27 06:20:56,899 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 06:20:56,900 - DEBUG - Getting candidates for slot 9 across
+2025-08-27 06:20:57,134 - DEBUG - Found 1 candidates for slot 9
+2025-08-27 06:20:57,135 - DEBUG - Getting candidates for slot 11 across
+2025-08-27 06:20:57,369 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 06:20:57,369 - DEBUG - Getting candidates for slot 14 across
+2025-08-27 06:20:57,604 - DEBUG - Found 1 candidates for slot 14
+2025-08-27 06:20:57,605 - DEBUG - Getting candidates for slot 15 across
+2025-08-27 06:20:57,859 - DEBUG - Found 1 candidates for slot 15
+2025-08-27 06:20:57,860 - DEBUG - Getting candidates for slot 16 across
+2025-08-27 06:20:58,103 - DEBUG - Found 1 candidates for slot 16
+2025-08-27 06:20:58,104 - DEBUG - Getting candidates for slot 17 across
+2025-08-27 06:20:58,678 - DEBUG - Found 1 candidates for slot 17
+2025-08-27 06:20:58,679 - DEBUG - Getting candidates for slot 18 across
+2025-08-27 06:20:58,875 - DEBUG - Found 1 candidates for slot 18
+2025-08-27 06:20:58,875 - DEBUG - Getting candidates for slot 19 across
+2025-08-27 06:20:59,120 - DEBUG - Found 1 candidates for slot 19
+2025-08-27 06:20:59,121 - DEBUG - Getting candidates for slot 20 across
+2025-08-27 06:20:59,315 - DEBUG - Found 1 candidates for slot 20
+2025-08-27 06:20:59,315 - DEBUG - Getting candidates for slot 1 down
+2025-08-27 06:20:59,520 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 06:20:59,520 - DEBUG - Getting candidates for slot 2 down
+2025-08-27 06:20:59,769 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 06:20:59,908 - DEBUG - Getting candidates for slot 3 down
+2025-08-27 06:21:00,145 - DEBUG - Found 1 candidates for slot 3
+2025-08-27 06:21:00,145 - DEBUG - Getting candidates for slot 4 down
+2025-08-27 06:21:00,343 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 06:21:00,344 - DEBUG - Getting candidates for slot 7 down
+2025-08-27 06:21:00,566 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 06:21:00,566 - DEBUG - Getting candidates for slot 8 down
+2025-08-27 06:21:00,842 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 06:21:00,842 - DEBUG - Getting candidates for slot 9 down
+2025-08-27 06:21:01,081 - DEBUG - Found 1 candidates for slot 9
+2025-08-27 06:21:01,081 - DEBUG - Getting candidates for slot 10 down
+2025-08-27 06:21:01,320 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 06:21:01,321 - DEBUG - Getting candidates for slot 11 down
+2025-08-27 06:21:01,546 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 06:21:01,546 - DEBUG - Getting candidates for slot 12 down
+2025-08-27 06:21:01,757 - DEBUG - Found 1 candidates for slot 12
+2025-08-27 06:21:01,758 - DEBUG - Getting candidates for slot 13 down
+2025-08-27 06:21:01,965 - DEBUG - Found 1 candidates for slot 13
+2025-08-27 06:21:01,965 - INFO - Slot processing order:
+2025-08-27 06:21:01,965 - INFO -   1. Slot 8 down: 1 candidates
+2025-08-27 06:21:01,966 - INFO -   2. Slot 9 across: 1 candidates
+2025-08-27 06:21:01,966 - INFO -   3. Slot 11 across: 1 candidates
+2025-08-27 06:21:01,967 - INFO -   4. Slot 16 across: 1 candidates
+2025-08-27 06:21:01,967 - INFO -   5. Slot 4 down: 1 candidates
+2025-08-27 06:21:01,967 - INFO -   6. Slot 9 down: 1 candidates
+2025-08-27 06:21:01,968 - INFO -   7. Slot 12 down: 1 candidates
+2025-08-27 06:21:01,968 - INFO -   8. Slot 13 down: 1 candidates
+2025-08-27 06:21:01,968 - INFO -   9. Slot 4 across: 1 candidates
+2025-08-27 06:21:01,969 - INFO -   10. Slot 6 across: 1 candidates
+2025-08-27 06:21:01,969 - INFO -   11. Slot 8 across: 1 candidates
+2025-08-27 06:21:01,969 - INFO -   12. Slot 17 across: 1 candidates
+2025-08-27 06:21:01,970 - INFO -   13. Slot 18 across: 1 candidates
+2025-08-27 06:21:01,970 - INFO -   14. Slot 20 across: 1 candidates
+2025-08-27 06:21:01,970 - INFO -   15. Slot 1 down: 1 candidates
+2025-08-27 06:21:01,971 - INFO -   16. Slot 2 down: 1 candidates
+2025-08-27 06:21:01,971 - INFO -   17. Slot 3 down: 1 candidates
+2025-08-27 06:21:01,971 - INFO -   18. Slot 7 down: 1 candidates
+2025-08-27 06:21:01,972 - INFO -   19. Slot 11 down: 1 candidates
+2025-08-27 06:21:01,972 - INFO -   20. Slot 1 across: 1 candidates
+2025-08-27 06:21:01,972 - INFO -   21. Slot 3 across: 1 candidates
+2025-08-27 06:21:01,972 - INFO -   22. Slot 5 across: 1 candidates
+2025-08-27 06:21:01,973 - INFO -   23. Slot 7 across: 1 candidates
+2025-08-27 06:21:01,973 - INFO -   24. Slot 14 across: 1 candidates
+2025-08-27 06:21:01,973 - INFO -   25. Slot 15 across: 1 candidates
+2025-08-27 06:21:01,974 - INFO -   26. Slot 19 across: 1 candidates
+2025-08-27 06:21:01,974 - INFO -   27. Slot 10 down: 1 candidates
+2025-08-27 06:21:01,974 - DEBUG - Processing slot 8 down (index 0)
+2025-08-27 06:21:01,974 - DEBUG - Trying word 'ACIDOPHILIC' in slot 8
+2025-08-27 06:21:01,975 - DEBUG - Placed word 'ACIDOPHILIC', affected 11 positions
+2025-08-27 06:21:03,251 - DEBUG - Processing slot 9 across (index 1)
+2025-08-27 06:21:03,252 - DEBUG - Trying word 'ACROSCOPIC' in slot 9
+2025-08-27 06:21:03,252 - DEBUG - Placed word 'ACROSCOPIC', affected 9 positions
+2025-08-27 06:21:03,856 - DEBUG - Processing slot 11 across (index 2)
+2025-08-27 06:21:03,856 - DEBUG - Trying word 'ASHAMED' in slot 11
+2025-08-27 06:21:03,857 - DEBUG - Placed word 'ASHAMED', affected 6 positions
+2025-08-27 06:21:04,319 - DEBUG - Processing slot 16 across (index 3)
+2025-08-27 06:21:04,319 - DEBUG - Trying word 'AHORSE' in slot 16
+2025-08-27 06:21:04,320 - DEBUG - Placed word 'AHORSE', affected 5 positions
+2025-08-27 06:21:04,738 - DEBUG - Processing slot 4 down (index 4)
+2025-08-27 06:21:04,739 - DEBUG - Trying word 'APART' in slot 4
+2025-08-27 06:21:04,739 - DEBUG - Placed word 'APART', affected 4 positions
+2025-08-27 06:21:05,138 - DEBUG - Processing slot 9 down (index 5)
+2025-08-27 06:21:05,138 - DEBUG - Trying word 'ANXIOUSLY' in slot 9
+2025-08-27 06:21:05,139 - DEBUG - Placed word 'ANXIOUSLY', affected 8 positions
+2025-08-27 06:21:05,606 - DEBUG - Processing slot 12 down (index 6)
+2025-08-27 06:21:05,606 - DEBUG - Trying word 'AFFABLY' in slot 12
+2025-08-27 06:21:05,607 - DEBUG - Placed word 'AFFABLY', affected 6 positions
+2025-08-27 06:21:06,031 - DEBUG - Processing slot 13 down (index 7)
+2025-08-27 06:21:06,032 - DEBUG - Trying word 'ALFRESCO' in slot 13
+2025-08-27 06:21:06,032 - DEBUG - Placed word 'ALFRESCO', affected 7 positions
+2025-08-27 06:21:06,487 - DEBUG - Processing slot 4 across (index 8)
+2025-08-27 06:21:06,487 - DEBUG - Trying word 'ALSO' in slot 4
+2025-08-27 06:21:06,488 - DEBUG - Placed word 'ALSO', affected 3 positions
+2025-08-27 06:21:06,696 - DEBUG - Processing slot 6 across (index 9)
+2025-08-27 06:21:06,697 - DEBUG - Trying word 'ATOP' in slot 6
+2025-08-27 06:21:06,697 - DEBUG - Placed word 'ATOP', affected 3 positions
+2025-08-27 06:21:06,903 - DEBUG - Processing slot 8 across (index 10)
+2025-08-27 06:21:06,903 - DEBUG - Trying word 'AMOK' in slot 8
+2025-08-27 06:21:06,904 - DEBUG - Placed word 'AMOK', affected 3 positions
+2025-08-27 06:21:07,107 - DEBUG - Processing slot 17 across (index 11)
+2025-08-27 06:21:07,108 - DEBUG - Trying word 'ALOUD' in slot 17
+2025-08-27 06:21:07,110 - DEBUG - Placed word 'ALOUD', affected 4 positions
+2025-08-27 06:21:07,313 - DEBUG - Processing slot 18 across (index 12)
+2025-08-27 06:21:07,314 - DEBUG - Trying word 'ALAS' in slot 18
+2025-08-27 06:21:07,314 - DEBUG - Placed word 'ALAS', affected 2 positions
+2025-08-27 06:21:07,314 - DEBUG - Processing slot 20 across (index 13)
+2025-08-27 06:21:07,315 - DEBUG - Trying word 'ACROSS' in slot 20
+2025-08-27 06:21:07,315 - DEBUG - Placed word 'ACROSS', affected 4 positions
+2025-08-27 06:21:07,316 - DEBUG - Processing slot 1 down (index 14)
+2025-08-27 06:21:07,316 - DEBUG - Trying word 'ALL' in slot 1
+2025-08-27 06:21:07,316 - DEBUG - Placed word 'ALL', affected 2 positions
+2025-08-27 06:21:07,528 - DEBUG - Processing slot 2 down (index 15)
+2025-08-27 06:21:07,529 - DEBUG - Trying word 'ABACK' in slot 2
+2025-08-27 06:21:07,529 - DEBUG - Placed word 'ABACK', affected 4 positions
+2025-08-27 06:21:07,729 - DEBUG - Processing slot 3 down (index 16)
+2025-08-27 06:21:07,730 - DEBUG - Trying word 'AWAY' in slot 3
+2025-08-27 06:21:07,730 - DEBUG - Placed word 'AWAY', affected 3 positions
+2025-08-27 06:21:07,936 - DEBUG - Processing slot 7 down (index 17)
+2025-08-27 06:21:07,936 - DEBUG - Trying word 'AZO' in slot 7
+2025-08-27 06:21:07,937 - DEBUG - Placed word 'AZO', affected 2 positions
+2025-08-27 06:21:08,136 - DEBUG - Processing slot 11 down (index 18)
+2025-08-27 06:21:08,137 - DEBUG - Trying word 'ABROAD' in slot 11
+2025-08-27 06:21:08,137 - DEBUG - Placed word 'ABROAD', affected 4 positions
+2025-08-27 06:21:08,138 - DEBUG - Processing slot 1 across (index 19)
+2025-08-27 06:21:08,138 - DEBUG - Trying word 'ACTIVELY' in slot 1
+2025-08-27 06:21:08,139 - DEBUG - Placed word 'ACTIVELY', affected 7 positions
+2025-08-27 06:21:08,139 - DEBUG - Processing slot 3 across (index 20)
+2025-08-27 06:21:08,140 - DEBUG - Trying word 'AIN' in slot 3
+2025-08-27 06:21:08,140 - DEBUG - Placed word 'AIN', affected 2 positions
+2025-08-27 06:21:08,140 - DEBUG - Processing slot 5 across (index 21)
+2025-08-27 06:21:08,141 - DEBUG - Trying word 'ABEAM' in slot 5
+2025-08-27 06:21:08,141 - DEBUG - Placed word 'ABEAM', affected 4 positions
+2025-08-27 06:21:08,141 - DEBUG - Processing slot 7 across (index 22)
+2025-08-27 06:21:08,142 - DEBUG - Trying word 'AGO' in slot 7
+2025-08-27 06:21:08,142 - DEBUG - Placed word 'AGO', affected 2 positions
+2025-08-27 06:21:08,142 - DEBUG - Processing slot 14 across (index 23)
+2025-08-27 06:21:08,142 - DEBUG - Trying word 'AIR' in slot 14
+2025-08-27 06:21:08,143 - DEBUG - Placed word 'AIR', affected 2 positions
+2025-08-27 06:21:08,143 - DEBUG - Processing slot 15 across (index 24)
+2025-08-27 06:21:08,144 - DEBUG - Trying word 'AFT' in slot 15
+2025-08-27 06:21:08,144 - DEBUG - Placed word 'AFT', affected 2 positions
+2025-08-27 06:21:08,144 - DEBUG - Processing slot 19 across (index 25)
+2025-08-27 06:21:08,145 - DEBUG - Trying word 'ANY' in slot 19
+2025-08-27 06:21:08,145 - DEBUG - Placed word 'ANY', affected 2 positions
+2025-08-27 06:21:08,145 - DEBUG - Processing slot 10 down (index 26)
+2025-08-27 06:21:08,146 - DEBUG - Trying word 'AWHILE' in slot 10
+2025-08-27 06:21:08,146 - DEBUG - Placed word 'AWHILE', affected 5 positions
+2025-08-27 06:21:08,147 - INFO - Solution found!
+2025-08-27 06:21:08,147 - DEBUG - Final grid state:
+2025-08-27 06:21:08,147 - DEBUG - . . . . A C T I V E L Y . A .
+2025-08-27 06:21:08,147 - DEBUG - A I N . L . . . . . . . . B .
+2025-08-27 06:21:08,148 - DEBUG - W . . A L S O . . . A B E A M
+2025-08-27 06:21:08,148 - DEBUG - A T O P . . . A G O . . . C .
+2025-08-27 06:21:08,148 - DEBUG - Y . . A . . . Z . . A M O K .
+2025-08-27 06:21:08,149 - DEBUG - . A C R O S C O P I C . . . A
+2025-08-27 06:21:08,149 - DEBUG - . N . T . . . . . . I . . . W
+2025-08-27 06:21:08,149 - DEBUG - . X . . A S H A M E D . A . H
+2025-08-27 06:21:08,149 - DEBUG - A I R . B . . F . . O . L . I
+2025-08-27 06:21:08,149 - DEBUG - . O . . R . A F T . P . F . L
+2025-08-27 06:21:08,150 - DEBUG - . U . . O . . A . A H O R S E
+2025-08-27 06:21:08,150 - DEBUG - . S . . A . . B . . I . E . .
+2025-08-27 06:21:08,150 - DEBUG - A L O U D . . L . A L A S . .
+2025-08-27 06:21:08,150 - DEBUG - . Y . . . A N Y . . I . C . .
+2025-08-27 06:21:08,151 - DEBUG - . . . . . . . . . A C R O S S
+2025-08-27 06:21:08,154 - INFO - 127.0.0.1 - - [27/Aug/2025 06:21:08] "POST /solve HTTP/1.1" 200 -
+2025-08-27 06:23:51,950 - INFO -  * Detected change in 'D:\\T\\CSA2 Thesis\\Crossword-Solver\\flask-backend\\solver\\algorithms\\dfs_solver.py', reloading
+2025-08-27 06:23:55,405 - DEBUG - matplotlib data path: C:\Users\Pj Sios-e\AppData\Local\Programs\Python\Python313\Lib\site-packages\matplotlib\mpl-data
+2025-08-27 06:23:55,419 - DEBUG - CONFIGDIR=C:\Users\Pj Sios-e\.matplotlib
+2025-08-27 06:23:55,422 - DEBUG - interactive is False
+2025-08-27 06:23:55,422 - DEBUG - platform is win32
+2025-08-27 06:23:55,502 - DEBUG - CACHEDIR=C:\Users\Pj Sios-e\.matplotlib
+2025-08-27 06:23:55,505 - DEBUG - Using fontManager instance from C:\Users\Pj Sios-e\.matplotlib\fontlist-v390.json
+2025-08-27 06:23:56,655 - WARNING -  * Debugger is active!
+2025-08-27 06:23:56,664 - INFO -  * Debugger PIN: 115-932-035
+2025-08-27 06:23:57,291 - INFO - 127.0.0.1 - - [27/Aug/2025 06:23:57] "OPTIONS /generate HTTP/1.1" 200 -
+2025-08-27 06:23:57,536 - INFO - Attempt 1/15 [diff=medium]
+2025-08-27 06:23:57,576 - INFO - Attempt 2/15 [diff=medium]
+2025-08-27 06:23:57,610 - INFO - Attempt 3/15 [diff=medium]
+2025-08-27 06:23:57,643 - INFO - Attempt 4/15 [diff=medium]
+2025-08-27 06:23:57,693 - INFO - Attempt 5/15 [diff=medium]
+2025-08-27 06:23:57,729 - INFO - Attempt 6/15 [diff=medium]
+2025-08-27 06:23:57,759 - INFO - Attempt 7/15 [diff=medium]
+2025-08-27 06:23:57,791 - INFO - Attempt 8/15 [diff=medium]
+2025-08-27 06:23:57,825 - INFO - Attempt 9/15 [diff=medium]
+2025-08-27 06:23:57,853 - INFO - Attempt 10/15 [diff=medium]
+2025-08-27 06:23:57,887 - INFO - Attempt 11/15 [diff=medium]
+2025-08-27 06:23:57,918 - INFO - Attempt 12/15 [diff=medium]
+2025-08-27 06:23:57,949 - INFO - Attempt 13/15 [diff=medium]
+2025-08-27 06:23:57,979 - INFO - Attempt 14/15 [diff=medium]
+2025-08-27 06:23:58,013 - INFO - Attempt 15/15 [diff=medium]
+2025-08-27 06:23:58,049 - WARNING - Used fallback puzzle with density=52.00% (target: 60.00%-69.00%)
+2025-08-27 06:23:58,050 - INFO - 127.0.0.1 - - [27/Aug/2025 06:23:58] "POST /generate HTTP/1.1" 200 -
+2025-08-27 06:26:24,011 - INFO - 127.0.0.1 - - [27/Aug/2025 06:26:24] "OPTIONS /solve HTTP/1.1" 200 -
+2025-08-27 06:26:24,264 - INFO - DFSSolver initialized with 30 slots
+2025-08-27 06:26:24,264 - DEBUG - Initial grid state:
+2025-08-27 06:26:24,264 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:26:24,265 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:26:24,265 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:26:24,265 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:26:24,265 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:26:24,266 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:26:24,266 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:26:24,266 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:26:24,266 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:26:24,266 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:26:24,266 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:26:24,267 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:26:24,267 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:26:24,267 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:26:24,267 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:26:24,267 - INFO - Starting DFS solve
+2025-08-27 06:26:24,267 - DEBUG - Getting candidates for slot 4 across
+2025-08-27 06:26:24,501 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 06:26:24,501 - DEBUG - Getting candidates for slot 6 across
+2025-08-27 06:26:24,929 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 06:26:24,929 - DEBUG - Getting candidates for slot 7 across
+2025-08-27 06:26:25,173 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 06:26:25,173 - DEBUG - Getting candidates for slot 8 across
+2025-08-27 06:26:25,404 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 06:26:25,405 - DEBUG - Getting candidates for slot 9 across
+2025-08-27 06:26:25,610 - DEBUG - Found 1 candidates for slot 9
+2025-08-27 06:26:25,611 - DEBUG - Getting candidates for slot 11 across
+2025-08-27 06:26:25,847 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 06:26:25,847 - DEBUG - Getting candidates for slot 12 across
+2025-08-27 06:26:26,090 - DEBUG - Found 1 candidates for slot 12
+2025-08-27 06:26:26,091 - DEBUG - Getting candidates for slot 13 across
+2025-08-27 06:26:26,320 - DEBUG - Found 1 candidates for slot 13
+2025-08-27 06:26:26,321 - DEBUG - Getting candidates for slot 14 across
+2025-08-27 06:26:26,529 - DEBUG - Found 1 candidates for slot 14
+2025-08-27 06:26:26,529 - DEBUG - Getting candidates for slot 15 across
+2025-08-27 06:26:26,742 - DEBUG - Found 1 candidates for slot 15
+2025-08-27 06:26:26,743 - DEBUG - Getting candidates for slot 17 across
+2025-08-27 06:26:26,945 - DEBUG - Found 1 candidates for slot 17
+2025-08-27 06:26:26,946 - DEBUG - Getting candidates for slot 18 across
+2025-08-27 06:26:27,635 - DEBUG - Found 1 candidates for slot 18
+2025-08-27 06:26:27,636 - DEBUG - Getting candidates for slot 19 across
+2025-08-27 06:26:27,836 - DEBUG - Found 1 candidates for slot 19
+2025-08-27 06:26:27,836 - DEBUG - Getting candidates for slot 20 across
+2025-08-27 06:26:28,038 - DEBUG - Found 1 candidates for slot 20
+2025-08-27 06:26:28,039 - DEBUG - Getting candidates for slot 21 across
+2025-08-27 06:26:28,250 - DEBUG - Found 1 candidates for slot 21
+2025-08-27 06:26:28,251 - DEBUG - Getting candidates for slot 22 across
+2025-08-27 06:26:28,453 - DEBUG - Found 1 candidates for slot 22
+2025-08-27 06:26:28,453 - DEBUG - Getting candidates for slot 1 down
+2025-08-27 06:26:28,666 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 06:26:28,667 - DEBUG - Getting candidates for slot 2 down
+2025-08-27 06:26:28,875 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 06:26:28,875 - DEBUG - Getting candidates for slot 3 down
+2025-08-27 06:26:29,083 - DEBUG - Found 1 candidates for slot 3
+2025-08-27 06:26:29,083 - DEBUG - Getting candidates for slot 4 down
+2025-08-27 06:26:29,288 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 06:26:29,289 - DEBUG - Getting candidates for slot 5 down
+2025-08-27 06:26:29,495 - DEBUG - Found 1 candidates for slot 5
+2025-08-27 06:26:29,496 - DEBUG - Getting candidates for slot 6 down
+2025-08-27 06:26:29,700 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 06:26:29,701 - DEBUG - Getting candidates for slot 7 down
+2025-08-27 06:26:29,910 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 06:26:29,911 - DEBUG - Getting candidates for slot 10 down
+2025-08-27 06:26:30,112 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 06:26:30,112 - DEBUG - Getting candidates for slot 11 down
+2025-08-27 06:26:30,316 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 06:26:30,317 - DEBUG - Getting candidates for slot 14 down
+2025-08-27 06:26:30,542 - DEBUG - Found 1 candidates for slot 14
+2025-08-27 06:26:30,542 - DEBUG - Getting candidates for slot 16 down
+2025-08-27 06:26:30,741 - DEBUG - Found 1 candidates for slot 16
+2025-08-27 06:26:30,742 - DEBUG - Getting candidates for slot 17 down
+2025-08-27 06:26:30,993 - DEBUG - Found 1 candidates for slot 17
+2025-08-27 06:26:30,993 - DEBUG - Getting candidates for slot 18 down
+2025-08-27 06:26:31,197 - DEBUG - Found 1 candidates for slot 18
+2025-08-27 06:26:31,197 - DEBUG - Getting candidates for slot 21 down
+2025-08-27 06:26:31,411 - DEBUG - Found 1 candidates for slot 21
+2025-08-27 06:26:31,412 - INFO - Slot processing order:
+2025-08-27 06:26:31,413 - INFO -   1. Slot 7 down: 1 candidates
+2025-08-27 06:26:31,413 - INFO -   2. Slot 6 down: 1 candidates
+2025-08-27 06:26:31,414 - INFO -   3. Slot 6 across: 1 candidates
+2025-08-27 06:26:31,414 - INFO -   4. Slot 8 across: 1 candidates
+2025-08-27 06:26:31,415 - INFO -   5. Slot 9 across: 1 candidates
+2025-08-27 06:26:31,415 - INFO -   6. Slot 19 across: 1 candidates
+2025-08-27 06:26:31,416 - INFO -   7. Slot 10 down: 1 candidates
+2025-08-27 06:26:31,416 - INFO -   8. Slot 11 down: 1 candidates
+2025-08-27 06:26:31,416 - INFO -   9. Slot 14 down: 1 candidates
+2025-08-27 06:26:31,416 - INFO -   10. Slot 4 across: 1 candidates
+2025-08-27 06:26:31,417 - INFO -   11. Slot 7 across: 1 candidates
+2025-08-27 06:26:31,417 - INFO -   12. Slot 11 across: 1 candidates
+2025-08-27 06:26:31,417 - INFO -   13. Slot 14 across: 1 candidates
+2025-08-27 06:26:31,418 - INFO -   14. Slot 15 across: 1 candidates
+2025-08-27 06:26:31,419 - INFO -   15. Slot 17 across: 1 candidates
+2025-08-27 06:26:31,419 - INFO -   16. Slot 18 across: 1 candidates
+2025-08-27 06:26:31,419 - INFO -   17. Slot 20 across: 1 candidates
+2025-08-27 06:26:31,420 - INFO -   18. Slot 21 across: 1 candidates
+2025-08-27 06:26:31,420 - INFO -   19. Slot 4 down: 1 candidates
+2025-08-27 06:26:31,420 - INFO -   20. Slot 5 down: 1 candidates
+2025-08-27 06:26:31,421 - INFO -   21. Slot 16 down: 1 candidates
+2025-08-27 06:26:31,423 - INFO -   22. Slot 17 down: 1 candidates
+2025-08-27 06:26:31,424 - INFO -   23. Slot 18 down: 1 candidates
+2025-08-27 06:26:31,424 - INFO -   24. Slot 21 down: 1 candidates
+2025-08-27 06:26:31,425 - INFO -   25. Slot 12 across: 1 candidates
+2025-08-27 06:26:31,425 - INFO -   26. Slot 13 across: 1 candidates
+2025-08-27 06:26:31,426 - INFO -   27. Slot 22 across: 1 candidates
+2025-08-27 06:26:31,426 - INFO -   28. Slot 1 down: 1 candidates
+2025-08-27 06:26:31,427 - INFO -   29. Slot 2 down: 1 candidates
+2025-08-27 06:26:31,427 - INFO -   30. Slot 3 down: 1 candidates
+2025-08-27 06:26:31,427 - DEBUG - Processing slot 7 down (index 0)
+2025-08-27 06:26:31,428 - DEBUG - Trying word 'ABYSMALLY' in slot 7
+2025-08-27 06:26:31,428 - DEBUG - Placed word 'ABYSMALLY', affected 9 positions
+2025-08-27 06:26:32,462 - DEBUG - Processing slot 6 down (index 1)
+2025-08-27 06:26:32,463 - DEBUG - Trying word 'AHEAD' in slot 6
+2025-08-27 06:26:32,463 - DEBUG - Placed word 'AHEAD', affected 5 positions
+2025-08-27 06:26:33,266 - DEBUG - Processing slot 6 across (index 2)
+2025-08-27 06:26:33,267 - DEBUG - Trying word 'ABRUPTLY' in slot 6
+2025-08-27 06:26:33,268 - DEBUG - Placed word 'ABRUPTLY', affected 7 positions
+2025-08-27 06:26:33,686 - DEBUG - Processing slot 8 across (index 3)
+2025-08-27 06:26:33,687 - DEBUG - Trying word 'ABOVE' in slot 8
+2025-08-27 06:26:33,687 - DEBUG - Placed word 'ABOVE', affected 4 positions
+2025-08-27 06:26:34,086 - DEBUG - Processing slot 9 across (index 4)
+2025-08-27 06:26:34,087 - DEBUG - Trying word 'AWKWARDLY' in slot 9
+2025-08-27 06:26:34,087 - DEBUG - Placed word 'AWKWARDLY', affected 7 positions
+2025-08-27 06:26:34,295 - DEBUG - Processing slot 19 across (index 5)
+2025-08-27 06:26:34,295 - DEBUG - Trying word 'ASTRAY' in slot 19
+2025-08-27 06:26:34,296 - DEBUG - Placed word 'ASTRAY', affected 6 positions
+2025-08-27 06:26:34,910 - DEBUG - Processing slot 10 down (index 6)
+2025-08-27 06:26:34,911 - DEBUG - Trying word 'AFFECTEDLY' in slot 10
+2025-08-27 06:26:34,911 - DEBUG - Placed word 'AFFECTEDLY', affected 9 positions
+2025-08-27 06:26:35,333 - DEBUG - Processing slot 11 down (index 7)
+2025-08-27 06:26:35,334 - DEBUG - Trying word 'ACCEPTABLY' in slot 11
+2025-08-27 06:26:35,334 - DEBUG - Placed word 'ACCEPTABLY', affected 9 positions
+2025-08-27 06:26:35,769 - DEBUG - Processing slot 14 down (index 8)
+2025-08-27 06:26:35,770 - DEBUG - Trying word 'ANYWAYS' in slot 14
+2025-08-27 06:26:35,770 - DEBUG - Placed word 'ANYWAYS', affected 6 positions
+2025-08-27 06:26:36,194 - DEBUG - Processing slot 4 across (index 9)
+2025-08-27 06:26:36,195 - DEBUG - Trying word 'ABA' in slot 4
+2025-08-27 06:26:36,196 - DEBUG - Placed word 'ABA', affected 3 positions
+2025-08-27 06:26:36,625 - DEBUG - Processing slot 7 across (index 10)
+2025-08-27 06:26:36,625 - DEBUG - Trying word 'ADO' in slot 7
+2025-08-27 06:26:36,626 - DEBUG - Placed word 'ADO', affected 2 positions
+2025-08-27 06:26:36,837 - DEBUG - Processing slot 11 across (index 11)
+2025-08-27 06:26:36,837 - DEBUG - Trying word 'ABED' in slot 11
+2025-08-27 06:26:36,838 - DEBUG - Placed word 'ABED', affected 2 positions
+2025-08-27 06:26:36,839 - DEBUG - Processing slot 14 across (index 12)
+2025-08-27 06:26:36,839 - DEBUG - Trying word 'ACNED' in slot 14
+2025-08-27 06:26:36,840 - DEBUG - Placed word 'ACNED', affected 3 positions
+2025-08-27 06:26:36,840 - DEBUG - Processing slot 15 across (index 13)
+2025-08-27 06:26:36,841 - DEBUG - Trying word 'ALA' in slot 15
+2025-08-27 06:26:36,841 - DEBUG - Placed word 'ALA', affected 2 positions
+2025-08-27 06:26:37,051 - DEBUG - Processing slot 17 across (index 14)
+2025-08-27 06:26:37,052 - DEBUG - Trying word 'ALL' in slot 17
+2025-08-27 06:26:37,052 - DEBUG - Placed word 'ALL', affected 2 positions
+2025-08-27 06:26:37,269 - DEBUG - Processing slot 18 across (index 15)
+2025-08-27 06:26:37,269 - DEBUG - Trying word 'ANY' in slot 18
+2025-08-27 06:26:37,270 - DEBUG - Placed word 'ANY', affected 2 positions
+2025-08-27 06:26:37,492 - DEBUG - Processing slot 20 across (index 16)
+2025-08-27 06:26:37,492 - DEBUG - Trying word 'ALAS' in slot 20
+2025-08-27 06:26:37,493 - DEBUG - Placed word 'ALAS', affected 3 positions
+2025-08-27 06:26:37,712 - DEBUG - Processing slot 21 across (index 17)
+2025-08-27 06:26:37,712 - DEBUG - Trying word 'ANE' in slot 21
+2025-08-27 06:26:37,713 - DEBUG - Placed word 'ANE', affected 3 positions
+2025-08-27 06:26:38,169 - DEBUG - Processing slot 4 down (index 18)
+2025-08-27 06:26:38,170 - DEBUG - Trying word 'AFAR' in slot 4
+2025-08-27 06:26:38,170 - DEBUG - Placed word 'AFAR', affected 2 positions
+2025-08-27 06:26:38,171 - DEBUG - Processing slot 5 down (index 19)
+2025-08-27 06:26:38,172 - DEBUG - Trying word 'AGO' in slot 5
+2025-08-27 06:26:38,172 - DEBUG - Placed word 'AGO', affected 1 positions
+2025-08-27 06:26:38,173 - DEBUG - Processing slot 16 down (index 20)
+2025-08-27 06:26:38,174 - DEBUG - Trying word 'AHORSE' in slot 16
+2025-08-27 06:26:38,174 - DEBUG - Placed word 'AHORSE', affected 4 positions
+2025-08-27 06:26:38,175 - DEBUG - Processing slot 17 down (index 21)
+2025-08-27 06:26:38,175 - DEBUG - Trying word 'AMISS' in slot 17
+2025-08-27 06:26:38,176 - DEBUG - Placed word 'AMISS', affected 3 positions
+2025-08-27 06:26:38,176 - DEBUG - Processing slot 18 down (index 22)
+2025-08-27 06:26:38,177 - DEBUG - Trying word 'ASTERN' in slot 18
+2025-08-27 06:26:38,177 - DEBUG - Placed word 'ASTERN', affected 4 positions
+2025-08-27 06:26:38,178 - DEBUG - Processing slot 21 down (index 23)
+2025-08-27 06:26:38,179 - DEBUG - Trying word 'APE' in slot 21
+2025-08-27 06:26:38,179 - DEBUG - Placed word 'APE', affected 2 positions
+2025-08-27 06:26:38,424 - DEBUG - Processing slot 12 across (index 24)
+2025-08-27 06:26:38,425 - DEBUG - Trying word 'AIM' in slot 12
+2025-08-27 06:26:38,425 - DEBUG - Placed word 'AIM', affected 2 positions
+2025-08-27 06:26:38,426 - DEBUG - Processing slot 13 across (index 25)
+2025-08-27 06:26:38,426 - DEBUG - Trying word 'ACT' in slot 13
+2025-08-27 06:26:38,427 - DEBUG - Placed word 'ACT', affected 2 positions
+2025-08-27 06:26:38,427 - DEBUG - Processing slot 22 across (index 26)
+2025-08-27 06:26:38,428 - DEBUG - Trying word 'AFRESH' in slot 22
+2025-08-27 06:26:38,428 - DEBUG - Placed word 'AFRESH', affected 5 positions
+2025-08-27 06:26:38,429 - DEBUG - Processing slot 1 down (index 27)
+2025-08-27 06:26:38,429 - DEBUG - Trying word 'ART' in slot 1
+2025-08-27 06:26:38,429 - DEBUG - Placed word 'ART', affected 2 positions
+2025-08-27 06:26:38,430 - DEBUG - Processing slot 2 down (index 28)
+2025-08-27 06:26:38,430 - DEBUG - Trying word 'APT' in slot 2
+2025-08-27 06:26:38,431 - DEBUG - Placed word 'APT', affected 2 positions
+2025-08-27 06:26:38,431 - DEBUG - Processing slot 3 down (index 29)
+2025-08-27 06:26:38,431 - DEBUG - Trying word 'ALOUD' in slot 3
+2025-08-27 06:26:38,432 - DEBUG - Placed word 'ALOUD', affected 4 positions
+2025-08-27 06:26:38,432 - INFO - Solution found!
+2025-08-27 06:26:38,433 - DEBUG - Final grid state:
+2025-08-27 06:26:38,433 - DEBUG - . . . . . . A . A . . . . . A
+2025-08-27 06:26:38,433 - DEBUG - A B A . A B R U P T L Y . . L
+2025-08-27 06:26:38,433 - DEBUG - F . G . H . T . T . . . A D O
+2025-08-27 06:26:38,434 - DEBUG - A B O V E . . . . . . . B . U
+2025-08-27 06:26:38,434 - DEBUG - R . . . A W K W A R D L Y . D
+2025-08-27 06:26:38,434 - DEBUG - . A B E D . . . F . . . S . .
+2025-08-27 06:26:38,435 - DEBUG - . C . . . . . . F . A I M . .
+2025-08-27 06:26:38,435 - DEBUG - A C T . . A C N E D . . A L A
+2025-08-27 06:26:38,435 - DEBUG - . E . . . N . . C . A L L . H
+2025-08-27 06:26:38,436 - DEBUG - . P . A N Y . . T . M . L . O
+2025-08-27 06:26:38,436 - DEBUG - . T . S . W . . E . I . Y . R
+2025-08-27 06:26:38,436 - DEBUG - . A S T R A Y . D . S . . . S
+2025-08-27 06:26:38,436 - DEBUG - . B . E . Y . A L A S . A N E
+2025-08-27 06:26:38,437 - DEBUG - . L . R . S . . Y . . . P . .
+2025-08-27 06:26:38,437 - DEBUG - . Y . N . . . . . A F R E S H
+2025-08-27 06:26:38,441 - INFO - 127.0.0.1 - - [27/Aug/2025 06:26:38] "POST /solve HTTP/1.1" 200 -
+2025-08-27 06:28:04,101 - INFO - 127.0.0.1 - - [27/Aug/2025 06:28:04] "OPTIONS /generate HTTP/1.1" 200 -
+2025-08-27 06:28:04,352 - INFO - Attempt 1/15 [diff=medium]
+2025-08-27 06:28:04,385 - INFO - Attempt 2/15 [diff=medium]
+2025-08-27 06:28:04,419 - INFO - Attempt 3/15 [diff=medium]
+2025-08-27 06:28:04,448 - INFO - Attempt 4/15 [diff=medium]
+2025-08-27 06:28:04,481 - INFO - Attempt 5/15 [diff=medium]
+2025-08-27 06:28:04,512 - INFO - Attempt 6/15 [diff=medium]
+2025-08-27 06:28:04,562 - INFO - Attempt 7/15 [diff=medium]
+2025-08-27 06:28:04,593 - INFO - Attempt 8/15 [diff=medium]
+2025-08-27 06:28:04,626 - INFO - Attempt 9/15 [diff=medium]
+2025-08-27 06:28:04,655 - INFO - Attempt 10/15 [diff=medium]
+2025-08-27 06:28:04,706 - INFO - Attempt 11/15 [diff=medium]
+2025-08-27 06:28:04,739 - INFO - Attempt 12/15 [diff=medium]
+2025-08-27 06:28:04,783 - INFO - Attempt 13/15 [diff=medium]
+2025-08-27 06:28:04,813 - INFO - Attempt 14/15 [diff=medium]
+2025-08-27 06:28:04,856 - INFO - Attempt 15/15 [diff=medium]
+2025-08-27 06:28:04,886 - WARNING - Used fallback puzzle with density=52.44% (target: 60.00%-69.00%)
+2025-08-27 06:28:04,887 - INFO - 127.0.0.1 - - [27/Aug/2025 06:28:04] "POST /generate HTTP/1.1" 200 -
+2025-08-27 06:28:09,557 - INFO - 127.0.0.1 - - [27/Aug/2025 06:28:09] "OPTIONS /solve HTTP/1.1" 200 -
+2025-08-27 06:28:09,861 - INFO - DFSSolver initialized with 30 slots
+2025-08-27 06:28:09,861 - DEBUG - Initial grid state:
+2025-08-27 06:28:09,861 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:09,861 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:09,862 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:09,862 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:09,862 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:09,862 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:09,863 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:09,863 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:09,863 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:09,863 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:09,863 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:09,863 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:09,864 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:09,864 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:09,864 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:09,864 - INFO - Starting DFS solve
+2025-08-27 06:28:09,864 - DEBUG - Getting candidates for slot 1 across
+2025-08-27 06:28:10,066 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 06:28:10,066 - DEBUG - Getting candidates for slot 5 across
+2025-08-27 06:28:10,272 - DEBUG - Found 1 candidates for slot 5
+2025-08-27 06:28:10,272 - DEBUG - Getting candidates for slot 6 across
+2025-08-27 06:28:10,474 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 06:28:10,475 - DEBUG - Getting candidates for slot 8 across
+2025-08-27 06:28:10,690 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 06:28:10,691 - DEBUG - Getting candidates for slot 10 across
+2025-08-27 06:28:10,895 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 06:28:10,896 - DEBUG - Getting candidates for slot 11 across
+2025-08-27 06:28:11,109 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 06:28:11,109 - DEBUG - Getting candidates for slot 13 across
+2025-08-27 06:28:11,316 - DEBUG - Found 1 candidates for slot 13
+2025-08-27 06:28:11,316 - DEBUG - Getting candidates for slot 14 across
+2025-08-27 06:28:11,781 - DEBUG - Found 1 candidates for slot 14
+2025-08-27 06:28:11,782 - DEBUG - Getting candidates for slot 16 across
+2025-08-27 06:28:11,997 - DEBUG - Found 1 candidates for slot 16
+2025-08-27 06:28:11,998 - DEBUG - Getting candidates for slot 17 across
+2025-08-27 06:28:12,208 - DEBUG - Found 1 candidates for slot 17
+2025-08-27 06:28:12,208 - DEBUG - Getting candidates for slot 18 across
+2025-08-27 06:28:12,428 - DEBUG - Found 1 candidates for slot 18
+2025-08-27 06:28:12,429 - DEBUG - Getting candidates for slot 19 across
+2025-08-27 06:28:12,639 - DEBUG - Found 1 candidates for slot 19
+2025-08-27 06:28:12,640 - DEBUG - Getting candidates for slot 20 across
+2025-08-27 06:28:12,847 - DEBUG - Found 1 candidates for slot 20
+2025-08-27 06:28:12,847 - DEBUG - Getting candidates for slot 22 across
+2025-08-27 06:28:13,046 - DEBUG - Found 1 candidates for slot 22
+2025-08-27 06:28:13,046 - DEBUG - Getting candidates for slot 24 across
+2025-08-27 06:28:13,249 - DEBUG - Found 1 candidates for slot 24
+2025-08-27 06:28:13,249 - DEBUG - Getting candidates for slot 25 across
+2025-08-27 06:28:13,454 - DEBUG - Found 1 candidates for slot 25
+2025-08-27 06:28:13,454 - DEBUG - Getting candidates for slot 1 down
+2025-08-27 06:28:13,656 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 06:28:13,657 - DEBUG - Getting candidates for slot 2 down
+2025-08-27 06:28:13,862 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 06:28:13,863 - DEBUG - Getting candidates for slot 3 down
+2025-08-27 06:28:14,064 - DEBUG - Found 1 candidates for slot 3
+2025-08-27 06:28:14,064 - DEBUG - Getting candidates for slot 4 down
+2025-08-27 06:28:14,280 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 06:28:14,280 - DEBUG - Getting candidates for slot 5 down
+2025-08-27 06:28:14,482 - DEBUG - Found 1 candidates for slot 5
+2025-08-27 06:28:14,483 - DEBUG - Getting candidates for slot 6 down
+2025-08-27 06:28:14,683 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 06:28:14,683 - DEBUG - Getting candidates for slot 7 down
+2025-08-27 06:28:14,890 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 06:28:14,890 - DEBUG - Getting candidates for slot 9 down
+2025-08-27 06:28:15,094 - DEBUG - Found 1 candidates for slot 9
+2025-08-27 06:28:15,095 - DEBUG - Getting candidates for slot 12 down
+2025-08-27 06:28:15,298 - DEBUG - Found 1 candidates for slot 12
+2025-08-27 06:28:15,298 - DEBUG - Getting candidates for slot 15 down
+2025-08-27 06:28:15,499 - DEBUG - Found 1 candidates for slot 15
+2025-08-27 06:28:15,500 - DEBUG - Getting candidates for slot 19 down
+2025-08-27 06:28:15,702 - DEBUG - Found 1 candidates for slot 19
+2025-08-27 06:28:15,703 - DEBUG - Getting candidates for slot 20 down
+2025-08-27 06:28:15,903 - DEBUG - Found 1 candidates for slot 20
+2025-08-27 06:28:15,904 - DEBUG - Getting candidates for slot 21 down
+2025-08-27 06:28:16,111 - DEBUG - Found 1 candidates for slot 21
+2025-08-27 06:28:16,112 - DEBUG - Getting candidates for slot 23 down
+2025-08-27 06:28:16,323 - DEBUG - Found 1 candidates for slot 23
+2025-08-27 06:28:16,323 - INFO - Slot processing order:
+2025-08-27 06:28:16,324 - INFO -   1. Slot 20 across: 1 candidates
+2025-08-27 06:28:16,324 - INFO -   2. Slot 6 across: 1 candidates
+2025-08-27 06:28:16,324 - INFO -   3. Slot 1 down: 1 candidates
+2025-08-27 06:28:16,325 - INFO -   4. Slot 24 across: 1 candidates
+2025-08-27 06:28:16,325 - INFO -   5. Slot 25 across: 1 candidates
+2025-08-27 06:28:16,326 - INFO -   6. Slot 6 down: 1 candidates
+2025-08-27 06:28:16,326 - INFO -   7. Slot 9 down: 1 candidates
+2025-08-27 06:28:16,327 - INFO -   8. Slot 12 down: 1 candidates
+2025-08-27 06:28:16,327 - INFO -   9. Slot 15 down: 1 candidates
+2025-08-27 06:28:16,327 - INFO -   10. Slot 19 down: 1 candidates
+2025-08-27 06:28:16,327 - INFO -   11. Slot 20 down: 1 candidates
+2025-08-27 06:28:16,328 - INFO -   12. Slot 1 across: 1 candidates
+2025-08-27 06:28:16,328 - INFO -   13. Slot 5 across: 1 candidates
+2025-08-27 06:28:16,328 - INFO -   14. Slot 8 across: 1 candidates
+2025-08-27 06:28:16,329 - INFO -   15. Slot 10 across: 1 candidates
+2025-08-27 06:28:16,329 - INFO -   16. Slot 14 across: 1 candidates
+2025-08-27 06:28:16,329 - INFO -   17. Slot 2 down: 1 candidates
+2025-08-27 06:28:16,330 - INFO -   18. Slot 5 down: 1 candidates
+2025-08-27 06:28:16,330 - INFO -   19. Slot 21 down: 1 candidates
+2025-08-27 06:28:16,330 - INFO -   20. Slot 11 across: 1 candidates
+2025-08-27 06:28:16,330 - INFO -   21. Slot 13 across: 1 candidates
+2025-08-27 06:28:16,331 - INFO -   22. Slot 16 across: 1 candidates
+2025-08-27 06:28:16,331 - INFO -   23. Slot 17 across: 1 candidates
+2025-08-27 06:28:16,331 - INFO -   24. Slot 18 across: 1 candidates
+2025-08-27 06:28:16,331 - INFO -   25. Slot 19 across: 1 candidates
+2025-08-27 06:28:16,331 - INFO -   26. Slot 22 across: 1 candidates
+2025-08-27 06:28:16,332 - INFO -   27. Slot 3 down: 1 candidates
+2025-08-27 06:28:16,332 - INFO -   28. Slot 4 down: 1 candidates
+2025-08-27 06:28:16,332 - INFO -   29. Slot 7 down: 1 candidates
+2025-08-27 06:28:16,333 - INFO -   30. Slot 23 down: 1 candidates
+2025-08-27 06:28:16,334 - DEBUG - Processing slot 20 across (index 0)
+2025-08-27 06:28:16,335 - DEBUG - Trying word 'ADAMANTLY' in slot 20
+2025-08-27 06:28:16,336 - DEBUG - Placed word 'ADAMANTLY', affected 9 positions
+2025-08-27 06:28:17,329 - DEBUG - Processing slot 6 across (index 1)
+2025-08-27 06:28:17,330 - DEBUG - Trying word 'ADAXIAL' in slot 6
+2025-08-27 06:28:17,330 - DEBUG - Placed word 'ADAXIAL', affected 7 positions
+2025-08-27 06:28:18,177 - DEBUG - Processing slot 1 down (index 2)
+2025-08-27 06:28:18,177 - DEBUG - Trying word 'ADVERSELY' in slot 1
+2025-08-27 06:28:18,177 - DEBUG - Placed word 'ADVERSELY', affected 9 positions
+2025-08-27 06:28:18,981 - DEBUG - Processing slot 24 across (index 3)
+2025-08-27 06:28:18,981 - DEBUG - Trying word 'ARCHLY' in slot 24
+2025-08-27 06:28:18,982 - DEBUG - Placed word 'ARCHLY', affected 6 positions
+2025-08-27 06:28:19,594 - DEBUG - Processing slot 25 across (index 4)
+2025-08-27 06:28:19,595 - DEBUG - Trying word 'ALERTLY' in slot 25
+2025-08-27 06:28:19,595 - DEBUG - Placed word 'ALERTLY', affected 7 positions
+2025-08-27 06:28:20,212 - DEBUG - Processing slot 6 down (index 5)
+2025-08-27 06:28:20,213 - DEBUG - Trying word 'ALMOST' in slot 6
+2025-08-27 06:28:20,213 - DEBUG - Placed word 'ALMOST', affected 5 positions
+2025-08-27 06:28:20,887 - DEBUG - Processing slot 9 down (index 6)
+2025-08-27 06:28:20,887 - DEBUG - Trying word 'ASTRADDLE' in slot 9
+2025-08-27 06:28:20,888 - DEBUG - Placed word 'ASTRADDLE', affected 8 positions
+2025-08-27 06:28:21,328 - DEBUG - Processing slot 12 down (index 7)
+2025-08-27 06:28:21,329 - DEBUG - Trying word 'AGREEABLY' in slot 12
+2025-08-27 06:28:21,329 - DEBUG - Placed word 'AGREEABLY', affected 7 positions
+2025-08-27 06:28:21,562 - DEBUG - Processing slot 15 down (index 8)
+2025-08-27 06:28:21,562 - DEBUG - Trying word 'AHEAD' in slot 15
+2025-08-27 06:28:21,562 - DEBUG - Placed word 'AHEAD', affected 4 positions
+2025-08-27 06:28:22,240 - DEBUG - Processing slot 19 down (index 9)
+2025-08-27 06:28:22,240 - DEBUG - Trying word 'ALONE' in slot 19
+2025-08-27 06:28:22,241 - DEBUG - Placed word 'ALONE', affected 4 positions
+2025-08-27 06:28:22,667 - DEBUG - Processing slot 20 down (index 10)
+2025-08-27 06:28:22,668 - DEBUG - Trying word 'AWAY' in slot 20
+2025-08-27 06:28:22,668 - DEBUG - Placed word 'AWAY', affected 1 positions
+2025-08-27 06:28:22,669 - DEBUG - Processing slot 1 across (index 11)
+2025-08-27 06:28:22,669 - DEBUG - Trying word 'ASKANCE' in slot 1
+2025-08-27 06:28:22,670 - DEBUG - Placed word 'ASKANCE', affected 6 positions
+2025-08-27 06:28:22,880 - DEBUG - Processing slot 5 across (index 12)
+2025-08-27 06:28:22,881 - DEBUG - Trying word 'ABOVE' in slot 5
+2025-08-27 06:28:22,881 - DEBUG - Placed word 'ABOVE', affected 4 positions
+2025-08-27 06:28:23,100 - DEBUG - Processing slot 8 across (index 13)
+2025-08-27 06:28:23,101 - DEBUG - Trying word 'AIM' in slot 8
+2025-08-27 06:28:23,102 - DEBUG - Placed word 'AIM', affected 2 positions
+2025-08-27 06:28:23,315 - DEBUG - Processing slot 10 across (index 14)
+2025-08-27 06:28:23,315 - DEBUG - Trying word 'AMISS' in slot 10
+2025-08-27 06:28:23,316 - DEBUG - Placed word 'AMISS', affected 4 positions
+2025-08-27 06:28:23,531 - DEBUG - Processing slot 14 across (index 15)
+2025-08-27 06:28:23,531 - DEBUG - Trying word 'BAT' in slot 14
+2025-08-27 06:28:23,532 - DEBUG - Placed word 'BAT', affected 1 positions
+2025-08-27 06:28:23,532 - DEBUG - Processing slot 2 down (index 16)
+2025-08-27 06:28:23,533 - DEBUG - Trying word 'ABORAD' in slot 2
+2025-08-27 06:28:23,534 - DEBUG - Placed word 'ABORAD', affected 4 positions
+2025-08-27 06:28:23,534 - DEBUG - Processing slot 5 down (index 17)
+2025-08-27 06:28:23,534 - DEBUG - Trying word 'ANDANTE' in slot 5
+2025-08-27 06:28:23,535 - DEBUG - Placed word 'ANDANTE', affected 5 positions
+2025-08-27 06:28:23,535 - DEBUG - Processing slot 21 down (index 18)
+2025-08-27 06:28:23,536 - DEBUG - Trying word 'ARCO' in slot 21
+2025-08-27 06:28:23,536 - DEBUG - Placed word 'ARCO', affected 2 positions
+2025-08-27 06:28:23,537 - DEBUG - Processing slot 11 across (index 19)
+2025-08-27 06:28:23,537 - DEBUG - Trying word 'ASS' in slot 11
+2025-08-27 06:28:23,537 - DEBUG - Placed word 'ASS', affected 2 positions
+2025-08-27 06:28:23,538 - DEBUG - Processing slot 13 across (index 20)
+2025-08-27 06:28:23,538 - DEBUG - Trying word 'ALL' in slot 13
+2025-08-27 06:28:23,539 - DEBUG - Placed word 'ALL', affected 2 positions
+2025-08-27 06:28:23,539 - DEBUG - Processing slot 16 across (index 21)
+2025-08-27 06:28:23,539 - DEBUG - Trying word 'ART' in slot 16
+2025-08-27 06:28:23,540 - DEBUG - Placed word 'ART', affected 2 positions
+2025-08-27 06:28:23,540 - DEBUG - Processing slot 17 across (index 22)
+2025-08-27 06:28:23,540 - DEBUG - Trying word 'ACE' in slot 17
+2025-08-27 06:28:23,541 - DEBUG - Placed word 'ACE', affected 2 positions
+2025-08-27 06:28:23,541 - DEBUG - Processing slot 18 across (index 23)
+2025-08-27 06:28:23,541 - DEBUG - Trying word 'ADO' in slot 18
+2025-08-27 06:28:23,541 - DEBUG - Placed word 'ADO', affected 2 positions
+2025-08-27 06:28:23,542 - DEBUG - Processing slot 19 across (index 24)
+2025-08-27 06:28:23,542 - DEBUG - Trying word 'AIR' in slot 19
+2025-08-27 06:28:23,542 - DEBUG - Placed word 'AIR', affected 2 positions
+2025-08-27 06:28:23,543 - DEBUG - Processing slot 22 across (index 25)
+2025-08-27 06:28:23,543 - DEBUG - Trying word 'AGO' in slot 22
+2025-08-27 06:28:23,543 - DEBUG - Placed word 'AGO', affected 2 positions
+2025-08-27 06:28:23,544 - DEBUG - Processing slot 3 down (index 26)
+2025-08-27 06:28:23,544 - DEBUG - Trying word 'ACID' in slot 3
+2025-08-27 06:28:23,544 - DEBUG - Placed word 'ACID', affected 3 positions
+2025-08-27 06:28:23,545 - DEBUG - Processing slot 4 down (index 27)
+2025-08-27 06:28:23,545 - DEBUG - Trying word 'ALA' in slot 4
+2025-08-27 06:28:23,545 - DEBUG - Placed word 'ALA', affected 2 positions
+2025-08-27 06:28:23,546 - DEBUG - Processing slot 7 down (index 28)
+2025-08-27 06:28:23,546 - DEBUG - Trying word 'ANE' in slot 7
+2025-08-27 06:28:23,546 - DEBUG - Placed word 'ANE', affected 2 positions
+2025-08-27 06:28:23,546 - DEBUG - Processing slot 23 down (index 29)
+2025-08-27 06:28:23,547 - DEBUG - Trying word 'ANT' in slot 23
+2025-08-27 06:28:23,547 - DEBUG - Placed word 'ANT', affected 2 positions
+2025-08-27 06:28:23,547 - INFO - Solution found!
+2025-08-27 06:28:23,548 - DEBUG - Final grid state:
+2025-08-27 06:28:23,548 - DEBUG - . . . A S K A N C E . . A . .
+2025-08-27 06:28:23,548 - DEBUG - . . . D . . B . . . . . C . A
+2025-08-27 06:28:23,548 - DEBUG - A B O V E . O . A D A X I A L
+2025-08-27 06:28:23,548 - DEBUG - N . . E . . R . L . N . D . A
+2025-08-27 06:28:23,549 - DEBUG - D . . R . . A I M . E . . A .
+2025-08-27 06:28:23,549 - DEBUG - A M I S S . D . O . . A S S .
+2025-08-27 06:28:23,550 - DEBUG - N . . E . . . . S . A . . T .
+2025-08-27 06:28:23,551 - DEBUG - T . A L L . B A T . G . . R .
+2025-08-27 06:28:23,551 - DEBUG - E . . Y . . . H . A R T . A .
+2025-08-27 06:28:23,552 - DEBUG - . . . . . A C E . . E . A D O
+2025-08-27 06:28:23,552 - DEBUG - . . A I R . . A . . E . . D .
+2025-08-27 06:28:23,553 - DEBUG - . . L . . . A D A M A N T L Y
+2025-08-27 06:28:23,553 - DEBUG - A G O . A . W . R . B . . E .
+2025-08-27 06:28:23,553 - DEBUG - . . N . N . A R C H L Y . . .
+2025-08-27 06:28:23,554 - DEBUG - A L E R T L Y . O . Y . . . .
+2025-08-27 06:28:23,556 - INFO - 127.0.0.1 - - [27/Aug/2025 06:28:23] "POST /solve HTTP/1.1" 200 -
+2025-08-27 06:28:33,494 - INFO - 127.0.0.1 - - [27/Aug/2025 06:28:33] "OPTIONS /generate HTTP/1.1" 200 -
+2025-08-27 06:28:33,746 - INFO - Attempt 1/15 [diff=medium]
+2025-08-27 06:28:33,793 - INFO - Attempt 2/15 [diff=medium]
+2025-08-27 06:28:33,841 - INFO - Attempt 3/15 [diff=medium]
+2025-08-27 06:28:33,871 - INFO - Attempt 4/15 [diff=medium]
+2025-08-27 06:28:33,902 - INFO - Attempt 5/15 [diff=medium]
+2025-08-27 06:28:33,943 - INFO - Attempt 6/15 [diff=medium]
+2025-08-27 06:28:33,985 - INFO - Attempt 7/15 [diff=medium]
+2025-08-27 06:28:34,016 - INFO - Attempt 8/15 [diff=medium]
+2025-08-27 06:28:34,046 - INFO - Attempt 9/15 [diff=medium]
+2025-08-27 06:28:34,072 - INFO - Attempt 10/15 [diff=medium]
+2025-08-27 06:28:34,105 - INFO - Attempt 11/15 [diff=medium]
+2025-08-27 06:28:34,137 - INFO - Attempt 12/15 [diff=medium]
+2025-08-27 06:28:34,189 - INFO - Attempt 13/15 [diff=medium]
+2025-08-27 06:28:34,220 - INFO - Attempt 14/15 [diff=medium]
+2025-08-27 06:28:34,254 - INFO - Attempt 15/15 [diff=medium]
+2025-08-27 06:28:34,287 - WARNING - Used fallback puzzle with density=49.78% (target: 60.00%-69.00%)
+2025-08-27 06:28:34,288 - INFO - 127.0.0.1 - - [27/Aug/2025 06:28:34] "POST /generate HTTP/1.1" 200 -
+2025-08-27 06:28:37,641 - INFO - 127.0.0.1 - - [27/Aug/2025 06:28:37] "OPTIONS /solve HTTP/1.1" 200 -
+2025-08-27 06:28:37,946 - INFO - DFSSolver initialized with 27 slots
+2025-08-27 06:28:37,946 - DEBUG - Initial grid state:
+2025-08-27 06:28:37,946 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:37,947 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:37,947 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:37,948 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:37,948 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:37,948 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:37,949 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:37,949 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:37,949 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:37,950 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:37,951 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:37,951 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:37,952 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:37,952 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:37,952 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:28:37,953 - INFO - Starting DFS solve
+2025-08-27 06:28:37,953 - DEBUG - Getting candidates for slot 2 across
+2025-08-27 06:28:38,155 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 06:28:38,156 - DEBUG - Getting candidates for slot 5 across
+2025-08-27 06:28:38,356 - DEBUG - Found 1 candidates for slot 5
+2025-08-27 06:28:38,356 - DEBUG - Getting candidates for slot 6 across
+2025-08-27 06:28:38,563 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 06:28:38,563 - DEBUG - Getting candidates for slot 8 across
+2025-08-27 06:28:38,764 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 06:28:38,765 - DEBUG - Getting candidates for slot 11 across
+2025-08-27 06:28:38,970 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 06:28:38,970 - DEBUG - Getting candidates for slot 14 across
+2025-08-27 06:28:39,171 - DEBUG - Found 1 candidates for slot 14
+2025-08-27 06:28:39,171 - DEBUG - Getting candidates for slot 15 across
+2025-08-27 06:28:39,395 - DEBUG - Found 1 candidates for slot 15
+2025-08-27 06:28:39,395 - DEBUG - Getting candidates for slot 16 across
+2025-08-27 06:28:39,605 - DEBUG - Found 1 candidates for slot 16
+2025-08-27 06:28:39,605 - DEBUG - Getting candidates for slot 18 across
+2025-08-27 06:28:39,805 - DEBUG - Found 1 candidates for slot 18
+2025-08-27 06:28:39,806 - DEBUG - Getting candidates for slot 19 across
+2025-08-27 06:28:40,010 - DEBUG - Found 1 candidates for slot 19
+2025-08-27 06:28:40,011 - DEBUG - Getting candidates for slot 20 across
+2025-08-27 06:28:40,211 - DEBUG - Found 1 candidates for slot 20
+2025-08-27 06:28:40,212 - DEBUG - Getting candidates for slot 21 across
+2025-08-27 06:28:40,418 - DEBUG - Found 1 candidates for slot 21
+2025-08-27 06:28:40,419 - DEBUG - Getting candidates for slot 1 down
+2025-08-27 06:28:40,635 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 06:28:40,636 - DEBUG - Getting candidates for slot 2 down
+2025-08-27 06:28:40,840 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 06:28:40,840 - DEBUG - Getting candidates for slot 3 down
+2025-08-27 06:28:41,054 - DEBUG - Found 1 candidates for slot 3
+2025-08-27 06:28:41,055 - DEBUG - Getting candidates for slot 4 down
+2025-08-27 06:28:41,256 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 06:28:41,256 - DEBUG - Getting candidates for slot 5 down
+2025-08-27 06:28:41,879 - DEBUG - Found 1 candidates for slot 5
+2025-08-27 06:28:41,880 - DEBUG - Getting candidates for slot 7 down
+2025-08-27 06:28:42,079 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 06:28:42,079 - DEBUG - Getting candidates for slot 9 down
+2025-08-27 06:28:42,281 - DEBUG - Found 1 candidates for slot 9
+2025-08-27 06:28:42,282 - DEBUG - Getting candidates for slot 10 down
+2025-08-27 06:28:42,482 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 06:28:42,483 - DEBUG - Getting candidates for slot 11 down
+2025-08-27 06:28:42,680 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 06:28:42,680 - DEBUG - Getting candidates for slot 12 down
+2025-08-27 06:28:42,892 - DEBUG - Found 1 candidates for slot 12
+2025-08-27 06:28:42,892 - DEBUG - Getting candidates for slot 13 down
+2025-08-27 06:28:43,103 - DEBUG - Found 1 candidates for slot 13
+2025-08-27 06:28:43,103 - DEBUG - Getting candidates for slot 15 down
+2025-08-27 06:28:43,311 - DEBUG - Found 1 candidates for slot 15
+2025-08-27 06:28:43,312 - DEBUG - Getting candidates for slot 17 down
+2025-08-27 06:28:43,511 - DEBUG - Found 1 candidates for slot 17
+2025-08-27 06:28:43,512 - DEBUG - Getting candidates for slot 18 down
+2025-08-27 06:28:43,711 - DEBUG - Found 1 candidates for slot 18
+2025-08-27 06:28:43,712 - DEBUG - Getting candidates for slot 19 down
+2025-08-27 06:28:43,906 - DEBUG - Found 1 candidates for slot 19
+2025-08-27 06:28:43,907 - INFO - Slot processing order:
+2025-08-27 06:28:43,907 - INFO -   1. Slot 11 down: 1 candidates
+2025-08-27 06:28:43,908 - INFO -   2. Slot 11 across: 1 candidates
+2025-08-27 06:28:43,909 - INFO -   3. Slot 14 across: 1 candidates
+2025-08-27 06:28:43,909 - INFO -   4. Slot 16 across: 1 candidates
+2025-08-27 06:28:43,910 - INFO -   5. Slot 19 across: 1 candidates
+2025-08-27 06:28:43,910 - INFO -   6. Slot 2 down: 1 candidates
+2025-08-27 06:28:43,910 - INFO -   7. Slot 18 down: 1 candidates
+2025-08-27 06:28:43,911 - INFO -   8. Slot 2 across: 1 candidates
+2025-08-27 06:28:43,911 - INFO -   9. Slot 5 across: 1 candidates
+2025-08-27 06:28:43,912 - INFO -   10. Slot 6 across: 1 candidates
+2025-08-27 06:28:43,912 - INFO -   11. Slot 8 across: 1 candidates
+2025-08-27 06:28:43,912 - INFO -   12. Slot 18 across: 1 candidates
+2025-08-27 06:28:43,913 - INFO -   13. Slot 21 across: 1 candidates
+2025-08-27 06:28:43,913 - INFO -   14. Slot 5 down: 1 candidates
+2025-08-27 06:28:43,913 - INFO -   15. Slot 9 down: 1 candidates
+2025-08-27 06:28:43,914 - INFO -   16. Slot 15 down: 1 candidates
+2025-08-27 06:28:43,914 - INFO -   17. Slot 17 down: 1 candidates
+2025-08-27 06:28:43,914 - INFO -   18. Slot 15 across: 1 candidates
+2025-08-27 06:28:43,916 - INFO -   19. Slot 20 across: 1 candidates
+2025-08-27 06:28:43,918 - INFO -   20. Slot 1 down: 1 candidates
+2025-08-27 06:28:43,918 - INFO -   21. Slot 3 down: 1 candidates
+2025-08-27 06:28:43,919 - INFO -   22. Slot 4 down: 1 candidates
+2025-08-27 06:28:43,920 - INFO -   23. Slot 7 down: 1 candidates
+2025-08-27 06:28:43,920 - INFO -   24. Slot 10 down: 1 candidates
+2025-08-27 06:28:43,921 - INFO -   25. Slot 12 down: 1 candidates
+2025-08-27 06:28:43,921 - INFO -   26. Slot 13 down: 1 candidates
+2025-08-27 06:28:43,922 - INFO -   27. Slot 19 down: 1 candidates
+2025-08-27 06:28:43,922 - DEBUG - Processing slot 11 down (index 0)
+2025-08-27 06:28:43,923 - DEBUG - Trying word 'AFFECTEDLY' in slot 11
+2025-08-27 06:28:43,923 - DEBUG - Placed word 'AFFECTEDLY', affected 10 positions
+2025-08-27 06:28:44,718 - DEBUG - Processing slot 11 across (index 1)
+2025-08-27 06:28:44,718 - DEBUG - Trying word 'ALONE' in slot 11
+2025-08-27 06:28:44,719 - DEBUG - Placed word 'ALONE', affected 4 positions
+2025-08-27 06:28:45,113 - DEBUG - Processing slot 14 across (index 2)
+2025-08-27 06:28:45,113 - DEBUG - Trying word 'ALLEGRO' in slot 14
+2025-08-27 06:28:45,114 - DEBUG - Placed word 'ALLEGRO', affected 6 positions
+2025-08-27 06:28:45,528 - DEBUG - Processing slot 16 across (index 3)
+2025-08-27 06:28:45,529 - DEBUG - Trying word 'ASEA' in slot 16
+2025-08-27 06:28:45,529 - DEBUG - Placed word 'ASEA', affected 4 positions
+2025-08-27 06:28:46,133 - DEBUG - Processing slot 19 across (index 4)
+2025-08-27 06:28:46,133 - DEBUG - Trying word 'ABUSIVELY' in slot 19
+2025-08-27 06:28:46,134 - DEBUG - Placed word 'ABUSIVELY', affected 8 positions
+2025-08-27 06:28:46,542 - DEBUG - Processing slot 2 down (index 5)
+2025-08-27 06:28:46,542 - DEBUG - Trying word 'ASLANT' in slot 2
+2025-08-27 06:28:46,543 - DEBUG - Placed word 'ASLANT', affected 6 positions
+2025-08-27 06:28:47,139 - DEBUG - Processing slot 18 down (index 6)
+2025-08-27 06:28:47,139 - DEBUG - Trying word 'ALMOST' in slot 18
+2025-08-27 06:28:47,140 - DEBUG - Placed word 'ALMOST', affected 6 positions
+2025-08-27 06:28:47,746 - DEBUG - Processing slot 2 across (index 7)
+2025-08-27 06:28:47,747 - DEBUG - Trying word 'ANNUALLY' in slot 2
+2025-08-27 06:28:47,747 - DEBUG - Placed word 'ANNUALLY', affected 7 positions
+2025-08-27 06:28:47,971 - DEBUG - Processing slot 5 across (index 8)
+2025-08-27 06:28:47,971 - DEBUG - Trying word 'AWRY' in slot 5
+2025-08-27 06:28:47,972 - DEBUG - Placed word 'AWRY', affected 4 positions
+2025-08-27 06:28:48,394 - DEBUG - Processing slot 6 across (index 9)
+2025-08-27 06:28:48,394 - DEBUG - Trying word 'ALL' in slot 6
+2025-08-27 06:28:48,395 - DEBUG - Placed word 'ALL', affected 2 positions
+2025-08-27 06:28:48,618 - DEBUG - Processing slot 8 across (index 10)
+2025-08-27 06:28:48,618 - DEBUG - Trying word 'ALAS' in slot 8
+2025-08-27 06:28:48,619 - DEBUG - Placed word 'ALAS', affected 3 positions
+2025-08-27 06:28:48,831 - DEBUG - Processing slot 18 across (index 11)
+2025-08-27 06:28:48,831 - DEBUG - Trying word 'ANON' in slot 18
+2025-08-27 06:28:48,832 - DEBUG - Placed word 'ANON', affected 3 positions
+2025-08-27 06:28:49,051 - DEBUG - Processing slot 21 across (index 12)
+2025-08-27 06:28:49,051 - DEBUG - Trying word 'ANYWAYS' in slot 21
+2025-08-27 06:28:49,052 - DEBUG - Placed word 'ANYWAYS', affected 5 positions
+2025-08-27 06:28:49,052 - DEBUG - Processing slot 5 down (index 13)
+2025-08-27 06:28:49,053 - DEBUG - Trying word 'AFTER' in slot 5
+2025-08-27 06:28:49,053 - DEBUG - Placed word 'AFTER', affected 3 positions
+2025-08-27 06:28:49,054 - DEBUG - Processing slot 9 down (index 14)
+2025-08-27 06:28:49,054 - DEBUG - Trying word 'AVIDLY' in slot 9
+2025-08-27 06:28:49,055 - DEBUG - Placed word 'AVIDLY', affected 4 positions
+2025-08-27 06:28:49,055 - DEBUG - Processing slot 15 down (index 15)
+2025-08-27 06:28:49,056 - DEBUG - Trying word 'AIN' in slot 15
+2025-08-27 06:28:49,056 - DEBUG - Placed word 'AIN', affected 2 positions
+2025-08-27 06:28:49,326 - DEBUG - Processing slot 17 down (index 16)
+2025-08-27 06:28:49,327 - DEBUG - Trying word 'ACUTELY' in slot 17
+2025-08-27 06:28:49,327 - DEBUG - Placed word 'ACUTELY', affected 5 positions
+2025-08-27 06:28:49,328 - DEBUG - Processing slot 15 across (index 17)
+2025-08-27 06:28:49,328 - DEBUG - Trying word 'ASS' in slot 15
+2025-08-27 06:28:49,328 - DEBUG - Placed word 'ASS', affected 2 positions
+2025-08-27 06:28:49,329 - DEBUG - Processing slot 20 across (index 18)
+2025-08-27 06:28:49,329 - DEBUG - Trying word 'AMAIN' in slot 20
+2025-08-27 06:28:49,330 - DEBUG - Placed word 'AMAIN', affected 4 positions
+2025-08-27 06:28:49,330 - DEBUG - Processing slot 1 down (index 19)
+2025-08-27 06:28:49,330 - DEBUG - Trying word 'ALA' in slot 1
+2025-08-27 06:28:49,330 - DEBUG - Placed word 'ALA', affected 2 positions
+2025-08-27 06:28:49,331 - DEBUG - Processing slot 3 down (index 20)
+2025-08-27 06:28:49,331 - DEBUG - Trying word 'ASP' in slot 3
+2025-08-27 06:28:49,331 - DEBUG - Placed word 'ASP', affected 2 positions
+2025-08-27 06:28:49,332 - DEBUG - Processing slot 4 down (index 21)
+2025-08-27 06:28:49,333 - DEBUG - Trying word 'ARCHLY' in slot 4
+2025-08-27 06:28:49,333 - DEBUG - Placed word 'ARCHLY', affected 5 positions
+2025-08-27 06:28:49,334 - DEBUG - Processing slot 7 down (index 22)
+2025-08-27 06:28:49,334 - DEBUG - Trying word 'AGO' in slot 7
+2025-08-27 06:28:49,335 - DEBUG - Placed word 'AGO', affected 2 positions
+2025-08-27 06:28:49,335 - DEBUG - Processing slot 10 down (index 23)
+2025-08-27 06:28:49,335 - DEBUG - Trying word 'ASTRAY' in slot 10
+2025-08-27 06:28:49,336 - DEBUG - Placed word 'ASTRAY', affected 5 positions
+2025-08-27 06:28:49,336 - DEBUG - Processing slot 12 down (index 24)
+2025-08-27 06:28:49,336 - DEBUG - Trying word 'ANE' in slot 12
+2025-08-27 06:28:49,337 - DEBUG - Placed word 'ANE', affected 2 positions
+2025-08-27 06:28:49,337 - DEBUG - Processing slot 13 down (index 25)
+2025-08-27 06:28:49,337 - DEBUG - Trying word 'ART' in slot 13
+2025-08-27 06:28:49,337 - DEBUG - Placed word 'ART', affected 2 positions
+2025-08-27 06:28:49,337 - DEBUG - Processing slot 19 down (index 26)
+2025-08-27 06:28:49,338 - DEBUG - Trying word 'ABOVE' in slot 19
+2025-08-27 06:28:49,338 - DEBUG - Placed word 'ABOVE', affected 4 positions
+2025-08-27 06:28:49,338 - INFO - Solution found!
+2025-08-27 06:28:49,339 - DEBUG - Final grid state:
+2025-08-27 06:28:49,339 - DEBUG - . A . A N N U A L L Y . . A .
+2025-08-27 06:28:49,339 - DEBUG - . L . S . . . S . . . A W R Y
+2025-08-27 06:28:49,340 - DEBUG - . A L L . . . P . A . F . C .
+2025-08-27 06:28:49,340 - DEBUG - . . . A L A S . . G . T . H .
+2025-08-27 06:28:49,340 - DEBUG - A . . N . V . A L O N E . L .
+2025-08-27 06:28:49,340 - DEBUG - S . . T . I . F . . . R . Y .
+2025-08-27 06:28:49,341 - DEBUG - T . A . . D . F . A . . . . .
+2025-08-27 06:28:49,341 - DEBUG - R . N . A L L E G R O . A S S
+2025-08-27 06:28:49,341 - DEBUG - A S E A . Y . C . T . . I . .
+2025-08-27 06:28:49,342 - DEBUG - Y . . C . . . T . . . A N O N
+2025-08-27 06:28:49,342 - DEBUG - . A B U S I V E L Y . L . . .
+2025-08-27 06:28:49,342 - DEBUG - . B . T . . . D . . A M A I N
+2025-08-27 06:28:49,342 - DEBUG - . O . E . . . L . . . O . . .
+2025-08-27 06:28:49,343 - DEBUG - . V . L . A N Y W A Y S . . .
+2025-08-27 06:28:49,343 - DEBUG - . E . Y . . . . . . . T . . .
+2025-08-27 06:28:49,345 - INFO - 127.0.0.1 - - [27/Aug/2025 06:28:49] "POST /solve HTTP/1.1" 200 -
+2025-08-27 06:28:59,918 - INFO - 127.0.0.1 - - [27/Aug/2025 06:28:59] "OPTIONS /generate HTTP/1.1" 200 -
+2025-08-27 06:29:00,168 - INFO - Attempt 1/15 [diff=easy]
+2025-08-27 06:29:00,205 - INFO - 127.0.0.1 - - [27/Aug/2025 06:29:00] "POST /generate HTTP/1.1" 200 -
+2025-08-27 06:29:02,925 - INFO - 127.0.0.1 - - [27/Aug/2025 06:29:02] "OPTIONS /solve HTTP/1.1" 200 -
+2025-08-27 06:29:03,230 - INFO - DFSSolver initialized with 14 slots
+2025-08-27 06:29:03,230 - DEBUG - Initial grid state:
+2025-08-27 06:29:03,231 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:03,231 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:03,232 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:03,232 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:03,233 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:03,233 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:03,233 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:03,234 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:03,234 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:03,235 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:03,235 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:03,235 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:03,236 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:03,236 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:03,236 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:03,237 - INFO - Starting DFS solve
+2025-08-27 06:29:03,237 - DEBUG - Getting candidates for slot 1 across
+2025-08-27 06:29:03,442 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 06:29:03,442 - DEBUG - Getting candidates for slot 2 across
+2025-08-27 06:29:03,646 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 06:29:03,646 - DEBUG - Getting candidates for slot 4 across
+2025-08-27 06:29:03,846 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 06:29:03,846 - DEBUG - Getting candidates for slot 5 across
+2025-08-27 06:29:04,044 - DEBUG - Found 1 candidates for slot 5
+2025-08-27 06:29:04,044 - DEBUG - Getting candidates for slot 8 across
+2025-08-27 06:29:04,243 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 06:29:04,244 - DEBUG - Getting candidates for slot 10 across
+2025-08-27 06:29:04,445 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 06:29:04,446 - DEBUG - Getting candidates for slot 11 across
+2025-08-27 06:29:04,643 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 06:29:04,644 - DEBUG - Getting candidates for slot 1 down
+2025-08-27 06:29:04,843 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 06:29:04,844 - DEBUG - Getting candidates for slot 3 down
+2025-08-27 06:29:05,046 - DEBUG - Found 1 candidates for slot 3
+2025-08-27 06:29:05,046 - DEBUG - Getting candidates for slot 6 down
+2025-08-27 06:29:05,246 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 06:29:05,246 - DEBUG - Getting candidates for slot 7 down
+2025-08-27 06:29:05,455 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 06:29:05,456 - DEBUG - Getting candidates for slot 8 down
+2025-08-27 06:29:05,661 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 06:29:05,662 - DEBUG - Getting candidates for slot 9 down
+2025-08-27 06:29:05,863 - DEBUG - Found 1 candidates for slot 9
+2025-08-27 06:29:05,863 - DEBUG - Getting candidates for slot 10 down
+2025-08-27 06:29:06,062 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 06:29:06,063 - INFO - Slot processing order:
+2025-08-27 06:29:06,063 - INFO -   1. Slot 1 down: 1 candidates
+2025-08-27 06:29:06,064 - INFO -   2. Slot 8 across: 1 candidates
+2025-08-27 06:29:06,065 - INFO -   3. Slot 11 across: 1 candidates
+2025-08-27 06:29:06,065 - INFO -   4. Slot 3 down: 1 candidates
+2025-08-27 06:29:06,066 - INFO -   5. Slot 4 across: 1 candidates
+2025-08-27 06:29:06,066 - INFO -   6. Slot 10 across: 1 candidates
+2025-08-27 06:29:06,067 - INFO -   7. Slot 8 down: 1 candidates
+2025-08-27 06:29:06,067 - INFO -   8. Slot 1 across: 1 candidates
+2025-08-27 06:29:06,068 - INFO -   9. Slot 2 across: 1 candidates
+2025-08-27 06:29:06,068 - INFO -   10. Slot 5 across: 1 candidates
+2025-08-27 06:29:06,068 - INFO -   11. Slot 6 down: 1 candidates
+2025-08-27 06:29:06,068 - INFO -   12. Slot 7 down: 1 candidates
+2025-08-27 06:29:06,069 - INFO -   13. Slot 9 down: 1 candidates
+2025-08-27 06:29:06,069 - INFO -   14. Slot 10 down: 1 candidates
+2025-08-27 06:29:06,069 - DEBUG - Processing slot 1 down (index 0)
+2025-08-27 06:29:06,069 - DEBUG - Trying word 'ANTERIORLY' in slot 1
+2025-08-27 06:29:06,070 - DEBUG - Placed word 'ANTERIORLY', affected 10 positions
+2025-08-27 06:29:06,850 - DEBUG - Processing slot 8 across (index 1)
+2025-08-27 06:29:06,850 - DEBUG - Trying word 'ANALOG' in slot 8
+2025-08-27 06:29:06,851 - DEBUG - Placed word 'ANALOG', affected 5 positions
+2025-08-27 06:29:07,251 - DEBUG - Processing slot 11 across (index 2)
+2025-08-27 06:29:07,252 - DEBUG - Trying word 'ABOVE' in slot 11
+2025-08-27 06:29:07,252 - DEBUG - Placed word 'ABOVE', affected 5 positions
+2025-08-27 06:29:07,848 - DEBUG - Processing slot 3 down (index 3)
+2025-08-27 06:29:07,849 - DEBUG - Trying word 'ADMIRINGLY' in slot 3
+2025-08-27 06:29:07,849 - DEBUG - Placed word 'ADMIRINGLY', affected 10 positions
+2025-08-27 06:29:08,437 - DEBUG - Processing slot 4 across (index 4)
+2025-08-27 06:29:08,437 - DEBUG - Trying word 'AFFECTEDLY' in slot 4
+2025-08-27 06:29:08,438 - DEBUG - Placed word 'AFFECTEDLY', affected 8 positions
+2025-08-27 06:29:08,438 - DEBUG - Processing slot 10 across (index 5)
+2025-08-27 06:29:08,439 - DEBUG - Trying word 'AMISS' in slot 10
+2025-08-27 06:29:08,439 - DEBUG - Placed word 'AMISS', affected 4 positions
+2025-08-27 06:29:08,642 - DEBUG - Processing slot 8 down (index 6)
+2025-08-27 06:29:08,643 - DEBUG - Trying word 'AGILELY' in slot 8
+2025-08-27 06:29:08,643 - DEBUG - Placed word 'AGILELY', affected 5 positions
+2025-08-27 06:29:08,643 - DEBUG - Processing slot 1 across (index 7)
+2025-08-27 06:29:08,644 - DEBUG - Trying word 'ANYWAYS' in slot 1
+2025-08-27 06:29:08,644 - DEBUG - Placed word 'ANYWAYS', affected 6 positions
+2025-08-27 06:29:08,645 - DEBUG - Processing slot 2 across (index 8)
+2025-08-27 06:29:08,645 - DEBUG - Trying word 'AGAIN' in slot 2
+2025-08-27 06:29:08,645 - DEBUG - Placed word 'AGAIN', affected 4 positions
+2025-08-27 06:29:08,646 - DEBUG - Processing slot 5 across (index 9)
+2025-08-27 06:29:08,646 - DEBUG - Trying word 'ALIKE' in slot 5
+2025-08-27 06:29:08,646 - DEBUG - Placed word 'ALIKE', affected 4 positions
+2025-08-27 06:29:08,647 - DEBUG - Processing slot 6 down (index 10)
+2025-08-27 06:29:08,647 - DEBUG - Trying word 'ANNUALLY' in slot 6
+2025-08-27 06:29:08,648 - DEBUG - Placed word 'ANNUALLY', affected 7 positions
+2025-08-27 06:29:08,648 - DEBUG - Processing slot 7 down (index 11)
+2025-08-27 06:29:08,649 - DEBUG - Trying word 'ANYHOW' in slot 7
+2025-08-27 06:29:08,649 - DEBUG - Placed word 'ANYHOW', affected 5 positions
+2025-08-27 06:29:08,650 - DEBUG - Processing slot 9 down (index 12)
+2025-08-27 06:29:08,650 - DEBUG - Trying word 'AWHILE' in slot 9
+2025-08-27 06:29:08,651 - DEBUG - Placed word 'AWHILE', affected 5 positions
+2025-08-27 06:29:08,651 - DEBUG - Processing slot 10 down (index 13)
+2025-08-27 06:29:08,651 - DEBUG - Trying word 'ABOARD' in slot 10
+2025-08-27 06:29:08,652 - DEBUG - Placed word 'ABOARD', affected 5 positions
+2025-08-27 06:29:08,652 - INFO - Solution found!
+2025-08-27 06:29:08,653 - DEBUG - Final grid state:
+2025-08-27 06:29:08,653 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:08,653 - DEBUG - . . . . . . . . A N Y W A Y S
+2025-08-27 06:29:08,654 - DEBUG - . . . . A G A I N . . . . . .
+2025-08-27 06:29:08,654 - DEBUG - . . . . . . . . T . . . A . .
+2025-08-27 06:29:08,654 - DEBUG - . . . . . A F F E C T E D L Y
+2025-08-27 06:29:08,654 - DEBUG - . . . . . . . . R . . . M . .
+2025-08-27 06:29:08,655 - DEBUG - . . . . . . . . I . A L I K E
+2025-08-27 06:29:08,655 - DEBUG - A . A . A N A L O G . . R . .
+2025-08-27 06:29:08,655 - DEBUG - N . N . G . W . R . A M I S S
+2025-08-27 06:29:08,656 - DEBUG - N . Y . I . H . L . B . N . .
+2025-08-27 06:29:08,656 - DEBUG - U . H . L . I . Y . O . G . .
+2025-08-27 06:29:08,656 - DEBUG - A B O V E . L . . . A . L . .
+2025-08-27 06:29:08,656 - DEBUG - L . W . L . E . . . R . Y . .
+2025-08-27 06:29:08,657 - DEBUG - L . . . Y . . . . . D . . . .
+2025-08-27 06:29:08,657 - DEBUG - Y . . . . . . . . . . . . . .
+2025-08-27 06:29:08,660 - INFO - 127.0.0.1 - - [27/Aug/2025 06:29:08] "POST /solve HTTP/1.1" 200 -
+2025-08-27 06:29:20,309 - INFO - 127.0.0.1 - - [27/Aug/2025 06:29:20] "OPTIONS /solve HTTP/1.1" 200 -
+2025-08-27 06:29:20,560 - INFO - DFSSolver initialized with 14 slots
+2025-08-27 06:29:20,561 - DEBUG - Initial grid state:
+2025-08-27 06:29:20,561 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:20,562 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:20,562 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:20,563 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:20,563 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:20,564 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:20,565 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:20,566 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:20,566 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:20,567 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:20,567 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:20,568 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:20,568 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:20,569 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:20,569 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:20,570 - INFO - Starting DFS solve
+2025-08-27 06:29:20,570 - DEBUG - Getting candidates for slot 1 across
+2025-08-27 06:29:20,786 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 06:29:20,787 - DEBUG - Getting candidates for slot 2 across
+2025-08-27 06:29:20,996 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 06:29:20,996 - DEBUG - Getting candidates for slot 4 across
+2025-08-27 06:29:21,196 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 06:29:21,197 - DEBUG - Getting candidates for slot 5 across
+2025-08-27 06:29:21,407 - DEBUG - Found 1 candidates for slot 5
+2025-08-27 06:29:21,408 - DEBUG - Getting candidates for slot 8 across
+2025-08-27 06:29:21,608 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 06:29:21,609 - DEBUG - Getting candidates for slot 10 across
+2025-08-27 06:29:21,805 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 06:29:21,805 - DEBUG - Getting candidates for slot 11 across
+2025-08-27 06:29:22,011 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 06:29:22,011 - DEBUG - Getting candidates for slot 1 down
+2025-08-27 06:29:22,207 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 06:29:22,208 - DEBUG - Getting candidates for slot 3 down
+2025-08-27 06:29:22,408 - DEBUG - Found 1 candidates for slot 3
+2025-08-27 06:29:22,409 - DEBUG - Getting candidates for slot 6 down
+2025-08-27 06:29:22,610 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 06:29:22,611 - DEBUG - Getting candidates for slot 7 down
+2025-08-27 06:29:22,809 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 06:29:22,809 - DEBUG - Getting candidates for slot 8 down
+2025-08-27 06:29:23,011 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 06:29:23,011 - DEBUG - Getting candidates for slot 9 down
+2025-08-27 06:29:23,212 - DEBUG - Found 1 candidates for slot 9
+2025-08-27 06:29:23,213 - DEBUG - Getting candidates for slot 10 down
+2025-08-27 06:29:23,421 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 06:29:23,421 - INFO - Slot processing order:
+2025-08-27 06:29:23,421 - INFO -   1. Slot 1 down: 1 candidates
+2025-08-27 06:29:23,422 - INFO -   2. Slot 8 across: 1 candidates
+2025-08-27 06:29:23,422 - INFO -   3. Slot 11 across: 1 candidates
+2025-08-27 06:29:23,423 - INFO -   4. Slot 3 down: 1 candidates
+2025-08-27 06:29:23,423 - INFO -   5. Slot 4 across: 1 candidates
+2025-08-27 06:29:23,424 - INFO -   6. Slot 10 across: 1 candidates
+2025-08-27 06:29:23,424 - INFO -   7. Slot 8 down: 1 candidates
+2025-08-27 06:29:23,425 - INFO -   8. Slot 1 across: 1 candidates
+2025-08-27 06:29:23,425 - INFO -   9. Slot 2 across: 1 candidates
+2025-08-27 06:29:23,425 - INFO -   10. Slot 5 across: 1 candidates
+2025-08-27 06:29:23,426 - INFO -   11. Slot 6 down: 1 candidates
+2025-08-27 06:29:23,426 - INFO -   12. Slot 7 down: 1 candidates
+2025-08-27 06:29:23,426 - INFO -   13. Slot 9 down: 1 candidates
+2025-08-27 06:29:23,427 - INFO -   14. Slot 10 down: 1 candidates
+2025-08-27 06:29:23,427 - DEBUG - Processing slot 1 down (index 0)
+2025-08-27 06:29:23,427 - DEBUG - Trying word 'ANTERIORLY' in slot 1
+2025-08-27 06:29:23,428 - DEBUG - Placed word 'ANTERIORLY', affected 10 positions
+2025-08-27 06:29:24,226 - DEBUG - Processing slot 8 across (index 1)
+2025-08-27 06:29:24,227 - DEBUG - Trying word 'ANALOG' in slot 8
+2025-08-27 06:29:24,227 - DEBUG - Placed word 'ANALOG', affected 5 positions
+2025-08-27 06:29:24,621 - DEBUG - Processing slot 11 across (index 2)
+2025-08-27 06:29:24,622 - DEBUG - Trying word 'ABOVE' in slot 11
+2025-08-27 06:29:24,622 - DEBUG - Placed word 'ABOVE', affected 5 positions
+2025-08-27 06:29:25,211 - DEBUG - Processing slot 3 down (index 3)
+2025-08-27 06:29:25,212 - DEBUG - Trying word 'ADMIRINGLY' in slot 3
+2025-08-27 06:29:25,212 - DEBUG - Placed word 'ADMIRINGLY', affected 10 positions
+2025-08-27 06:29:25,810 - DEBUG - Processing slot 4 across (index 4)
+2025-08-27 06:29:25,811 - DEBUG - Trying word 'AFFECTEDLY' in slot 4
+2025-08-27 06:29:25,812 - DEBUG - Placed word 'AFFECTEDLY', affected 8 positions
+2025-08-27 06:29:25,812 - DEBUG - Processing slot 10 across (index 5)
+2025-08-27 06:29:25,812 - DEBUG - Trying word 'AMISS' in slot 10
+2025-08-27 06:29:25,813 - DEBUG - Placed word 'AMISS', affected 4 positions
+2025-08-27 06:29:26,012 - DEBUG - Processing slot 8 down (index 6)
+2025-08-27 06:29:26,012 - DEBUG - Trying word 'AGILELY' in slot 8
+2025-08-27 06:29:26,013 - DEBUG - Placed word 'AGILELY', affected 5 positions
+2025-08-27 06:29:26,013 - DEBUG - Processing slot 1 across (index 7)
+2025-08-27 06:29:26,013 - DEBUG - Trying word 'ANYWAYS' in slot 1
+2025-08-27 06:29:26,014 - DEBUG - Placed word 'ANYWAYS', affected 6 positions
+2025-08-27 06:29:26,015 - DEBUG - Processing slot 2 across (index 8)
+2025-08-27 06:29:26,015 - DEBUG - Trying word 'AGAIN' in slot 2
+2025-08-27 06:29:26,016 - DEBUG - Placed word 'AGAIN', affected 4 positions
+2025-08-27 06:29:26,016 - DEBUG - Processing slot 5 across (index 9)
+2025-08-27 06:29:26,017 - DEBUG - Trying word 'ALIKE' in slot 5
+2025-08-27 06:29:26,017 - DEBUG - Placed word 'ALIKE', affected 4 positions
+2025-08-27 06:29:26,017 - DEBUG - Processing slot 6 down (index 10)
+2025-08-27 06:29:26,018 - DEBUG - Trying word 'ANNUALLY' in slot 6
+2025-08-27 06:29:26,018 - DEBUG - Placed word 'ANNUALLY', affected 7 positions
+2025-08-27 06:29:26,018 - DEBUG - Processing slot 7 down (index 11)
+2025-08-27 06:29:26,019 - DEBUG - Trying word 'ANYHOW' in slot 7
+2025-08-27 06:29:26,019 - DEBUG - Placed word 'ANYHOW', affected 5 positions
+2025-08-27 06:29:26,019 - DEBUG - Processing slot 9 down (index 12)
+2025-08-27 06:29:26,020 - DEBUG - Trying word 'AWHILE' in slot 9
+2025-08-27 06:29:26,020 - DEBUG - Placed word 'AWHILE', affected 5 positions
+2025-08-27 06:29:26,020 - DEBUG - Processing slot 10 down (index 13)
+2025-08-27 06:29:26,021 - DEBUG - Trying word 'ABOARD' in slot 10
+2025-08-27 06:29:26,021 - DEBUG - Placed word 'ABOARD', affected 5 positions
+2025-08-27 06:29:26,021 - INFO - Solution found!
+2025-08-27 06:29:26,022 - DEBUG - Final grid state:
+2025-08-27 06:29:26,022 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:26,022 - DEBUG - . . . . . . . . A N Y W A Y S
+2025-08-27 06:29:26,023 - DEBUG - . . . . A G A I N . . . . . .
+2025-08-27 06:29:26,023 - DEBUG - . . . . . . . . T . . . A . .
+2025-08-27 06:29:26,024 - DEBUG - . . . . . A F F E C T E D L Y
+2025-08-27 06:29:26,024 - DEBUG - . . . . . . . . R . . . M . .
+2025-08-27 06:29:26,025 - DEBUG - . . . . . . . . I . A L I K E
+2025-08-27 06:29:26,025 - DEBUG - A . A . A N A L O G . . R . .
+2025-08-27 06:29:26,025 - DEBUG - N . N . G . W . R . A M I S S
+2025-08-27 06:29:26,026 - DEBUG - N . Y . I . H . L . B . N . .
+2025-08-27 06:29:26,026 - DEBUG - U . H . L . I . Y . O . G . .
+2025-08-27 06:29:26,026 - DEBUG - A B O V E . L . . . A . L . .
+2025-08-27 06:29:26,026 - DEBUG - L . W . L . E . . . R . Y . .
+2025-08-27 06:29:26,027 - DEBUG - L . . . Y . . . . . D . . . .
+2025-08-27 06:29:26,027 - DEBUG - Y . . . . . . . . . . . . . .
+2025-08-27 06:29:26,029 - INFO - 127.0.0.1 - - [27/Aug/2025 06:29:26] "POST /solve HTTP/1.1" 200 -
+2025-08-27 06:29:34,157 - INFO - 127.0.0.1 - - [27/Aug/2025 06:29:34] "OPTIONS /generate HTTP/1.1" 200 -
+2025-08-27 06:29:34,463 - INFO - Attempt 1/15 [diff=easy]
+2025-08-27 06:29:34,511 - INFO - 127.0.0.1 - - [27/Aug/2025 06:29:34] "POST /generate HTTP/1.1" 200 -
+2025-08-27 06:29:40,467 - INFO - 127.0.0.1 - - [27/Aug/2025 06:29:40] "OPTIONS /solve HTTP/1.1" 200 -
+2025-08-27 06:29:40,718 - INFO - DFSSolver initialized with 19 slots
+2025-08-27 06:29:40,718 - DEBUG - Initial grid state:
+2025-08-27 06:29:40,719 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:40,719 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:40,720 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:40,720 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:40,720 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:40,721 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:40,721 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:40,721 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:40,722 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:40,722 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:40,722 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:40,722 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:40,723 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:40,723 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:40,723 - DEBUG - . . . . . . . . . . . . . . .
+2025-08-27 06:29:40,723 - INFO - Starting DFS solve
+2025-08-27 06:29:40,723 - DEBUG - Getting candidates for slot 1 across
+2025-08-27 06:29:40,920 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 06:29:40,921 - DEBUG - Getting candidates for slot 2 across
+2025-08-27 06:29:41,119 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 06:29:41,120 - DEBUG - Getting candidates for slot 3 across
+2025-08-27 06:29:41,319 - DEBUG - Found 1 candidates for slot 3
+2025-08-27 06:29:41,319 - DEBUG - Getting candidates for slot 4 across
+2025-08-27 06:29:41,526 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 06:29:41,526 - DEBUG - Getting candidates for slot 6 across
+2025-08-27 06:29:41,720 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 06:29:41,720 - DEBUG - Getting candidates for slot 7 across
+2025-08-27 06:29:41,922 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 06:29:41,922 - DEBUG - Getting candidates for slot 10 across
+2025-08-27 06:29:42,118 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 06:29:42,119 - DEBUG - Getting candidates for slot 11 across
+2025-08-27 06:29:42,311 - DEBUG - Found 1 candidates for slot 11
+2025-08-27 06:29:42,312 - DEBUG - Getting candidates for slot 12 across
+2025-08-27 06:29:42,510 - DEBUG - Found 1 candidates for slot 12
+2025-08-27 06:29:42,510 - DEBUG - Getting candidates for slot 13 across
+2025-08-27 06:29:42,705 - DEBUG - Found 1 candidates for slot 13
+2025-08-27 06:29:42,705 - DEBUG - Getting candidates for slot 1 down
+2025-08-27 06:29:42,902 - DEBUG - Found 1 candidates for slot 1
+2025-08-27 06:29:42,903 - DEBUG - Getting candidates for slot 2 down
+2025-08-27 06:29:43,101 - DEBUG - Found 1 candidates for slot 2
+2025-08-27 06:29:43,101 - DEBUG - Getting candidates for slot 4 down
+2025-08-27 06:29:43,335 - DEBUG - Found 1 candidates for slot 4
+2025-08-27 06:29:43,335 - DEBUG - Getting candidates for slot 5 down
+2025-08-27 06:29:43,531 - DEBUG - Found 1 candidates for slot 5
+2025-08-27 06:29:43,531 - DEBUG - Getting candidates for slot 6 down
+2025-08-27 06:29:43,728 - DEBUG - Found 1 candidates for slot 6
+2025-08-27 06:29:43,729 - DEBUG - Getting candidates for slot 7 down
+2025-08-27 06:29:43,925 - DEBUG - Found 1 candidates for slot 7
+2025-08-27 06:29:43,926 - DEBUG - Getting candidates for slot 8 down
+2025-08-27 06:29:44,123 - DEBUG - Found 1 candidates for slot 8
+2025-08-27 06:29:44,124 - DEBUG - Getting candidates for slot 9 down
+2025-08-27 06:29:44,333 - DEBUG - Found 1 candidates for slot 9
+2025-08-27 06:29:44,333 - DEBUG - Getting candidates for slot 10 down
+2025-08-27 06:29:44,535 - DEBUG - Found 1 candidates for slot 10
+2025-08-27 06:29:44,535 - INFO - Slot processing order:
+2025-08-27 06:29:44,536 - INFO -   1. Slot 7 across: 1 candidates
+2025-08-27 06:29:44,536 - INFO -   2. Slot 10 across: 1 candidates
+2025-08-27 06:29:44,537 - INFO -   3. Slot 1 down: 1 candidates
+2025-08-27 06:29:44,537 - INFO -   4. Slot 6 down: 1 candidates
+2025-08-27 06:29:44,537 - INFO -   5. Slot 7 down: 1 candidates
+2025-08-27 06:29:44,538 - INFO -   6. Slot 2 across: 1 candidates
+2025-08-27 06:29:44,538 - INFO -   7. Slot 6 across: 1 candidates
+2025-08-27 06:29:44,538 - INFO -   8. Slot 11 across: 1 candidates
+2025-08-27 06:29:44,539 - INFO -   9. Slot 12 across: 1 candidates
+2025-08-27 06:29:44,539 - INFO -   10. Slot 2 down: 1 candidates
+2025-08-27 06:29:44,539 - INFO -   11. Slot 4 down: 1 candidates
+2025-08-27 06:29:44,539 - INFO -   12. Slot 8 down: 1 candidates
+2025-08-27 06:29:44,540 - INFO -   13. Slot 9 down: 1 candidates
+2025-08-27 06:29:44,540 - INFO -   14. Slot 1 across: 1 candidates
+2025-08-27 06:29:44,540 - INFO -   15. Slot 3 across: 1 candidates
+2025-08-27 06:29:44,541 - INFO -   16. Slot 4 across: 1 candidates
+2025-08-27 06:29:44,541 - INFO -   17. Slot 13 across: 1 candidates
+2025-08-27 06:29:44,541 - INFO -   18. Slot 5 down: 1 candidates
+2025-08-27 06:29:44,542 - INFO -   19. Slot 10 down: 1 candidates
+2025-08-27 06:29:44,542 - DEBUG - Processing slot 7 across (index 0)
+2025-08-27 06:29:44,542 - DEBUG - Trying word 'ANGERED' in slot 7
+2025-08-27 06:29:44,543 - DEBUG - Placed word 'ANGERED', affected 7 positions
+2025-08-27 06:29:45,323 - DEBUG - Processing slot 10 across (index 1)
+2025-08-27 06:29:45,324 - DEBUG - Trying word 'ANYHOW' in slot 10
+2025-08-27 06:29:45,324 - DEBUG - Placed word 'ANYHOW', affected 6 positions
+2025-08-27 06:29:45,919 - DEBUG - Processing slot 1 down (index 2)
+2025-08-27 06:29:45,919 - DEBUG - Trying word 'ADMIRINGLY' in slot 1
+2025-08-27 06:29:45,919 - DEBUG - Placed word 'ADMIRINGLY', affected 9 positions
+2025-08-27 06:29:46,315 - DEBUG - Processing slot 6 down (index 3)
+2025-08-27 06:29:46,316 - DEBUG - Trying word 'ADRIFT' in slot 6
+2025-08-27 06:29:46,316 - DEBUG - Placed word 'ADRIFT', affected 5 positions
+2025-08-27 06:29:46,711 - DEBUG - Processing slot 7 down (index 4)
+2025-08-27 06:29:46,711 - DEBUG - Trying word 'APROPOS' in slot 7
+2025-08-27 06:29:46,712 - DEBUG - Placed word 'APROPOS', affected 5 positions
+2025-08-27 06:29:46,911 - DEBUG - Processing slot 2 across (index 5)
+2025-08-27 06:29:46,912 - DEBUG - Trying word 'AFIELD' in slot 2
+2025-08-27 06:29:46,912 - DEBUG - Placed word 'AFIELD', affected 5 positions
+2025-08-27 06:29:47,118 - DEBUG - Processing slot 6 across (index 6)
+2025-08-27 06:29:47,119 - DEBUG - Trying word 'ALIKE' in slot 6
+2025-08-27 06:29:47,119 - DEBUG - Placed word 'ALIKE', affected 4 positions
+2025-08-27 06:29:47,323 - DEBUG - Processing slot 11 across (index 7)
+2025-08-27 06:29:47,324 - DEBUG - Trying word 'AFRESH' in slot 11
+2025-08-27 06:29:47,324 - DEBUG - Placed word 'AFRESH', affected 5 positions
+2025-08-27 06:29:47,535 - DEBUG - Processing slot 12 across (index 8)
+2025-08-27 06:29:47,535 - DEBUG - Trying word 'AVOWEDLY' in slot 12
+2025-08-27 06:29:47,536 - DEBUG - Placed word 'AVOWEDLY', affected 7 positions
+2025-08-27 06:29:47,743 - DEBUG - Processing slot 2 down (index 9)
+2025-08-27 06:29:47,743 - DEBUG - Trying word 'ALWAYS' in slot 2
+2025-08-27 06:29:47,744 - DEBUG - Placed word 'ALWAYS', affected 5 positions
+2025-08-27 06:29:47,957 - DEBUG - Processing slot 4 down (index 10)
+2025-08-27 06:29:47,957 - DEBUG - Trying word 'ABOARD' in slot 4
+2025-08-27 06:29:47,958 - DEBUG - Placed word 'ABOARD', affected 5 positions
+2025-08-27 06:29:48,168 - DEBUG - Processing slot 8 down (index 11)
+2025-08-27 06:29:48,169 - DEBUG - Trying word 'ANYWAYS' in slot 8
+2025-08-27 06:29:48,169 - DEBUG - Placed word 'ANYWAYS', affected 5 positions
+2025-08-27 06:29:48,169 - DEBUG - Processing slot 9 down (index 12)
+2025-08-27 06:29:48,170 - DEBUG - Trying word 'ASTERN' in slot 9
+2025-08-27 06:29:48,170 - DEBUG - Placed word 'ASTERN', affected 5 positions
+2025-08-27 06:29:48,386 - DEBUG - Processing slot 1 across (index 13)
+2025-08-27 06:29:48,387 - DEBUG - Trying word 'ANXIOUSLY' in slot 1
+2025-08-27 06:29:48,388 - DEBUG - Placed word 'ANXIOUSLY', affected 8 positions
+2025-08-27 06:29:48,388 - DEBUG - Processing slot 3 across (index 14)
+2025-08-27 06:29:48,389 - DEBUG - Trying word 'AWFUL' in slot 3
+2025-08-27 06:29:48,389 - DEBUG - Placed word 'AWFUL', affected 4 positions
+2025-08-27 06:29:48,389 - DEBUG - Processing slot 4 across (index 15)
+2025-08-27 06:29:48,390 - DEBUG - Trying word 'ALONE' in slot 4
+2025-08-27 06:29:48,390 - DEBUG - Placed word 'ALONE', affected 4 positions
+2025-08-27 06:29:48,390 - DEBUG - Processing slot 13 across (index 16)
+2025-08-27 06:29:48,391 - DEBUG - Trying word 'ASLANT' in slot 13
+2025-08-27 06:29:48,391 - DEBUG - Placed word 'ASLANT', affected 5 positions
+2025-08-27 06:29:48,392 - DEBUG - Processing slot 5 down (index 17)
+2025-08-27 06:29:48,392 - DEBUG - Trying word 'AFTER' in slot 5
+2025-08-27 06:29:48,393 - DEBUG - Placed word 'AFTER', affected 4 positions
+2025-08-27 06:29:48,393 - DEBUG - Processing slot 10 down (index 18)
+2025-08-27 06:29:48,394 - DEBUG - Trying word 'ALOOF' in slot 10
+2025-08-27 06:29:48,394 - DEBUG - Placed word 'ALOOF', affected 4 positions
+2025-08-27 06:29:48,395 - INFO - Solution found!
+2025-08-27 06:29:48,395 - DEBUG - Final grid state:
+2025-08-27 06:29:48,396 - DEBUG - . . . . . . A N X I O U S L Y
+2025-08-27 06:29:48,397 - DEBUG - . A F I E L D . . . . . . . .
+2025-08-27 06:29:48,398 - DEBUG - . L . . . . M . . . . . . . .
+2025-08-27 06:29:48,399 - DEBUG - A W F U L . I . A L O N E . A
+2025-08-27 06:29:48,403 - DEBUG - . A . . . . R . B . . . . . F
+2025-08-27 06:29:48,403 - DEBUG - . Y . . . . I . O . . . . . T
+2025-08-27 06:29:48,404 - DEBUG - . S . . . . N . A . A L I K E
+2025-08-27 06:29:48,404 - DEBUG - . . . . A N G E R E D . . . R
+2025-08-27 06:29:48,405 - DEBUG - . . A . P . L . D . R . . . .
+2025-08-27 06:29:48,405 - DEBUG - . . N . R . Y . . . I . . A .
+2025-08-27 06:29:48,406 - DEBUG - A N Y H O W . . . A F R E S H
+2025-08-27 06:29:48,406 - DEBUG - L . W . P . . . . . T . . T .
+2025-08-27 06:29:48,407 - DEBUG - O . A V O W E D L Y . . . E .
+2025-08-27 06:29:48,407 - DEBUG - O . Y . S . . . . . . . . R .
+2025-08-27 06:29:48,408 - DEBUG - F . S . . . . . . A S L A N T
+2025-08-27 06:29:48,411 - INFO - 127.0.0.1 - - [27/Aug/2025 06:29:48] "POST /solve HTTP/1.1" 200 -
+2025-08-27 06:36:42,979 - INFO -  * Detected change in 'D:\\T\\CSA2 Thesis\\Crossword-Solver\\flask-backend\\solver\\algorithms\\hybrid_solver.py', reloading

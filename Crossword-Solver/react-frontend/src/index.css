@@ -123,7 +123,23 @@ path {
   backdrop-filter: blur(4px);
 }
 
+/* Ensure smooth transitions for the footer */
+footer {
+  transform: translateY(100%);
+  will-change: transform;
+}
 
+html, body, #root {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
 
 /* .fixed {
   background: linear-gradient(

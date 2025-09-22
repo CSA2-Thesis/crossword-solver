@@ -72,8 +72,24 @@ const PuzzleConfigPanel = ({
                 step="1"
                 value={gridSize}
                 onChange={(e) => onGridSizeChange(parseInt(e.target.value))}
-                className="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer"
-              />
+                className="w-full h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-lg appearance-none cursor-pointer
+                [&::-webkit-slider-thumb]:appearance-none
+                [&::-webkit-slider-thumb]:h-4
+                [&::-webkit-slider-thumb]:w-4
+                [&::-webkit-slider-thumb]:rounded-full
+                [&::-webkit-slider-thumb]:bg-white
+                [&::-webkit-slider-thumb]:border
+                [&::-webkit-slider-thumb]:border-gray-300
+                [&::-webkit-slider-thumb]:shadow-md
+                [&::-moz-range-thumb]:h-4
+                [&::-moz-range-thumb]:w-4
+                [&::-moz-range-thumb]:rounded-full
+                [&::-moz-range-thumb]:bg-white
+                [&::-moz-range-thumb]:border
+                [&::-moz-range-thumb]:border-gray-300
+                [&::-moz-range-thumb]:shadow-md"
+                          />
+
               <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1 px-1">
                 <span>Small</span>
                 <span className="absolute right-0 -translate-x-3">Large</span>

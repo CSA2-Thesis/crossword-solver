@@ -6,15 +6,6 @@ from typing import List, Dict, Tuple, Optional
 from dataclasses import dataclass
 from dictionary_helper import DictionaryHelper
 
-# logging.basicConfig(
-#     level=logging.DEBUG,
-#     format='%(asctime)s - %(levelname)s - %(message)s',
-#     handlers=[
-#         logging.FileHandler('crossword_generator.log'),
-#         logging.StreamHandler()
-#     ]
-# )
-
 dict_helper = DictionaryHelper("dictionary")
 
 @dataclass
@@ -41,60 +32,22 @@ class CrosswordGenerator:
         self.words = set(words) if words else set()
         self.word_cache = {}
         self.word_scores = {}
+        self.used_starting_letters = set()
 
     def get_optimized_word_list(self, max_length):
-        lengths = sorted({
-            max_length,
-            max(3, max_length - 2),
-            min(12, max_length + 2),
-            max(3, int(max_length * 0.7)),
-            min(12, int(max_length * 1.3))
-        })
-        
+        # Get a diverse set of words with different starting letters
         words = []
-        for length in lengths:
-            words.extend(dict_helper.get_words_by_length(length, 30))
+        for length in range(max(3, max_length-2), min(12, max_length+2)+1):
+            # Get words with diverse starting letters
+            words.extend(dict_helper.get_words_by_length(length, 20))
         
-        scored_words = []
-        for word_dict in words:
-            word = word_dict['word']
-            score = self._calculate_word_placement_score(word)
-            
-            first_char = word[0].lower()
-            if first_char in {'q', 'z', 'x', 'j', 'k', 'v'}:
-                score += 5
-            
-            scored_words.append({
-                'word': word,
-                'definition': word_dict['definition'],
-                'score': score,
-                'length': len(word)
-            })
-        
-        scored_words.sort(key=lambda x: (-x['score'], random.random()))
-        return scored_words
+        # Sort by score but add some randomness
+        words.sort(key=lambda x: (-x['score'], random.random()))
+        return words
 
     def _calculate_word_placement_score(self, word):
-        if word in self.word_scores:
-            return self.word_scores[word]
-        
-        score = 0
-        vowels = {'A', 'E', 'I', 'O', 'U'}
-        word_upper = word.upper()
-        
-        for char in word_upper:
-            score += dict_helper.LETTER_SCORES.get(char, 0)
-        
-        for i in range(1, len(word)-1):
-            if word_upper[i] in vowels:
-                score += 2
-        
-        unique_letters = set(word_upper)
-        if len(unique_letters) < len(word)/2:
-            score -= 3
-        
-        self.word_scores[word] = score
-        return score
+        # Use the score from the dictionary helper
+        return dict_helper._calculate_word_score(word)
 
     def generate(self, initial_word=None, word_list=None, max_attempts=10):
         best_puzzle = None
@@ -125,13 +78,18 @@ class CrosswordGenerator:
                     best_puzzle = current_best
             
             if word_list:
-                initial_word_dict = max(
-                    word_list, 
-                    key=lambda w: w['score'] + (5 if w['word'][0].lower() in {'q','z','x','j','k','v'} else 0)
-                )
+                # Track the starting letter
+                if initial_word:
+                    self.used_starting_letters.add(initial_word[0].lower())
+                
+                # Simple selection - just pick a random word from the list
+                initial_word_dict = random.choice(word_list[:min(10, len(word_list))])
                 initial_word = initial_word_dict['word']
             else:
                 break
+        
+        # Reset for next generation
+        self.used_starting_letters = set()
         
         if best_puzzle:
             for y in range(self.height):
@@ -142,35 +100,18 @@ class CrosswordGenerator:
         return None
 
     def _select_initial_word(self, word_list):
-        """Select a better initial word considering diversity"""
+        """Simple initial word selection"""
         if not word_list:
             return None
             
-        letter_groups = defaultdict(list)
-        for word_dict in word_list:
-            first_char = word_dict['word'][0].lower()
-            letter_groups[first_char].append(word_dict)
+        # Try to find a word with a starting letter we haven't used
+        unused_letter_words = [w for w in word_list if w['word'][0].lower() not in self.used_starting_letters]
         
-        viable_letters = [c for c in letter_groups if len(letter_groups[c]) >= 3]
-        
-        if not viable_letters:
-            return random.choice(word_list)['word']
-        
-        weights = {
-            'a': 10, 'b': 7, 'c': 9, 'd': 8, 'e': 9, 'f': 7,
-            'g': 7, 'h': 8, 'i': 7, 'j': 5, 'k': 6, 'l': 8,
-            'm': 7, 'n': 8, 'o': 7, 'p': 8, 'q': 5, 'r': 8,
-            's': 9, 't': 9, 'u': 7, 'v': 6, 'w': 7, 'x': 5,
-            'y': 6, 'z': 5
-        }
-        
-        selected_letter = random.choices(
-            viable_letters,
-            weights=[weights.get(c, 5) for c in viable_letters],
-            k=1
-        )[0]
-        
-        return max(letter_groups[selected_letter], key=lambda w: w['score'])['word']
+        if unused_letter_words:
+            return random.choice(unused_letter_words[:min(5, len(unused_letter_words))])['word']
+        else:
+            # If all letters have been used, just pick a random word
+            return random.choice(word_list[:10])['word']
 
     def _calculate_placement_potential(self, puzzle, x, y, vertical, word):
         potential = 0
@@ -304,6 +245,9 @@ class CrosswordGenerator:
     
     def _fits(self, puzzle, word, vertical, x, y):
         """Check if word fits at position, allowing proper intersections"""
+        # Skip words with spaces
+        if ' ' in word:
+            return False
         # logging.debug(f"Checking fit for {word} at ({x},{y}) {'vertical' if vertical else 'horizontal'}")
         
         connect = False
