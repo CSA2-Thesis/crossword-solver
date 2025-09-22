@@ -203,7 +203,7 @@ export const AnalysisReport = ({ data, filteredData }) => {
                     {summary.fastestAlgorithms.includes(algo) && ' ⚡'}
                   </td>
                   <td className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">
-                    {Math.round(algo.avgMemoryUsage / 1024)}MB
+                    {Math.round(algo.avgMemoryUsage)}KB
                     {summary.mostEfficientAlgorithms.includes(algo) && ' 💾'}
                   </td>
                   <td className="px-4 py-2 text-sm text-gray-600 dark:text-gray-300">{algo.count}</td>

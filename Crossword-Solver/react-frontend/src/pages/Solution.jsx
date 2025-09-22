@@ -235,7 +235,7 @@ const Solution = () => {
             <p className="text-xl font-semibold text-orange-600 dark:text-orange-400 mt-1">{solvedResult?.metrics?.execution_time || "N/A"}</p>
           </div>
           <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm">
-            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Memory Usage</h3>
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400">Average Memory Usage</h3>
             <p className="text-2xl font-bold text-green-600 dark:text-green-400">
               {solvedResult?.metrics?.memory_usage_kb ? 
                 formatMemoryUsage(solvedResult.metrics.memory_usage_kb) : "N/A"}

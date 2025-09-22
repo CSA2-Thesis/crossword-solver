@@ -92,7 +92,7 @@ class BaseCrosswordSolver(ABC):
             "status": "success" if success else "partial",
             "grid": formatted_solution,
             "min_memory_kb": metrics["min_memory_kb"],
-            "avg_memory_kb": metrics["avg_memory_kb"],
+            "memory_usage_kb": metrics["avg_memory_kb"],
             "peak_memory_kb": metrics["peak_memory_kb"],
             "execution_time": metrics["execution_time"],
             "time_complexity": metrics["time_complexity"],
