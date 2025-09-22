@@ -7,222 +7,51 @@ const About = () => {
       name: "Queency Santos",
       role: "Project Manager",
       image: "/Santos.png",
+      socials: {
+        github: "https://github.com/kwinsiii23",
+        linkedin: "https://www.linkedin.com/in/queency-zyrel-santos-280426378/",
+        facebook: "https://www.facebook.com/queencyzyrelsantos ",
+      },
     },
     {
       id: 2,
       name: "Patrick Sios-e",
       role: "Frontend Developer",
       image: "/Sios-e.png",
+      socials: {
+        github: "https://github.com/Siose-Patrick",
+        linkedin: "https://www.linkedin.com/in/patrick-sios-e-1a397817a/",
+        facebook: "https://www.facebook.com/patrick.siose/",
+      },
     },
     {
       id: 3,
       name: "Xyro Casa",
       role: "Backend Developer",
       image: "/Casa.png",
+      socials: {
+        github: "https://github.com/Xy-Home0",
+        linkedin: "https://www.linkedin.com/in/king-xyro-casa-981598262/",
+        facebook: "https://www.facebook.com/hoomeee",
+      },
     },
     {
       id: 4,
       name: "Katrina Villalon",
       role: "UI/UX Designer",
       image: "/Villalon.png",
+      socials: {
+        github: "https://github.com/HydeJekyll",
+        linkedin: "https://www.linkedin.com/in/katrina-paula-villalon-823617181/",
+        facebook: "https://www.facebook.com/katrina.villalon14",
+      },
     },
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-50/10 to-blue-100/10 dark:from-gray-800/10 dark:to-gray-900/10 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-200 backdrop-blur-md">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-extrabold text-gray-900 dark:text-white mb-6">
-            What is <span className="text-blue-600 dark:text-blue-400">Crossword Solver</span> ?
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            It is an app made to explore the technicalities and performances of
-            the use pathfinding algorithms in solving crossword puzzles.
-          </p>
-        </div>
-
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl dark:shadow-gray-700/50 p-8 mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">Our Project</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">
-                Crossword Solver is an experimental stressing of the
-                capabilities of pathfinding algorithms DFS (Backtracking), A*
-                search, and a Hybrid DFS-A* algorithm crossword puzzle
-                application that to solve crossword puzzles with unprecedented
-                efficiency.
-              </p>
-              <p className="text-lg text-gray-600 dark:text-gray-300">
-                Whether you're a puzzle enthusiast looking for a challenge or a
-                developer interested in algorithmic implementations, the
-                Crossword Solver app offers an engaging experience.
-              </p>
-            </div>
-            <div className="bg-blue-50 dark:bg-gray-700 rounded-xl p-6 border border-blue-100 dark:border-gray-600">
-              <h3 className="text-xl font-semibold text-blue-800 dark:text-blue-300 mb-4">
-                Technical Highlights
-              </h3>
-              <ul className="space-y-3">
-                <li className="flex items-start">
-                  <span className="flex-shrink-0 h-6 w-6 text-blue-500 dark:text-blue-400">✓</span>
-                  <span className="ml-2 text-gray-700 dark:text-gray-300">
-                    React + Vite frontend with Tailwind CSS
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="flex-shrink-0 h-6 w-6 text-blue-500 dark:text-blue-400">✓</span>
-                  <span className="ml-2 text-gray-700 dark:text-gray-300">
-                    Flask Python backend with optimized algorithms
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="flex-shrink-0 h-6 w-6 text-blue-500 dark:text-blue-400">✓</span>
-                  <span className="ml-2 text-gray-700 dark:text-gray-300">
-                    DFS, A*, and Hybrid puzzle solvers
-                  </span>
-                </li>
-                <li className="flex items-start">
-                  <span className="flex-shrink-0 h-6 w-6 text-blue-500 dark:text-blue-400">✓</span>
-                  <span className="ml-2 text-gray-700 dark:text-gray-300">
-                    WordNet integration for clues and answers
-                  </span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="py-16 bg-white dark:bg-gray-800 rounded-2xl shadow-xl dark:shadow-gray-700/50 p-8 mb-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
-                Powered by Modern Technologies
-              </h2>
-              <p className="mt-3 max-w-2xl mx-auto text-xl text-gray-500 dark:text-gray-400 sm:mt-4">
-                Built with the best tools for optimal performance and developer
-                experience
-              </p>
-            </div>
-
-            <div className="mt-10">
-              <div className="grid grid-cols-2 gap-10 md:grid-cols-3 lg:grid-cols-5 mb-10">
-                {/* React */}
-                <div className="col-span-1 flex justify-center items-center">
-                  <div className="flex flex-col items-center">
-                    <a
-                      href="https://react.dev/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group"
-                    >
-                      <img
-                        className="h-17 object-contain transition-transform hover:scale-120"
-                        src="/react.svg"
-                        alt="React"
-                      />
-                    </a>
-                    <span className="mt-5 text-sm font-medium text-gray-500 dark:text-gray-400">
-                      React
-                    </span>
-                  </div>
-                </div>
-
-                {/* Vite */}
-                <div className="col-span-1 flex justify-center items-center">
-                  <div className="flex flex-col items-center">
-                    <a
-                      href="https://vite.dev/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group"
-                    >
-                      <img
-                        className="h-12 object-contain transition-transform hover:scale-120"
-                        src="/vite.svg"
-                        alt="Vite"
-                      />
-                    </a>
-                    <span className="mt-9.5 text-sm font-medium text-gray-500 dark:text-gray-400">
-                      Vite
-                    </span>
-                  </div>
-                </div>
-
-                {/* Flask */}
-                <div className="col-span-1 flex justify-center items-center">
-                  <div className="flex flex-col items-center">
-                    <a
-                      href="https://flask.palletsprojects.com/en/stable/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group"
-                    >
-                      <img
-                        className="h-17 object-contain transition-transform group-hover:scale-110 dark:invert"
-                        src="/flask.svg"
-                        alt="Flask"
-                      />
-                    </a>
-                    <span className="mt-4.5 text-sm font-medium text-gray-500 dark:text-gray-400">
-                      Flask
-                    </span>
-                  </div>
-                </div>
-
-                {/* Tailwind CSS */}
-                <div className="col-span-1 flex justify-center items-center">
-                  <div className="flex flex-col items-center">
-                    <a
-                      href="https://tailwindcss.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group"
-                    >
-                      <img
-                        className="h-10 object-contain transition-transform group-hover:scale-120"
-                        src="/tailwindcss.svg"
-                        alt="Tailwind CSS"
-                      />
-                    </a>
-                    <span className="mt-11 text-sm font-medium text-gray-500 dark:text-gray-400">
-                      Tailwind CSS
-                    </span>
-                  </div>
-                </div>
-
-                {/* Python */}
-                <div className="col-span-1 flex justify-center items-center">
-                  <div className="flex flex-col items-center">
-                    <a
-                      href="https://www.python.org/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group"
-                    >
-                      <img
-                        className="h-12 object-contain transition-transform group-hover:scale-120"
-                        src="/python.svg"
-                        alt="Python"
-                      />
-                    </a>
-                    <span className="mt-10 text-sm font-medium text-gray-500 dark:text-gray-400">
-                      Python
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-16 text-center">
-              <p className="text-base text-gray-500 dark:text-gray-400">
-                Want to build something similar? These technologies are open
-                source and ready to use.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="bg-white dark:bg-gray-800 mt-16 rounded-2xl shadow-xl dark:shadow-gray-700/50 p-8 mb-16">
           <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-12 ">
             Meet the Team
           </h2>
@@ -249,7 +78,13 @@ const About = () => {
                     {member.role}
                   </span>
                   <div className="mt-auto flex justify-center space-x-4">
-                    <a href="#" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
+                    {/* GitHub */}
+                    <a
+                      href={member.socials.github}
+                      className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <svg
                         className="w-5 h-5"
                         fill="currentColor"
@@ -263,21 +98,31 @@ const About = () => {
                         />
                       </svg>
                     </a>
-                    <a href="#" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
+
+                    {/* LinkedIn */}
+                    <a
+                      href={member.socials.linkedin}
+                      className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <svg
                         className="w-5 h-5"
                         fill="currentColor"
                         viewBox="0 0 24 24"
                         aria-hidden="true"
                       >
-                        <path
-                          fillRule="evenodd"
-                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10c5.51 0 10-4.48 10-10S17.51 2 12 2zm6.605 4.61a8.502 8.502 0 011.93 5.314c-.281-.054-3.101-.629-5.943-.271-.065-.141-.12-.293-.184-.445a25.416 25.416 0 00-.564-1.236c3.145-1.28 4.577-3.124 4.761-3.362zM12 3.475c2.17 0 4.154.813 5.662 2.148-.152.216-1.443 1.941-4.48 3.08-1.399-2.57-2.95-4.675-3.189-5A8.687 8.687 0 0112 3.475zm-3.633.803a53.896 53.896 0 013.167 4.935c-3.992 1.063-7.517 1.04-7.896 1.04a8.581 8.581 0 014.729-5.975zM3.453 12.01v-.26c.37.01 4.512.065 8.775-1.215.25.477.477.965.694 1.453-.109.033-.228.065-.336.098-4.404 1.42-6.747 5.303-6.942 5.629a8.522 8.522 0 01-2.19-5.705zM12 20.547a8.482 8.482 0 01-5.239-1.8c.152-.315 1.888-3.656 6.703-5.337.022-.01.033-.01.054-.022a35.318 35.318 0 011.823 6.475 8.4 8.4 0 01-3.341.684zm4.761-1.465c-.086-.52-.542-3.015-1.659-6.084 2.679-.423 5.022.271 5.314.369a8.468 8.468 0 01-3.655 5.715z"
-                          clipRule="evenodd"
-                        />
+                        <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1 4.98 2.12 4.98 3.5zM.5 8h4V24h-4V8zM8.5 8h3.8v2.2h.05c.53-1 1.83-2.2 3.75-2.2 4 0 4.9 2.6 4.9 6v9.9h-4v-8.8c0-2.1-.04-4.8-2.9-4.8-2.9 0-3.3 2.3-3.3 4.7V24h-4V8z" />
                       </svg>
                     </a>
-                    <a href="#" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300">
+
+                    {/* Facebook */}
+                    <a
+                      href={member.socials.facebook}
+                      className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       <svg
                         className="w-5 h-5"
                         fill="currentColor"

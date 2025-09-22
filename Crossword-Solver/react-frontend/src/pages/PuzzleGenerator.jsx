@@ -4,9 +4,9 @@ import Button from "../components/Button";
 import PuzzleConfigPanel from "../components/PuzzleConfigPanel";
 import EmptyState from "../components/EmptyState";
 import Modal from "../components/Modal";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AlgorithmSelector from "../components/AlgorithmSelector";
-import { FiCheckCircle, FiDownload, FiInfo, FiRefreshCw } from "react-icons/fi";
+import { FiCheckCircle, FiDownload } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
 export default function PuzzleGenerator() {
@@ -48,6 +48,28 @@ export default function PuzzleGenerator() {
     },
   ];
 
+  useEffect(() => {
+    const savedPuzzle = sessionStorage.getItem("crosswordPuzzle");
+    const navigationPuzzle = location.state?.puzzle;
+    const keepPuzzle = location.state?.keepPuzzle;
+
+    if (navigationPuzzle && keepPuzzle) {
+      setGeneratedPuzzle(navigationPuzzle);
+      sessionStorage.setItem(
+        "crosswordPuzzle",
+        JSON.stringify(navigationPuzzle)
+      );
+    } else if (savedPuzzle && !navigationPuzzle) {
+      try {
+        const parsedPuzzle = JSON.parse(savedPuzzle);
+        setGeneratedPuzzle(parsedPuzzle);
+      } catch (e) {
+        console.error("Failed to parse saved puzzle", e);
+        sessionStorage.removeItem("crosswordPuzzle");
+      }
+    }
+  }, [location.state]);
+  
   const generatePuzzle = async () => {
     setError(null);
     setIsLoading(true);
@@ -65,6 +87,8 @@ export default function PuzzleGenerator() {
       );
       if (response.data.error) throw new Error(response.data.error);
       setGeneratedPuzzle(response.data);
+      // Save to sessionStorage when generating new puzzle
+      sessionStorage.setItem("crosswordPuzzle", JSON.stringify(response.data));
       setShowAnswers(false);
     } catch (err) {
       handleError(err, "Failed to generate puzzle");
@@ -73,15 +97,22 @@ export default function PuzzleGenerator() {
     }
   };
 
+  const clearPuzzle = () => {
+    setGeneratedPuzzle(null);
+    setSolvedPuzzle(null);
+    setError(null);
+    sessionStorage.removeItem("crosswordPuzzle");
+  };
+
   const solvePuzzle = async () => {
     if (!generatedPuzzle) return;
     setIsSolving(true);
     setError(null);
     try {
-      const gridToSolve = generatedPuzzle.empty_grid.map(row =>
-        row.map(cell => {
-          if (cell === '.' || cell === ' ') return '.';
-          return '.';
+      const gridToSolve = generatedPuzzle.empty_grid.map((row) =>
+        row.map((cell) => {
+          if (cell === "." || cell === " ") return ".";
+          return ".";
         })
       );
 
@@ -97,7 +128,7 @@ export default function PuzzleGenerator() {
             solution: response.data.solution,
             method: response.data.method || selectedAlgorithm,
             metrics: response.data.metrics || {},
-            success: response.data.success || false
+            success: response.data.success || false,
           },
           originalPuzzle: generatedPuzzle,
           selectedAlgorithm,
@@ -214,11 +245,7 @@ export default function PuzzleGenerator() {
                 onDifficultyChange={setDifficulty}
                 onGenerate={generatePuzzle}
                 isLoading={isLoading}
-                onReset={() => {
-                  setGeneratedPuzzle(null);
-                  setSolvedPuzzle(null);
-                  setError(null);
-                }}
+                onReset={clearPuzzle}
               />
             </div>
 

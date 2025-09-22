@@ -1,17 +1,12 @@
 # import logging
+from collections import defaultdict
 import random
+import string
 from typing import List, Dict, Tuple, Optional
 from dataclasses import dataclass
-from wordnet_helper import get_clue_for_word, _calculate_word_score, get_words_by_length
+from dictionary_helper import DictionaryHelper
 
-# logging.basicConfig(
-#     level=logging.DEBUG,
-#     format='%(asctime)s - %(levelname)s - %(message)s',
-#     handlers=[
-#         logging.FileHandler('crossword_generator.log'),
-#         logging.StreamHandler()
-#     ]
-# )
+dict_helper = DictionaryHelper("dictionary")
 
 @dataclass
 class Point:
@@ -37,78 +32,115 @@ class CrosswordGenerator:
         self.words = set(words) if words else set()
         self.word_cache = {}
         self.word_scores = {}
-   
+        self.used_starting_letters = set()
+
     def get_optimized_word_list(self, max_length):
-        """Get words optimized for crossword generation with scoring"""
-        target_length = int(max_length * 0.7)
-        length_range = (max(3, target_length-2), min(max_length, target_length+2))
+        # Get a diverse set of words with different starting letters
+        words = []
+        for length in range(max(3, max_length-2), min(12, max_length+2)+1):
+            # Get words with diverse starting letters
+            words.extend(dict_helper.get_words_by_length(length, 20))
         
-        words = get_words_by_length(target_length, 50)
-        for length in range(length_range[0], length_range[1]+1):
-            if length != target_length:
-                words.extend(get_words_by_length(length, 20))
-        
-        scored_words = []
-        for word_dict in words:
-            word = word_dict['word']
-            score = self._calculate_word_placement_score(word)
-            scored_words.append({
-                'word': word,
-                'definition': word_dict['definition'],
-                'score': score,
-                'length': len(word)
-            })
-        
-        scored_words.sort(key=lambda x: (-x['score'], -x['length']))
-        return scored_words
+        # Sort by score but add some randomness
+        words.sort(key=lambda x: (-x['score'], random.random()))
+        return words
 
     def _calculate_word_placement_score(self, word):
-        """Calculate a score for how good a word is for placement"""
-        if word in self.word_scores:
-            return self.word_scores[word]
-        
-        score = _calculate_word_score(word)
-        
-        vowels = {'A', 'E', 'I', 'O', 'U'}
-        word_upper = word.upper()
-        
-        for i in range(1, len(word)-1):
-            if word_upper[i] in vowels:
-                score += 2
-        
-        unique_letters = set(word_upper)
-        if len(unique_letters) < len(word)/2:
-            score -= 5
-        
-        self.word_scores[word] = score
-        return score
+        # Use the score from the dictionary helper
+        return dict_helper._calculate_word_score(word)
 
-    def _generate(self, puzzle, word_list, max_attempts=100):
-        tried_words = []
-        current_puzzle = puzzle
+    def generate(self, initial_word=None, word_list=None, max_attempts=10):
+        best_puzzle = None
         
-        for attempt in range(max_attempts):
-            if not word_list and not tried_words:
-                break
-                
-            if not word_list:
-                word_list, tried_words = tried_words, []
-                
-            word_dict = word_list.pop(0)
-            word_str = word_dict['word']
+        if word_list is None:
+            word_list = self.get_optimized_word_list(self.width)
+        elif not word_list:
+            return None
             
-            if word_str in current_puzzle.words:
-                continue
+        for attempt in range(max_attempts):
+            if not word_list:
+                word_list = self.get_optimized_word_list(self.width)
                 
-            options = self._get_best_word_placements(current_puzzle, word_dict)
-            if options:
-                best_option = max(options, key=lambda opt: opt['potential'])
-                current_puzzle = best_option['puzzle']
-                tried_words = []
+            if initial_word is None:
+                initial_word = self._select_initial_word(word_list)
+                
+            puzzles = []
+            for vertical in [False, True]:
+                puzzle = self._place_initial_word(initial_word, vertical)
+                if puzzle:
+                    final_puzzle = self._generate_and_finalize(puzzle, word_list)
+                    if final_puzzle and len(final_puzzle.words) > 1:
+                        puzzles.append(final_puzzle)
+            
+            if puzzles:
+                current_best = max(puzzles, key=lambda p: len(p.words))
+                if not best_puzzle or len(current_best.words) > len(best_puzzle.words):
+                    best_puzzle = current_best
+            
+            if word_list:
+                # Track the starting letter
+                if initial_word:
+                    self.used_starting_letters.add(initial_word[0].lower())
+                
+                # Simple selection - just pick a random word from the list
+                initial_word_dict = random.choice(word_list[:min(10, len(word_list))])
+                initial_word = initial_word_dict['word']
             else:
-                tried_words.append(word_dict)
+                break
         
-        return current_puzzle
+        # Reset for next generation
+        self.used_starting_letters = set()
+        
+        if best_puzzle:
+            for y in range(self.height):
+                for x in range(self.width):
+                    if best_puzzle.empty_grid[y][x] == ' ':
+                        best_puzzle.empty_grid[y][x] = '.'
+            return best_puzzle
+        return None
+
+    def _select_initial_word(self, word_list):
+        """Simple initial word selection"""
+        if not word_list:
+            return None
+            
+        # Try to find a word with a starting letter we haven't used
+        unused_letter_words = [w for w in word_list if w['word'][0].lower() not in self.used_starting_letters]
+        
+        if unused_letter_words:
+            return random.choice(unused_letter_words[:min(5, len(unused_letter_words))])['word']
+        else:
+            # If all letters have been used, just pick a random word
+            return random.choice(word_list[:10])['word']
+
+    def _calculate_placement_potential(self, puzzle, x, y, vertical, word):
+        potential = 0
+        
+        if vertical:
+            for i in range(len(word)):
+                curr_x, curr_y = x, y + i
+                if (curr_x > 0 and puzzle.grid[curr_y][curr_x-1] == '.') or \
+                   (curr_x < self.width-1 and puzzle.grid[curr_y][curr_x+1] == '.'):
+                    potential += 1
+        else:
+            for i in range(len(word)):
+                curr_x, curr_y = x + i, y
+                if (curr_y > 0 and puzzle.grid[curr_y-1][curr_x] == '.') or \
+                   (curr_y < self.height-1 and puzzle.grid[curr_y+1][curr_x] == '.'):
+                    potential += 1
+        
+        center_x, center_y = self.width // 2, self.height // 2
+        distance = abs(x - center_x) + abs(y - center_y)
+        potential += max(0, 10 - distance) // 2
+        
+        connections = sum(
+            1 for char in word 
+            if char in {c for row in puzzle.grid for c in row if c != '.'}
+        )
+        potential += connections * 2
+        
+        return potential
+
     def _generate_and_finalize(self, puzzle, word_list, max_attempts=100):
         # logging.debug(f"Finalizing puzzle with {len(puzzle.words)} words")
         base_puzzle = puzzle
@@ -156,67 +188,32 @@ class CrosswordGenerator:
         
         return options
 
-    def _calculate_placement_potential(self, puzzle, x, y, vertical, word):
-        """Calculate how many new word slots this placement creates"""
-        potential = 0
+    def _generate(self, puzzle, word_list, max_attempts=100):
+        tried_words = []
+        current_puzzle = puzzle
         
-        if vertical:
-            for i in range(len(word)):
-                curr_x, curr_y = x, y + i
-                if (curr_x > 0 and puzzle.grid[curr_y][curr_x-1] == '.') or \
-                   (curr_x < self.width-1 and puzzle.grid[curr_y][curr_x+1] == '.'):
-                    potential += 1
-        else:
-            for i in range(len(word)):
-                curr_x, curr_y = x + i, y
-                if (curr_y > 0 and puzzle.grid[curr_y-1][curr_x] == '.') or \
-                   (curr_y < self.height-1 and puzzle.grid[curr_y+1][curr_x] == '.'):
-                    potential += 1
-        
-        center_x, center_y = self.width // 2, self.height // 2
-        distance = abs(x - center_x) + abs(y - center_y)
-        potential += max(0, 10 - distance) // 2
-        
-        return potential
-
-    def generate(self, initial_word=None, word_list=None, max_attempts=10):
-        best_puzzle = None
-        
-        if word_list is None:
-            word_list = self.get_optimized_word_list(self.width)
-        elif not word_list:
-            return None
-            
         for attempt in range(max_attempts):
-            if not word_list:
-                word_list = self.get_optimized_word_list(self.width)
-                
-            puzzles = []
-            for vertical in [False, True]:
-                puzzle = self._place_initial_word(initial_word, vertical)
-                if puzzle:
-                    final_puzzle = self._generate_and_finalize(puzzle, word_list)
-                    if final_puzzle and len(final_puzzle.words) > 1:
-                        puzzles.append(final_puzzle)
-            
-            if puzzles:
-                current_best = max(puzzles, key=lambda p: len(p.words))
-                if not best_puzzle or len(current_best.words) > len(best_puzzle.words):
-                    best_puzzle = current_best
-            
-            if word_list:
-                initial_word_dict = max(word_list, key=lambda w: w['score'])
-                initial_word = initial_word_dict['word']
-            else:
+            if not word_list and not tried_words:
                 break
+                
+            if not word_list:
+                word_list, tried_words = tried_words, []
+                
+            word_dict = word_list.pop(0)
+            word_str = word_dict['word']
+            
+            if word_str in current_puzzle.words:
+                continue
+                
+            options = self._get_best_word_placements(current_puzzle, word_dict)
+            if options:
+                best_option = max(options, key=lambda opt: opt['potential'])
+                current_puzzle = best_option['puzzle']
+                tried_words = []
+            else:
+                tried_words.append(word_dict)
         
-        if best_puzzle:
-            for y in range(self.height):
-                for x in range(self.width):
-                    if best_puzzle.empty_grid[y][x] == ' ':
-                        best_puzzle.empty_grid[y][x] = '.'
-            return best_puzzle
-        return None
+        return current_puzzle
 
     def _add_word(self, puzzle, word_dict):
         options = []
@@ -248,6 +245,9 @@ class CrosswordGenerator:
     
     def _fits(self, puzzle, word, vertical, x, y):
         """Check if word fits at position, allowing proper intersections"""
+        # Skip words with spaces
+        if ' ' in word:
+            return False
         # logging.debug(f"Checking fit for {word} at ({x},{y}) {'vertical' if vertical else 'horizontal'}")
         
         connect = False
@@ -385,7 +385,7 @@ class CrosswordGenerator:
                     length += 1
                 if length > 1:
                     word = ''.join(self.grid[y][x+i] for i in range(length))
-                    clue_data = get_clue_for_word(word)
+                    clue_data = dict_helper.get_clue_for_word(word)
                     clue = clue_data.get('clue', f"Definition related to {word}")
                     across.append(WordSlot(
                         x=x, y=y, length=length, direction='across',
@@ -398,7 +398,7 @@ class CrosswordGenerator:
                     length += 1
                 if length > 1:
                     word = ''.join(self.grid[y+i][x] for i in range(length))
-                    clue_data = get_clue_for_word(word)
+                    clue_data = dict_helper.get_clue_for_word(word)
                     clue = clue_data.get('clue', f"Definition related to {word}")
                     down.append(WordSlot(
                         x=x, y=y, length=length, direction='down',
@@ -411,7 +411,7 @@ class CrosswordGenerator:
         across_slots, down_slots = self.analyze_grid()
         
         def format_slot(slot):
-            clue_data = get_clue_for_word(slot.word)
+            clue_data = dict_helper.get_clue_for_word(slot.word)
             return {
                 "number": slot.number,
                 "clue": clue_data['clue'],

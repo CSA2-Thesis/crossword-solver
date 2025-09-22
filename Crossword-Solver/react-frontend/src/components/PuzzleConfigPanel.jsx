@@ -1,5 +1,5 @@
-import React from 'react';
-import Button from './Button';
+import React, { useEffect } from "react";
+import Button from "./Button";
 
 const PuzzleConfigPanel = ({
   gridSize,
@@ -8,34 +8,93 @@ const PuzzleConfigPanel = ({
   onDifficultyChange,
   onGenerate,
   isLoading,
-  onReset
+  onReset,
 }) => {
+  // Load settings from sessionStorage on component mount
+  useEffect(() => {
+    const savedSettings = sessionStorage.getItem("puzzleSettings");
+    if (savedSettings) {
+      try {
+        const { size, difficulty } = JSON.parse(savedSettings);
+        if (size) onGridSizeChange(size);
+        if (difficulty) onDifficultyChange(difficulty);
+      } catch (e) {
+        console.error("Failed to parse saved settings", e);
+      }
+    }
+  }, [onGridSizeChange, onDifficultyChange]);
+
+  // Save settings whenever they change
+  useEffect(() => {
+    const settings = { size: gridSize, difficulty };
+    sessionStorage.setItem("puzzleSettings", JSON.stringify(settings));
+  }, [gridSize, difficulty]);
+
+  const handleGenerate = () => {
+    // Save settings before generating
+    sessionStorage.setItem(
+      "puzzleSettings",
+      JSON.stringify({
+        size: gridSize,
+        difficulty,
+      })
+    );
+    onGenerate();
+  };
+
+  const handleReset = () => {
+    // Clear both puzzle and settings
+    sessionStorage.removeItem("puzzleSettings");
+    sessionStorage.removeItem("crosswordPuzzle");
+    onReset();
+  };
+
   return (
     <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-gray-700/50 p-6 transition-colors duration-200">
-      <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">Puzzle Configuration</h2>
-      
+      <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">
+        Puzzle Configuration
+      </h2>
+
       <div className="space-y-6">
         <div>
           <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            Grid Size: <span className="font-bold">{gridSize}x{gridSize}</span>
+            Grid Size:{" "}
+            <span className="font-bold">
+              {gridSize}x{gridSize}
+            </span>
           </label>
           <div className="flex items-center gap-4">
-            <input
-              type="range"
-              min="7"
-              max="21"
-              step="1"
-              value={gridSize}
-              onChange={(e) => onGridSizeChange(parseInt(e.target.value))}
-              className="w-full h-2 bg-gray-200 dark:bg-gray-600 rounded-lg appearance-none cursor-pointer"
-            />
-            <span className="text-sm w-12 text-center font-medium bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
-              {gridSize}
-            </span>
-          </div>
-          <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
-            <span>Small</span>
-            <span>Large</span>
+            <div className="relative flex-1">
+              <input
+                type="range"
+                min="7"
+                max="21"
+                step="1"
+                value={gridSize}
+                onChange={(e) => onGridSizeChange(parseInt(e.target.value))}
+                className="w-full h-2 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-lg appearance-none cursor-pointer
+                [&::-webkit-slider-thumb]:appearance-none
+                [&::-webkit-slider-thumb]:h-4
+                [&::-webkit-slider-thumb]:w-4
+                [&::-webkit-slider-thumb]:rounded-full
+                [&::-webkit-slider-thumb]:bg-white
+                [&::-webkit-slider-thumb]:border
+                [&::-webkit-slider-thumb]:border-gray-300
+                [&::-webkit-slider-thumb]:shadow-md
+                [&::-moz-range-thumb]:h-4
+                [&::-moz-range-thumb]:w-4
+                [&::-moz-range-thumb]:rounded-full
+                [&::-moz-range-thumb]:bg-white
+                [&::-moz-range-thumb]:border
+                [&::-moz-range-thumb]:border-gray-300
+                [&::-moz-range-thumb]:shadow-md"
+                          />
+
+              <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1 px-1">
+                <span>Small</span>
+                <span className="absolute right-0 -translate-x-3">Large</span>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -56,21 +115,21 @@ const PuzzleConfigPanel = ({
 
         <div className="space-y-3 pt-2">
           <Button
-            onClick={onGenerate}
+            onClick={handleGenerate}
             loading={isLoading}
             fullWidth
             variant="primary"
           >
-            {isLoading ? 'Generating...' : 'Generate Puzzle'}
+            {isLoading ? "Generating..." : "Generate Puzzle"}
           </Button>
-          
+
           <Button
-            onClick={onReset}
+            onClick={handleReset}
             fullWidth
             variant="secondary"
             disabled={isLoading}
           >
-            Reset Settings
+            Clear Puzzle
           </Button>
         </div>
       </div>

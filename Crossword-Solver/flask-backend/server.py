@@ -2,20 +2,23 @@ import logging
 import random
 import time
 import traceback
-from venv import logger
-import pdfkit
-from flask import Flask, make_response, render_template, request, jsonify
+from flask import Flask, make_response, request, jsonify
 from flask_cors import CORS
-from solver.dfs_solver import solve_with_dfs
-from solver.astar_solver import solve_with_astar
-from solver.hybrid_solver import solve_with_hybrid
-from wordnet_helper import get_possible_words, get_words_by_length
+from dictionary_helper import DictionaryHelper
 from generate_downloadables import generate_png_image, generate_pdf
-
 from generator.crossword_generator import CrosswordGenerator
+
+from solver.algorithms.astar_solver import AStarSolver
+from solver.algorithms.dfs_solver import DFSSolver
+from solver.algorithms.hybrid_solver import HybridSolver
+from solver.analysis.visualizer import ComplexityVisualizer
 
 app = Flask(__name__)
 CORS(app) 
+
+dict_helper = DictionaryHelper("dictionary")
+
+complexity_trackers = {}
 
 @app.route("/solve", methods=["POST", "OPTIONS"])
 def solve():
@@ -29,7 +32,7 @@ def solve():
 
         grid = data.get("grid")
         clues = data.get("clues")
-        algorithm = data.get("algorithm", "HYBRID")
+        algorithm = data.get("algorithm", "HYBRID").upper()
 
         if not grid or not clues:
             return jsonify({"error": "Missing grid or clues"}), 400
@@ -37,14 +40,17 @@ def solve():
         start_time = time.time()
 
         if algorithm == "DFS":
-            result = solve_with_dfs(grid, clues)
+            solver = DFSSolver(grid, clues, dict_helper)
         elif algorithm == "A*":
-            result = solve_with_astar(grid, clues)
+            solver = AStarSolver(grid, clues, dict_helper)
         elif algorithm == "HYBRID":
-            result = solve_with_hybrid(grid, clues)
+            solver = HybridSolver(grid, clues, dict_helper)
         else:
             return jsonify({"error": "Invalid algorithm"}), 400
 
+        complexity_trackers[algorithm] = solver.complexity_tracker
+        
+        result = solver.solve()
         execution_time = time.time() - start_time
 
         response_data = {
@@ -54,7 +60,9 @@ def solve():
             "metrics": {
                 "execution_time": f"{execution_time:.4f}s",
                 "memory_usage_kb": result.get("memory_usage_kb", 0),
-                "words_placed": f"{result.get('words_placed', 0)}/{result.get('total_words', 0)}"
+                "words_placed": f"{result.get('words_placed', 0)}/{result.get('total_words', 0)}",
+                "time_complexity": result.get("time_complexity", {}),
+                "space_complexity": result.get("space_complexity", {})
             },
             "details": {
                 "status": result.get("status", "unknown"),
@@ -65,9 +73,103 @@ def solve():
         return _corsify_actual_response(jsonify(response_data))
 
     except Exception as e:
-        logger.error(f"Solve error: {str(e)}", exc_info=True)
+        logging.error(f"Solve error: {str(e)}", exc_info=True)
         return jsonify({
             "error": "Internal server error",
+            "details": str(e)
+        }), 500
+
+@app.route("/analyze", methods=["POST", "OPTIONS"])
+def analyze_complexity():
+    """Run all algorithms and compare their complexity"""
+    if request.method == "OPTIONS":
+        return _build_cors_preflight_response()
+
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({"error": "No data received"}), 400
+
+        grid = data.get("grid")
+        clues = data.get("clues")
+
+        if not grid or not clues:
+            return jsonify({"error": "Missing grid or clues"}), 400
+
+        algorithms = {
+            "DFS": DFSSolver(grid, clues, dict_helper),
+            "A*": AStarSolver(grid, clues, dict_helper),
+            "HYBRID": HybridSolver(grid, clues, dict_helper)
+        }
+        
+        results = {}
+        for algo_name, solver in algorithms.items():
+            start_time = time.time()
+            result = solver.solve()
+            execution_time = time.time() - start_time
+            
+            complexity_trackers[algo_name] = solver.complexity_tracker
+            
+            results[algo_name] = {
+                "success": result.get("status", "").lower() == "success",
+                "solution": result.get("grid", []),
+                "metrics": {
+                    "execution_time": f"{execution_time:.4f}s",
+                    "memory_usage_kb": result.get("memory_usage_kb", 0),
+                    "words_placed": f"{result.get('words_placed', 0)}/{result.get('total_words', 0)}",
+                    "time_complexity": result.get("time_complexity", {}),
+                    "space_complexity": result.get("space_complexity", {})
+                },
+                "details": {
+                    "status": result.get("status", "unknown")
+                }
+            }
+
+        return _corsify_actual_response(jsonify(results))
+
+    except Exception as e:
+        logging.error(f"Analysis error: {str(e)}", exc_info=True)
+        return jsonify({
+            "error": "Internal server error",
+            "details": str(e)
+        }), 500
+
+@app.route("/visualize", methods=["GET", "OPTIONS"])
+def visualize_complexity():
+    """Generate complexity visualization for the last run algorithms"""
+    if request.method == "OPTIONS":
+        return _build_cors_preflight_response()
+        
+    try:
+        algorithm = request.args.get("algorithm", "").upper()
+        chart_type = request.args.get("type", "combined")
+        
+        if algorithm and algorithm in complexity_trackers:
+            trackers = {algorithm: complexity_trackers[algorithm]}
+            title = f"{algorithm} Algorithm Complexity"
+        else:
+            trackers = complexity_trackers
+            title = "Algorithm Complexity Comparison"
+        
+        if not trackers:
+            return jsonify({"error": "No complexity data available. Run solvers first."}), 400
+            
+        if chart_type == "time":
+            ComplexityVisualizer.plot_time_complexity(trackers, title)
+        elif chart_type == "space":
+            ComplexityVisualizer.plot_space_complexity(trackers, title)
+        else:
+            ComplexityVisualizer.plot_combined_complexity(trackers, title)
+            
+        return jsonify({
+            "success": True,
+            "message": f"Complexity visualization generated for {len(trackers)} algorithm(s)"
+        })
+        
+    except Exception as e:
+        logging.error(f"Visualization error: {str(e)}", exc_info=True)
+        return jsonify({
+            "error": "Failed to generate visualization",
             "details": str(e)
         }), 500
 
@@ -78,11 +180,14 @@ def suggest_words():
         
     clue = request.args.get("clue", "")
     max_words = int(request.args.get("max", 20))
-    words = get_possible_words(clue=clue, max_words=max_words)
+    words = dict_helper.get_possible_words(clue=clue, max_words=max_words)
     return _corsify_actual_response(jsonify(words))
 
-@app.route('/generate', methods=['POST'])
+@app.route('/generate', methods=['POST', 'OPTIONS'])
 def generate():
+    if request.method == "OPTIONS":
+        return _build_cors_preflight_response()
+        
     try:
         data = request.get_json()
         size = int(data.get('size', 15))
@@ -115,7 +220,7 @@ def generate():
         target_word_count = int(base_word_count * word_count_multiplier)
 
         initial_length = random.randint(min_word_length, min(max_word_length, size//2))
-        possible_words = get_words_by_length(length=initial_length, max_words=100)
+        possible_words = dict_helper.get_words_by_length(length=initial_length, max_words=100)
         if not possible_words:
             return jsonify({
                 "success": False,
@@ -134,7 +239,7 @@ def generate():
             word_list = []
             dynamic_max_len = max_word_length + (attempt % 2)
             for length in range(min_word_length, dynamic_max_len + 1):
-                words = get_words_by_length(
+                words = dict_helper.get_words_by_length(
                     length=length,
                     max_words=int(target_word_count / 2) + random.randint(0, 20)
                 )
@@ -190,7 +295,7 @@ def generate():
                     if (x, y) in numbered_positions:
                         empty_grid[y][x] = str(numbered_positions[(x, y)])
             
-            return jsonify({
+            return _corsify_actual_response(jsonify({
                 "success": True,
                 "grid": final_puzzle.grid,
                 "empty_grid": empty_grid,   
@@ -201,18 +306,21 @@ def generate():
                     "size": size,
                     "density": final_puzzle.calculate_density()
                 }
-            })
+            }))
 
     except Exception as e:
         logging.error(f"Generation error: {str(e)}", exc_info=True)
-        return jsonify({
+        return _corsify_actual_response(jsonify({
             "success": False,
             "error": "Internal server error",
             "message": str(e)
-        }), 500
+        }), 500)
 
-@app.route('/download', methods=['POST'])
+@app.route('/download', methods=['POST', 'OPTIONS'])
 def download():
+    if request.method == "OPTIONS":
+        return _build_cors_preflight_response()
+        
     try:
         data = request.get_json()
         puzzle = data.get('puzzle')
@@ -224,19 +332,19 @@ def download():
             response = make_response(image_data)
             response.headers['Content-Type'] = 'image/png'
             response.headers['Content-Disposition'] = 'attachment; filename=crossword.png'
-            return response
+            return _corsify_actual_response(response)
             
         elif format == 'pdf':
             pdf_data = generate_pdf(puzzle, show_answers)
             response = make_response(pdf_data)
             response.headers['Content-Type'] = 'application/pdf'
             response.headers['Content-Disposition'] = 'attachment; filename=crossword.pdf'
-            return response
+            return _corsify_actual_response(response)
             
-        return jsonify({'error': 'Invalid format'}), 400
+        return _corsify_actual_response(jsonify({'error': 'Invalid format'}), 400)
         
     except Exception as e:
-        return jsonify({'error': str(e)}), 500
+        return _corsify_actual_response(jsonify({'error': str(e)}), 500)
 
 def _build_cors_preflight_response():
     response = jsonify({"message": "Preflight Request Accepted"})

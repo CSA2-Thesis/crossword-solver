@@ -2,6 +2,7 @@ import { Outlet, Link } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import { useState, useEffect, useRef } from "react";
 import Body from "./Body";
+import Footer from "./Footer";
 import { FiSun, FiMoon, FiSettings } from "react-icons/fi";
 
 function Layout() {
@@ -57,25 +58,31 @@ function Layout() {
   };
 
   return (
-    <div className="relative min-h-screen  text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div className="relative min-h-screen text-gray-900 dark:text-gray-100 transition-colors duration-200">
       <div className="fixed inset-0 -z-10">
         <Body />
       </div>
 
-      <div className="relative z-10 flex flex-col min-h-screen main-content">
+      <div className="relative z-10 flex flex-col min-h-screen">
         <header className="bg-white/80 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-20 dark:bg-gray-800/90 dark:border-gray-700">
           <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-16 items-center">
+
               <Link
                 to="/"
-                className="text-xl font-bold text-gray-900 dark:text-white flex-shrink-0"
+                className="text-xl font-bold text-gray-900 dark:text-white flex-shrink-0 flex"
               >
-                Crossword Solver
+                <img 
+                  src="/puzzlyLogic.png" 
+                  alt="Puzzly Logic Logo" 
+                  className="h-8 w-8 mr-4"
+                />
+                <span className="text-blue-600 dark:text-blue-400">Puzzly </span>Logic
               </Link>
 
               <div className="hidden md:flex justify-center flex-1">
                 <div className="flex items-center gap-8">
-                  <NavLink to="/generate">Generate Puzzle</NavLink>
+                  <NavLink to="/generate">Create Puzzle</NavLink>
                   <NavLink to="/analytics">Analytics</NavLink>
                   <NavLink to="/about">About</NavLink>
                 </div>
@@ -84,7 +91,7 @@ function Layout() {
               <div className="flex items-center gap-4">
                 <button
                   onClick={toggleTheme}
-                  className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200"
+                  className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:bg-gray-700 transition-colors duration-200"
                   aria-label="Toggle dark mode"
                 >
                   <div className="relative w-5 h-5">
@@ -106,13 +113,13 @@ function Layout() {
                     />
                   </div>
                 </button>
-
+                
                 <div className="relative" ref={dropdownRef}>
                   <button
                     onClick={() =>
                       setShowSettingsDropdown(!showSettingsDropdown)
                     }
-                    className="p-2 mr-4 text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+                    className="p-2 rounded-full text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:bg-gray-700 transition-colors"
                     aria-label="Settings"
                   >
                     <FiSettings size={20} />
@@ -169,9 +176,11 @@ function Layout() {
           </nav>
         </header>
 
-        <main className="flex-1 bg-white/80/10 dark:bg-gray-800/10 backdrop-blur-md">
+        <main className="flex-1 bg-white/10 dark:bg-gray-800/10 backdrop-blur-md">
           <Outlet />
         </main>
+        {/* <Footer variant="simple" className="-mt-17"/> */}
+        <Footer variant="default" className="-m-77"/>
       </div>
 
       <Toaster position="bottom-right" />
