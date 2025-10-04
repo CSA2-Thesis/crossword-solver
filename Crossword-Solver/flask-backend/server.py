@@ -1,7 +1,6 @@
 import logging
 import random
 import time
-import traceback
 from flask import Flask, make_response, request, jsonify
 from flask_cors import CORS
 from dictionary_helper import DictionaryHelper
@@ -33,6 +32,7 @@ def solve():
         grid = data.get("grid")
         clues = data.get("clues")
         algorithm = data.get("algorithm", "HYBRID").upper()
+        enable_memory_profiling = data.get("enable_memory_profiling", False)
 
         if not grid or not clues:
             return jsonify({"error": "Missing grid or clues"}), 400
@@ -40,11 +40,11 @@ def solve():
         start_time = time.time()
 
         if algorithm == "DFS":
-            solver = DFSSolver(grid, clues, dict_helper)
+            solver = DFSSolver(grid, clues, dict_helper, enable_memory_profiling)
         elif algorithm == "A*":
-            solver = AStarSolver(grid, clues, dict_helper)
+            solver = AStarSolver(grid, clues, dict_helper, enable_memory_profiling)
         elif algorithm == "HYBRID":
-            solver = HybridSolver(grid, clues, dict_helper)
+            solver = HybridSolver(grid, clues, dict_helper, enable_memory_profiling)
         else:
             return jsonify({"error": "Invalid algorithm"}), 400
 
@@ -53,16 +53,25 @@ def solve():
         result = solver.solve()
         execution_time = time.time() - start_time
 
+        # Enhanced memory metrics
+        memory_metrics = {
+            "memory_usage_kb": result.get("memory_usage_kb", 0),
+            "min_memory_kb": result.get("min_memory_kb", 0),
+            "peak_memory_kb": result.get("peak_memory_kb", 0),
+            "memory_profiling_enabled": enable_memory_profiling
+        }
+
         response_data = {
             "method": algorithm,
             "success": result.get("status", "").lower() == "success",
             "solution": result.get("grid", []), 
             "metrics": {
                 "execution_time": f"{execution_time:.4f}s",
-                "memory_usage_kb": result.get("memory_usage_kb", 0),
+                **memory_metrics,
                 "words_placed": f"{result.get('words_placed', 0)}/{result.get('total_words', 0)}",
                 "time_complexity": result.get("time_complexity", {}),
-                "space_complexity": result.get("space_complexity", {})
+                "space_complexity": result.get("space_complexity", {}),
+                "fallback_usage_count": result.get("fallback_usage_count", 0),
             },
             "details": {
                 "status": result.get("status", "unknown"),

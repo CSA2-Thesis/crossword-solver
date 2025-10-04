@@ -1,230 +1,485 @@
-import logging
-from typing import List, Dict, Set, Tuple
+import heapq
+from typing import List, Dict, Set, Tuple, Optional
 from ..core.base_solver import BaseCrosswordSolver
 from ..core.slot_manager import SlotManager
 from ..core.constraints import ConstraintChecker
 
-logger = logging.getLogger(__name__)
-
 class HybridSolver(BaseCrosswordSolver):
-    def __init__(self, grid: List[List[str]], clues: Dict[str, List[Dict]], dict_helper):
-        super().__init__(grid, clues)
+    def __init__(self, grid: List[List[str]], clues: Dict[str, List[Dict]], dict_helper, 
+                 enable_memory_profiling: bool = False, beam_width: int = 5, 
+                 switch_threshold: float = 0.7):
+        super().__init__(grid, clues, enable_memory_profiling)
         self.dict_helper = dict_helper
         self.slot_manager = SlotManager(self.solution, clues)
-        # record snapshot after slot manager initializes
-        self._record_memory_snapshot("init:before_get_word_slots")
         self.slots = self.slot_manager.get_word_slots()
-        self._record_memory_snapshot("init:after_get_word_slots")
         self.slot_graph = self.slot_manager.build_slot_graph(self.slots)
-        self._record_memory_snapshot("init:after_build_slot_graph")
         self.constraint_checker = ConstraintChecker(self.solution, self.slot_graph)
-        self.slot_candidates: List[Tuple[Dict, List[Tuple[str, int]]]] = []
-        self.fallback_attempted = set()
+        
+        self.beam_width = beam_width
+        self.switch_threshold = switch_threshold
+        self.state_cache = {}
+        
+        self.astar_expansions = 0
+        self.dfs_backtracks = 0
+        self.mode_switches = 0
 
     def solve(self) -> Dict:
-        logger.info("Starting hybrid solve")
         self._start_performance_tracking()
-        self._record_memory_snapshot("solve:start")
         
         if not self.slots:
-            logger.info("No slots to fill, returning early")
             return self._create_result(True, 0, 0)
         
-        self.slot_candidates = self._get_all_scored_candidates()
-        if not self.slot_candidates:
-            logger.warning("No valid candidates found for some slots")
-            self._record_memory_snapshot("solve:no_candidates")
-            return self._create_result(False, 0, len(self.slots))
-        
-        # Sort slots by number of candidates
-        self.slot_candidates.sort(key=lambda x: len(x[1]))
-        self._record_memory_snapshot("solve:after_sort_slots")
-        
-        logger.info("Slot processing order:")
-        for i, (slot, candidates) in enumerate(self.slot_candidates):
-            logger.info(f"  {i+1}. Slot {slot['number']} {slot['direction']}: {len(candidates)} candidates")
-        
-        success = self._heuristic_dfs(0)
-        
-        if not success and self.fallback_attempted:
-            logger.info("Retrying solve with fallback system for ambiguous words")
-            # record snapshot before fallback attempt
-            self._record_memory_snapshot("solve:before_fallback_retry")
-            success = self._heuristic_dfs(0, allow_fallback=True)
-            self._record_memory_snapshot("solve:after_fallback_retry")
-        
-        self._record_memory_snapshot("solve:end")
+        success, filled_slots = self._explore_with_astar()
         
         if success:
-            logger.info("Solution found!")
-        else:
-            logger.warning("No solution found")
+            words_placed = self._count_filled_words()
+            return self._create_result(True, words_placed, len(self.slots))
+        
+        self.mode_switches += 1
+        
+        success = self._complete_with_dfs(filled_slots)
         
         words_placed = self._count_filled_words()
         return self._create_result(success, words_placed, len(self.slots))
 
-    def _get_all_scored_candidates(self) -> List[Tuple[Dict, List[Tuple[str, int]]]]:
-        self._record_memory_snapshot("_get_all_scored_candidates:start")
-        slot_candidates = []
+    def _explore_with_astar(self) -> Tuple[bool, Set[Tuple[int, str]]]:
+        if self.enable_memory_profiling:
+            self._record_memory_snapshot("astar_start")
         
-        for slot in self.slots:
-            self._record_memory_snapshot(f"_get_all_scored_candidates:slot_start:{slot['number']}")
-            logger.debug(f"Getting scored candidates for slot {slot['number']} {slot['direction']}")
-            candidates = self._get_scored_candidates(slot)
+        processing_order = self._order_slots_by_difficulty()
+        initial_filled = set()
+        
+        initial_state = SolverState(
+            grid=[row[:] for row in self.solution],
+            filled_slots=initial_filled,
+            cost=0,
+            slot_index=0,
+            processing_order=processing_order
+        )
+        initial_state.heuristic = self._estimate_remaining_difficulty(initial_state)
+        initial_state.priority = initial_state.cost + initial_state.heuristic
+        
+        beam = [initial_state]
+        best_state = initial_state
+        
+        max_expansions = min(1000, len(self.slots) * 50)
+        
+        while beam and self.astar_expansions < max_expansions:
+            self.astar_expansions += 1
             
-            if not candidates:
-                logger.warning(f"No candidates found for slot {slot['number']} {slot['direction']}")
-                # mark slot for fallback later
-                self.fallback_attempted.add((slot['number'], slot['direction']))
-                self._record_memory_snapshot(f"_get_all_scored_candidates:marked_fallback:{slot['number']}")
-                continue
+            current_state = heapq.heappop(beam)
             
-            slot_candidates.append((slot, candidates))
-            logger.debug(f"Found {len(candidates)} scored candidates for slot {slot['number']}")
-            self._record_memory_snapshot(f"_get_all_scored_candidates:slot_end:{slot['number']}")
+            if current_state.slot_index >= len(processing_order):
+                self._apply_state_to_solution(current_state)
+                return True, current_state.filled_slots
+            
+            if len(current_state.filled_slots) > len(best_state.filled_slots):
+                best_state = current_state
+            
+            successors = self._generate_successors(current_state)
+            
+            for successor in successors:
+                heapq.heappush(beam, successor)
+            
+            if len(beam) > self.beam_width:
+                beam = heapq.nsmallest(self.beam_width, beam)
+                heapq.heapify(beam)
+            
+            progress_ratio = len(current_state.filled_slots) / len(self.slots)
+            if progress_ratio > self.switch_threshold and len(beam) == 1:
+                self._apply_state_to_solution(best_state)
+                return False, best_state.filled_slots
         
-        self._record_memory_snapshot("_get_all_scored_candidates:end")
-        return slot_candidates
+        self._apply_state_to_solution(best_state)
+        return False, best_state.filled_slots
 
-    def _get_scored_candidates(self, slot: Dict, allow_fallback: bool=False) -> List[Tuple[str, int]]:
-        self._record_memory_snapshot(f"_get_scored_candidates:start:{slot.get('number', 'unknown')}")
-        self.complexity_tracker.increment_operations()
-        candidates = []
+    def _complete_with_dfs(self, initial_filled: Set[Tuple[int, str]]) -> bool:
+        if self.enable_memory_profiling:
+            self._record_memory_snapshot("dfs_start")
         
-        # --- try dictionary matches ---
-        try:
-            dict_candidates = self.dict_helper.get_possible_words(
-                clue=slot['clue'],
-                max_words=1000,
-                length_range=(slot['length'], slot['length'])
-            )
-        except Exception:
-            # If dict_helper signature differs or fails, try a more permissive call
-            try:
-                dict_candidates = self.dict_helper.get_possible_words(
-                    max_words=1000,
-                    length_range=(slot['length'], slot['length'])
-                )
-            except Exception:
-                dict_candidates = []
-                logger.debug(f"_get_scored_candidates: dict_helper.get_possible_words failed for slot {slot.get('number')}")
-
-        for candidate in dict_candidates:
-            try:
-                word = candidate['word'].upper() if isinstance(candidate, dict) and 'word' in candidate else (candidate.upper() if isinstance(candidate, str) else None)
-            except Exception:
-                word = None
-
-            if not word:
-                continue
-
-            if len(word) == slot['length'] and self._word_fits(slot, word):
-                score = self._calculate_heuristic(slot, word)
-                candidates.append((word, score))
+        remaining_slots = [slot for slot in self.slots 
+                          if (slot['number'], slot['direction']) not in initial_filled]
         
-        # --- fallback: alternative spellings ---
-        if not candidates and allow_fallback:
-            # be defensive: only call if helper provides the feature
-            if hasattr(self.dict_helper, 'get_alternative_spellings'):
-                try:
-                    alt_words = self.dict_helper.get_alternative_spellings(slot['clue'], slot['length'])
-                except Exception:
-                    alt_words = []
-                if alt_words:
-                    logger.warning(f"Using fallback spellings for slot {slot['number']} {slot['direction']}")
-                    for word in alt_words:
-                        try:
-                            w = word.upper()
-                        except Exception:
-                            continue
-                        if len(w) == slot['length'] and self._word_fits(slot, w):
-                            score = self._calculate_heuristic(slot, w)
-                            candidates.append((w, score))
-                    self._record_memory_snapshot(f"_get_scored_candidates:fallback_used:{slot.get('number')}")
-            else:
-                self._record_memory_snapshot(f"_get_scored_candidates:no_fallback_api:{slot.get('number')}")
-        
-        self._record_memory_snapshot(f"_get_scored_candidates:end:{slot.get('number', 'unknown')}")
-        return candidates
-
-    # -------------------------------
-    # Heuristic DFS with fallback
-    # -------------------------------
-    def _heuristic_dfs(self, slot_index: int, allow_fallback: bool=False) -> bool:
-        self._record_memory_snapshot(f"_heuristic_dfs:start:{slot_index}")
-        if slot_index >= len(self.slot_candidates):
-            self._record_memory_snapshot(f"_heuristic_dfs:complete:{slot_index}")
+        if not remaining_slots:
             return True
         
-        slot, scored_candidates = self.slot_candidates[slot_index]
-        logger.debug(f"Processing slot {slot['number']} {slot['direction']} (index {slot_index})")
+        ordered_slots = self._sort_remaining_slots(remaining_slots)
+        slot_indices = self._convert_slots_to_indices(ordered_slots)
         
-        # Re-fetch candidates if fallback is enabled for this slot
-        if allow_fallback and (slot['number'], slot['direction']) in self.fallback_attempted:
-            self._record_memory_snapshot(f"_heuristic_dfs:refetch_with_fallback:{slot['number']}")
-            scored_candidates = self._get_scored_candidates(slot, allow_fallback=True)
+        success = self._guided_dfs(0, slot_indices, ordered_slots)
+        return success
+
+    def _generate_successors(self, state: 'SolverState') -> List['SolverState']:
+        successors = []
         
-        # If there are still no candidates after fallback, return False early
-        if not scored_candidates:
-            self._record_memory_snapshot(f"_heuristic_dfs:no_candidates:{slot['number']}")
+        if state.slot_index >= len(state.processing_order):
+            return successors
+        
+        slot = state.processing_order[state.slot_index]
+        candidates = self._evaluate_candidates_with_fallback(slot, state.grid)
+        
+        if not candidates:
+            return []
+            
+        max_candidates = min(15, len(candidates))
+        
+        for word, score in candidates[:max_candidates]:
+            if not self._validate_word_placement(slot, word, state.grid):
+                continue
+
+            new_grid = self._apply_word_to_grid(state.grid, slot, word)
+            new_filled = state.filled_slots | {(slot['number'], slot['direction'])}
+            
+            new_state = SolverState(
+                grid=new_grid,
+                filled_slots=new_filled,
+                cost=state.cost + 1,
+                slot_index=state.slot_index + 1,
+                processing_order=state.processing_order
+            )
+            
+            new_state.heuristic = self._estimate_remaining_difficulty(new_state)
+            new_state.priority = new_state.cost + new_state.heuristic
+            
+            successors.append(new_state)
+        
+        return successors
+
+    def _guided_dfs(self, slot_idx: int, slot_indices: List[int], ordered_slots: List[Dict]) -> bool:
+        if slot_idx >= len(slot_indices):
+            return True
+        
+        original_slot_idx = slot_indices[slot_idx]
+        slot = self.slots[original_slot_idx]
+        
+        candidates = self._evaluate_candidates_with_fallback(slot, self.solution)
+        
+        if not candidates:
+            self.dfs_backtracks += 1
             return False
         
-        # sort by descending score (best first)
-        scored_candidates.sort(key=lambda x: -x[1])
-        self._record_memory_snapshot(f"_heuristic_dfs:sorted_candidates:{slot['number']}")
+        candidates.sort(key=lambda x: -x[1])
         
-        for word, score in scored_candidates:
-            self._record_memory_snapshot(f"_heuristic_dfs:trying:{slot['number']}:{word}")
-            logger.debug(f"Trying word '{word}' (score: {score}) in slot {slot['number']}")
-            
-            if not self._word_fits(slot, word):
-                self._record_memory_snapshot(f"_heuristic_dfs:word_does_not_fit:{slot['number']}:{word}")
+        for word, score in candidates:
+            if not self._fits(slot, word):
                 continue
             
             placed_positions = self._place_word(slot, word)
-            self._record_memory_snapshot(f"_heuristic_dfs:placed:{slot['number']}:{word}")
             
-            affected_slot_indices = self._get_affected_slots(slot)
-            future_affected_indices = {idx for idx in affected_slot_indices if idx > slot_index}
-            
-            if not self._check_forward_constraints(future_affected_indices, allow_fallback):
-                self._record_memory_snapshot(f"_heuristic_dfs:forward_check_failed:{slot['number']}:{word}")
+            if not self._verify_future_slots(slot_idx + 1, slot_indices, ordered_slots):
                 self._remove_word(placed_positions)
-                self._record_memory_snapshot(f"_heuristic_dfs:removed_after_forward_fail:{slot['number']}:{word}")
+                self.dfs_backtracks += 1
                 continue
             
-            if self._heuristic_dfs(slot_index + 1, allow_fallback):
-                self._record_memory_snapshot(f"_heuristic_dfs:success:{slot['number']}:{word}")
+            if self._guided_dfs(slot_idx + 1, slot_indices, ordered_slots):
                 return True
             
-            # backtrack
             self._remove_word(placed_positions)
-            self._record_memory_snapshot(f"_heuristic_dfs:backtrack:{slot['number']}:{word}")
+            self.dfs_backtracks += 1
         
-        self._record_memory_snapshot(f"_heuristic_dfs:end:{slot_index}")
         return False
 
-    def _check_forward_constraints(self, affected_slot_indices: Set[int], allow_fallback: bool=False) -> bool:
-        self._record_memory_snapshot("_check_forward_constraints:start")
-        for slot_idx in affected_slot_indices:
-            if slot_idx >= len(self.slot_candidates):
-                continue
-                
-            slot, _ = self.slot_candidates[slot_idx]
-            current_candidates = self._get_scored_candidates(slot, allow_fallback=allow_fallback)
-            
-            if not current_candidates:
-                self._record_memory_snapshot(f"_check_forward_constraints:fail:{slot.get('number')}")
-                return False
+    def _evaluate_candidates_with_fallback(self, slot: Dict, grid: List[List[str]]) -> List[Tuple[str, int]]:
+        candidates = self._evaluate_candidates(slot, grid)
         
-        self._record_memory_snapshot("_check_forward_constraints:end")
+        if candidates:
+            return candidates
+        
+        fallback_candidates = []
+        pattern = self._extract_pattern(slot, grid)
+        
+        fallback_methods = [
+            self._fallback_by_pattern_only,
+            self._fallback_by_length_only,
+            self._fallback_by_alternative_spellings,
+            self._fallback_by_common_words
+        ]
+        
+        for method in fallback_methods:
+            if len(fallback_candidates) >= 10:
+                break
+            try:
+                new_candidates = method(slot, pattern, grid)
+                if new_candidates:
+                    fallback_candidates.extend(new_candidates)
+                    self._increment_fallback_count()
+            except Exception:
+                continue
+        
+        if fallback_candidates:
+            scored_fallback = []
+            for word in fallback_candidates:
+                score = self._compute_word_score(slot, word, grid, pattern)
+                scored_fallback.append((word, score))
+            scored_fallback.sort(key=lambda x: -x[1])
+            return scored_fallback[:20]
+        
+        return []
+
+    def _fallback_by_pattern_only(self, slot: Dict, pattern: str, grid: List[List[str]]) -> List[str]:
+        candidates = []
+        try:
+            pattern_words = self.dict_helper.get_words_by_pattern(
+                pattern=pattern, clue=None, max_words=50
+            )
+            for word_data in pattern_words:
+                word = self._parse_candidate_word(word_data)
+                if word and self._validate_word_placement(slot, word, grid):
+                    candidates.append(word)
+        except Exception:
+            pass
+        return candidates
+
+    def _fallback_by_length_only(self, slot: Dict, pattern: str, grid: List[List[str]]) -> List[str]:
+        candidates = []
+        try:
+            length_words = self.dict_helper.get_words_by_length(slot['length'], max_words=100)
+            for word_data in length_words:
+                word = self._parse_candidate_word(word_data)
+                if word and self._validate_word_placement(slot, word, grid):
+                    candidates.append(word)
+        except Exception:
+            pass
+        return candidates
+
+    def _fallback_by_alternative_spellings(self, slot: Dict, pattern: str, grid: List[List[str]]) -> List[str]:
+        candidates = []
+        try:
+            if hasattr(self.dict_helper, 'get_alternative_spellings'):
+                alt_words = self.dict_helper.get_alternative_spellings(
+                    slot['clue'], slot['length'], max_words=30
+                )
+                for word_data in alt_words:
+                    word = self._parse_candidate_word(word_data)
+                    if word and len(word) == slot['length'] and self._validate_word_placement(slot, word, grid):
+                        candidates.append(word)
+        except Exception:
+            pass
+        return candidates
+
+    def _fallback_by_common_words(self, slot: Dict, pattern: str, grid: List[List[str]]) -> List[str]:
+        candidates = []
+        try:
+            common_words = self.dict_helper.get_words_by_length(slot['length'], max_words=50)
+            common_words.sort(key=lambda x: x.get('score', 0), reverse=True)
+            
+            for word_data in common_words[:20]:
+                word = self._parse_candidate_word(word_data)
+                if word and self._validate_word_placement(slot, word, grid):
+                    candidates.append(word)
+        except Exception:
+            pass
+        return candidates
+
+    def _order_slots_by_difficulty(self) -> List[Dict]:
+        scored_slots = []
+        
+        for slot in self.slots:
+            slot_key = (slot['number'], slot['direction'])
+            constraint_degree = len(self.slot_graph.get(slot_key, []))
+            candidate_estimate = max(1, self._predict_candidate_count(slot))
+            difficulty_score = constraint_degree * 10 + (50 - min(candidate_estimate, 50))
+            scored_slots.append((slot, difficulty_score))
+        
+        scored_slots.sort(key=lambda x: -x[1])
+        return [slot for slot, score in scored_slots]
+
+    def _estimate_remaining_difficulty(self, state: 'SolverState') -> int:
+        remaining_slots = len(state.processing_order) - state.slot_index
+        
+        if remaining_slots == 0:
+            return 0
+        
+        heuristic = remaining_slots * 5
+        
+        for i in range(state.slot_index, min(state.slot_index + 3, len(state.processing_order))):
+            slot = state.processing_order[i]
+            slot_key = (slot['number'], slot['direction'])
+            constraint_degree = len(self.slot_graph.get(slot_key, []))
+            heuristic += constraint_degree * 2
+        
+        return heuristic
+
+    def _evaluate_candidates(self, slot: Dict, grid: List[List[str]]) -> List[Tuple[str, int]]:
+        candidates = []
+        pattern = self._extract_pattern(slot, grid)
+        
+        dict_words = self._fetch_dictionary_candidates(slot)
+        
+        for candidate in dict_words:
+            word = self._parse_candidate_word(candidate)
+            if not word or len(word) != slot['length']:
+                continue
+            
+            if not self._validate_word_placement(slot, word, grid):
+                continue
+            
+            score = self._compute_word_score(slot, word, grid, pattern)
+            candidates.append((word, score))
+        
+        return candidates
+
+    def _compute_word_score(self, slot: Dict, word: str, grid: List[List[str]], pattern: str) -> int:
+        score = 0
+        
+        for i, (pattern_char, word_char) in enumerate(zip(pattern, word)):
+            if pattern_char != '.':
+                if pattern_char == word_char:
+                    score += 3
+                else:
+                    score -= 5
+        
+        slot_key = (slot['number'], slot['direction'])
+        if slot_key in self.slot_graph:
+            for other_key in self.slot_graph[slot_key]:
+                other_slot = self._locate_slot(other_key)
+                if not other_slot:
+                    continue
+                
+                if slot['direction'] == 'across' and other_slot['direction'] == 'down':
+                    intersect_x = other_slot['x']
+                    intersect_y = slot['y']
+                    word_pos = intersect_x - slot['x']
+                    other_pos = intersect_y - other_slot['y']
+                else:  
+                    intersect_x = slot['x']
+                    intersect_y = other_slot['y']
+                    word_pos = intersect_y - slot['y']
+                    other_pos = intersect_x - other_slot['x']
+                
+                if 0 <= word_pos < len(word) and 0 <= other_pos < other_slot['length']:
+                    other_char = grid[other_slot['y'] + (0 if other_slot['direction'] == 'across' else other_pos)][other_slot['x'] + (other_pos if other_slot['direction'] == 'across' else 0)]
+                    if other_char != '.':
+                        if other_char == word[word_pos]:
+                            score += 3
+                        else:
+                            score -= 5
+        
+        exact_match = self.dict_helper.find_word_by_exact_clue(slot['clue'])
+        if exact_match and exact_match['word'].upper() == word:
+            score += 5
+        
+        return max(0, score)
+
+    def _verify_future_slots(self, start_idx: int, slot_indices: List[int], ordered_slots: List[Dict]) -> bool:
+        for i in range(start_idx, min(start_idx + 2, len(slot_indices))):
+            original_idx = slot_indices[i]
+            slot = self.slots[original_idx]
+            candidates = self._evaluate_candidates_with_fallback(slot, self.solution)
+            if not candidates:
+                return False
         return True
 
-    # -------------------------------
-    # Grid operations
-    # -------------------------------
+    def _sort_remaining_slots(self, slots: List[Dict]) -> List[Dict]:
+        scored = []
+        for slot in slots:
+            slot_key = (slot['number'], slot['direction'])
+            constraint_degree = len(self.slot_graph.get(slot_key, []))
+            candidate_count = len(self._evaluate_candidates_with_fallback(slot, self.solution))
+            difficulty = constraint_degree * 10 + max(0, 20 - candidate_count)
+            scored.append((slot, difficulty))
+        
+        scored.sort(key=lambda x: -x[1])
+        return [slot for slot, _ in scored]
+
+    def _convert_slots_to_indices(self, slots: List[Dict]) -> List[int]:
+        slot_to_index = { (slot['number'], slot['direction']): i 
+                         for i, slot in enumerate(self.slots) }
+        return [slot_to_index[(s['number'], s['direction'])] for s in slots]
+
+    def _apply_state_to_solution(self, state: 'SolverState'):
+        for i in range(len(state.grid)):
+            for j in range(len(state.grid[i])):
+                self.solution[i][j] = state.grid[i][j]
+
+    def _validate_word_placement(self, slot: Dict, word: str, grid: List[List[str]]) -> bool:
+        for i, char in enumerate(word):
+            if slot['direction'] == 'across':
+                x, y = slot['x'] + i, slot['y']
+            else:
+                x, y = slot['x'], slot['y'] + i
+            
+            if not (0 <= y < len(grid) and 0 <= x < len(grid[0])):
+                return False
+            
+            if grid[y][x] != '.' and grid[y][x] != char:
+                return False
+        
+        return True
+
+    def _apply_word_to_grid(self, grid: List[List[str]], slot: Dict, word: str) -> List[List[str]]:
+        new_grid = [row[:] for row in grid]
+        for i, char in enumerate(word):
+            if slot['direction'] == 'across':
+                new_grid[slot['y']][slot['x'] + i] = char
+            else:
+                new_grid[slot['y'] + i][slot['x']] = char
+        return new_grid
+
+    def _extract_pattern(self, slot: Dict, grid: List[List[str]]) -> str:
+        pattern = []
+        for i in range(slot['length']):
+            if slot['direction'] == 'across':
+                x, y = slot['x'] + i, slot['y']
+            else:
+                x, y = slot['x'], slot['y'] + i
+            pattern.append(grid[y][x] if grid[y][x] != '.' else '.')
+        return ''.join(pattern)
+
+    def _predict_candidate_count(self, slot: Dict) -> int:
+        try:
+            words = self.dict_helper.get_possible_words(
+                clue=slot['clue'], max_words=50, length_range=(slot['length'], slot['length'])
+            )
+            return len(words)
+        except:
+            return 10
+
+    def _locate_slot(self, slot_key: Tuple[int, str]) -> Optional[Dict]:  
+        for slot in self.slots:
+            if (slot['number'], slot['direction']) == slot_key:
+                return slot
+        return None
+
+    def _parse_candidate_word(self, candidate) -> str:
+        if isinstance(candidate, dict) and 'word' in candidate:
+            return candidate['word'].upper()
+        elif isinstance(candidate, str):
+            return candidate.upper()
+        return None
+
+    def _fetch_dictionary_candidates(self, slot: Dict) -> List:
+        try:
+            return self.dict_helper.get_possible_words(
+                clue=slot['clue'], max_words=200, length_range=(slot['length'], slot['length'])
+            )
+        except:
+            return []
+
+    def _count_filled_words(self) -> int:
+        filled = 0
+        for slot in self.slots:
+            is_filled = True
+            for i in range(slot['length']):
+                if slot['direction'] == 'across':
+                    x, y = slot['x'] + i, slot['y']
+                else:
+                    x, y = slot['x'], slot['y'] + i
+                if self.solution[y][x] == '.':
+                    is_filled = False
+                    break
+            if is_filled:
+                filled += 1
+        return filled
+
+    def _fits(self, slot: Dict, word: str) -> bool:
+        if not self.constraint_checker.check_word_fits(slot, word):
+            return False
+        if not self.constraint_checker.check_perpendicular_constraints(slot, word, self.slots):
+            return False
+        return True
+
     def _place_word(self, slot: Dict, word: str) -> List[Tuple[int, int]]:
-        self._record_memory_snapshot(f"_place_word:start:{slot.get('number')}")
         positions = []
         for i, char in enumerate(word):
             if slot['direction'] == 'across':
@@ -237,104 +492,31 @@ class HybridSolver(BaseCrosswordSolver):
                 positions.append((x, y))
         
         self.complexity_tracker.increment_operations(len(positions))
-        self._record_memory_snapshot(f"_place_word:end:{slot.get('number')}")
         return positions
 
     def _remove_word(self, positions: List[Tuple[int, int]]):
-        self._record_memory_snapshot("_remove_word:start")
         for x, y in positions:
             self.solution[y][x] = '.'
         self.complexity_tracker.increment_operations(len(positions))
-        self._record_memory_snapshot("_remove_word:end")
 
-    def _get_affected_slots(self, placed_slot: Dict) -> Set[int]:
-        self._record_memory_snapshot("_get_affected_slots:start")
-        affected_indices = set()
-        placed_slot_key = (placed_slot['number'], placed_slot['direction'])
-        
-        if placed_slot_key in self.slot_graph:
-            for other_slot_key in self.slot_graph[placed_slot_key]:
-                for idx, (slot, _) in enumerate(self.slot_candidates):
-                    if (slot['number'], slot['direction']) == other_slot_key:
-                        affected_indices.add(idx)
-                        break
-        self._record_memory_snapshot("_get_affected_slots:end")
-        return affected_indices
+class SolverState:
+    __slots__ = ('grid', 'filled_slots', 'cost', 'slot_index', 'processing_order', 'heuristic', 'priority')
+    
+    def __init__(self, grid: List[List[str]], filled_slots: Set[Tuple[int, str]], 
+                 cost: int, slot_index: int, processing_order: List[Dict]):
+        self.grid = grid
+        self.filled_slots = filled_slots
+        self.cost = cost
+        self.slot_index = slot_index
+        self.processing_order = processing_order
+        self.heuristic = 0
+        self.priority = 0
+    
+    def __lt__(self, other):
+        return self.priority < other.priority
 
-    def _calculate_heuristic(self, slot: Dict, word: str) -> int:
-        self._record_memory_snapshot(f"_calculate_heuristic:start:{slot.get('number')}")
-        score = 0
-        # simple scoring: prefer intersections + exact matches
-        slot_key = (slot['number'], slot['direction'])
-        
-        if slot_key in self.slot_graph:
-            for other_slot_key in self.slot_graph[slot_key]:
-                other_slot = None
-                for s, _ in self.slot_candidates:
-                    if (s['number'], s['direction']) == other_slot_key:
-                        other_slot = s
-                        break
-                if not other_slot:
-                    continue
-                
-                if slot['direction'] == 'across' and other_slot['direction'] == 'down':
-                    intersect_x = other_slot['x']
-                    intersect_y = slot['y']
-                    word_pos = intersect_x - slot['x']
-                    other_pos = intersect_y - other_slot['y']
-                elif slot['direction'] == 'down' and other_slot['direction'] == 'across':
-                    intersect_x = slot['x']
-                    intersect_y = other_slot['y']
-                    word_pos = intersect_y - slot['y']
-                    other_pos = intersect_x - other_slot['x']
-                else:
-                    continue
-                
-                if other_slot['direction'] == 'across':
-                    other_char = self.solution[other_slot['y']][other_slot['x'] + other_pos]
-                else:
-                    other_char = self.solution[other_slot['y'] + other_pos][other_slot['x']]
-                
-                if other_char != '.' and other_char == word[word_pos]:
-                    score += 2
-        
-        exact_match = self.dict_helper.find_word_by_exact_clue(slot['clue'])
-        if exact_match and exact_match['word'].upper() == word:
-            score += 5
-        self._record_memory_snapshot(f"_calculate_heuristic:end:{slot.get('number')}")
-        return score
-
-    def _word_fits(self, slot: Dict, word: str) -> bool:
-        self._record_memory_snapshot(f"_word_fits:start:{slot.get('number')}")
-        if not self.constraint_checker.check_word_fits(slot, word):
-            self._record_memory_snapshot(f"_word_fits:fail_constraint_fit:{slot.get('number')}")
-            return False
-        if not self.constraint_checker.check_perpendicular_constraints(slot, word, self.slots):
-            self._record_memory_snapshot(f"_word_fits:fail_perpendicular:{slot.get('number')}")
-            return False
-        self._record_memory_snapshot(f"_word_fits:ok:{slot.get('number')}")
-        return True
-
-    def _count_filled_words(self) -> int:
-        self._record_memory_snapshot("_count_filled_words:start")
-        filled_count = 0
-        for slot in self.slots:
-            is_filled = True
-            for i in range(slot['length']):
-                if slot['direction'] == 'across':
-                    x, y = slot['x'] + i, slot['y']
-                else:
-                    x, y = slot['x'], slot['y'] + i
-                if self.solution[y][x] == '.':
-                    is_filled = False
-                    break
-            if is_filled:
-                filled_count += 1
-        self._record_memory_snapshot("_count_filled_words:end")
-        return filled_count
-
-
-def solve_with_hybrid(grid: List[List[str]], clues: Dict[str, List[Dict]]) -> Dict:
+def solve_with_hybrid(grid: List[List[str]], clues: Dict[str, List[Dict]], 
+                      beam_width: int = 5, switch_threshold: float = 0.7) -> Dict:
     from dictionary_helper import DictionaryHelper
     import os
     
@@ -342,5 +524,6 @@ def solve_with_hybrid(grid: List[List[str]], clues: Dict[str, List[Dict]]) -> Di
     dict_path = os.path.join(current_dir, "..", "dictionary")
     dict_helper = DictionaryHelper(dict_path)
     
-    solver = HybridSolver(grid, clues, dict_helper)
+    solver = HybridSolver(grid, clues, dict_helper, beam_width=beam_width, 
+                          switch_threshold=switch_threshold)
     return solver.solve()

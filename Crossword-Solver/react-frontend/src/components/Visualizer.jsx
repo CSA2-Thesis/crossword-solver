@@ -37,19 +37,20 @@ export const MemoryAccuracyScatter = ({ data }) => (
   <ResponsiveContainer width="100%" height={400}>
     <ScatterChart margin={{ top: 20, right: 20, bottom: 80, left: 60 }}>
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis 
+      <YAxis 
         type="number"
         dataKey="memoryUsage" 
         name="Memory Usage"
         label={{ value: 'Memory Usage', position: 'insideBottom', offset: -10 }}
         tickFormatter={(value) => formatMemory(value)}
       />
-      <YAxis 
+      <XAxis 
         type="number"
         dataKey="cellAccuracy" 
         name="Accuracy"
         label={{ value: 'Accuracy', angle: -90, position: 'insideLeft' }}
         tickFormatter={(value) => `${(value * 100).toFixed(0)}%`}
+        domain={[0.95, 1.0]}
       />
       <Tooltip content={<ScatterTooltip />} />
       <Legend 
@@ -135,19 +136,20 @@ export const TimeAccuracyScatter = ({ data }) => (
   <ResponsiveContainer width="100%" height={400}>
     <ScatterChart margin={{ top: 20, right: 20, bottom: 80, left: 60 }}>
       <CartesianGrid strokeDasharray="3 3" />
-      <XAxis 
+      <YAxis 
         type="number"
         dataKey="executionTime" 
         name="Execution Time"
         label={{ value: 'Execution Time (s)', position: 'insideBottom', offset: -10 }}
         tickFormatter={(value) => value.toFixed(2)}
       />
-      <YAxis 
+      <XAxis 
         type="number"
         dataKey="cellAccuracy" 
         name="Accuracy"
         label={{ value: 'Accuracy', angle: -90, position: 'insideLeft' }}
         tickFormatter={(value) => `${(value * 100).toFixed(0)}%`}
+        domain={[0.95, 1.0]}
       />
       <Tooltip content={<ScatterTooltip />} />
       <Legend 
@@ -209,7 +211,7 @@ export const PerformanceBySizeChart = ({ data }) => (
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="size" />
       <YAxis yAxisId="left" />
-      <YAxis yAxisId="right" orientation="right" />
+      <YAxis yAxisId="right" orientation="right" domain={[0.8, 1.0]} />
       <Tooltip formatter={(value, name) => {
         if (name === 'avgExecutionTime') return [value.toFixed(3) + 's', 'Execution Time'];
         if (name === 'avgMemoryUsage') return [formatMemory(value), 'Memory Usage'];
