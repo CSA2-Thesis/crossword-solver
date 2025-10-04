@@ -116,7 +116,7 @@ function Body() {
 
   return (
     // bg-[linear-gradient(to_bottom,#e0f2fe_0%,#bae6fd_30%,#7dd3fc_100%)]
-    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-non bg-white dark:bg-gray-800">
+    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-non bg-white dark:bg-[#172030]">
       <svg
         className="w-full h-full"
         viewBox="0 0 1000 500"

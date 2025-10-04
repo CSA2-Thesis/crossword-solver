@@ -10,11 +10,12 @@ logger = logging.getLogger(__name__)
 
 class BaseCrosswordSolver(ABC):
     
-    def __init__(self, grid: List[List[str]], clues: Dict[str, List[Dict]]):
+    def __init__(self, grid: List[List[str]], clues: Dict[str, List[Dict]], enable_memory_profiling: bool = False):
         self.original_grid = [row[:] for row in grid]
         self.height = len(grid)
         self.width = len(grid[0]) if self.height > 0 else 0
         self.clues = clues
+        self.enable_memory_profiling = enable_memory_profiling
         
         self.solution = [
             [cell if cell not in [' ', '.'] else '.' for cell in row] 
@@ -24,7 +25,8 @@ class BaseCrosswordSolver(ABC):
         self.complexity_tracker = ComplexityTracker()
         self.start_time = 0
         self._tracing = False
-        self.memory_samples = []  # store memory usage over time
+        self.memory_samples = []
+        self.fallback_usage_count = 0
         
     @abstractmethod
     def solve(self) -> Dict:
@@ -32,20 +34,23 @@ class BaseCrosswordSolver(ABC):
         
     def _start_performance_tracking(self):
         self.start_time = time.time()
-        tracemalloc.start()
-        self._tracing = True
+        if self.enable_memory_profiling:
+            tracemalloc.start()
+            self._tracing = True
         self.memory_samples.clear()
         self.complexity_tracker.reset()
         self._record_memory_snapshot("start")
 
     def _record_memory_snapshot(self, label: str = ""):
-        """Record a memory snapshot during execution"""
-        if self._tracing:
+        if self._tracing and self.enable_memory_profiling:
             current, peak = tracemalloc.get_traced_memory()
             current_kb = round(current / 1024.0, 2)
             peak_kb = round(peak / 1024.0, 2)
             self.memory_samples.append(current_kb)
             logger.debug(f"[MEMORY] {label}: current={current_kb} KB, peak={peak_kb} KB")
+
+    def _increment_fallback_count(self):
+        self.fallback_usage_count += 1
 
     def _stop_performance_tracking(self) -> Dict:
         exec_time = time.time() - self.start_time
@@ -54,7 +59,7 @@ class BaseCrosswordSolver(ABC):
         avg_memory_kb = 0.0
         peak_memory_kb = 0.0
 
-        if self._tracing:
+        if self._tracing and self.enable_memory_profiling:
             current, peak = tracemalloc.get_traced_memory()
             self._record_memory_snapshot("end")
             tracemalloc.stop()
@@ -75,7 +80,8 @@ class BaseCrosswordSolver(ABC):
             "avg_memory_kb": avg_memory_kb,
             "peak_memory_kb": peak_memory_kb,
             "time_complexity": self.complexity_tracker.time_complexity(),
-            "space_complexity": self.complexity_tracker.space_complexity()
+            "space_complexity": self.complexity_tracker.space_complexity(),
+            "fallback_usage_count": self.fallback_usage_count
         }
         
     def _create_result(self, success: bool, words_placed: int, total_words: int) -> Dict:
@@ -98,5 +104,7 @@ class BaseCrosswordSolver(ABC):
             "time_complexity": metrics["time_complexity"],
             "space_complexity": metrics["space_complexity"],
             "words_placed": words_placed,
-            "total_words": total_words
+            "total_words": total_words,
+            "fallback_usage_count": metrics["fallback_usage_count"],
+            "memory_profiling_enabled": self.enable_memory_profiling
         }
