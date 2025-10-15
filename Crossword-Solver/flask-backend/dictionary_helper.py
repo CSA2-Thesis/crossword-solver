@@ -1,4 +1,3 @@
-import difflib
 import json
 import os
 import logging
@@ -160,28 +159,6 @@ class DictionaryHelper:
                 return word_data
         return None
         
-    def get_possible_words(self, clue: str, max_words: int = 50, 
-                          length_range: tuple = None) -> List[Dict]:
-        results = []
-        clue_lower = clue.lower()
-        
-        exact_match = self.find_word_by_exact_clue(clue)
-        if exact_match:
-            results.append(exact_match)
-        
-        for word_data in self.all_words:
-            if clue_lower in word_data['clue'].lower():
-                if length_range:
-                    word_len = len(word_data['word'])
-                    if word_len < length_range[0] or word_len > length_range[1]:
-                        continue
-                
-                results.append(word_data)
-                if len(results) >= max_words:
-                    break
-        
-        return results
-        
     def get_words_by_pattern(self, pattern: str, clue: str = None, 
                            max_words: int = 50) -> List[Dict]:
         results = []
@@ -207,7 +184,37 @@ class DictionaryHelper:
                     break
         
         return results
-        
+    
+    def get_words_for_crossword_slot(self, clue: str, length: int, max_words: int = 50) -> List[Dict]:
+            results = []
+            clue_lower = clue.lower()
+            exact_match = self.find_word_by_exact_clue(clue)
+            if exact_match and len(exact_match['word']) == length:
+                results.append(exact_match)
+            
+            for word_data in self.all_words:
+                if len(word_data['word']) != length:
+                    continue
+                    
+                if (clue_lower in word_data['clue'].lower() or 
+                    word_data['clue'].lower() in clue_lower):
+                    results.append(word_data)
+                    if len(results) >= max_words:
+                        break
+            
+            if not results:
+                first_word = clue.split()[0].lower() if clue.split() else ""
+                if first_word:
+                    for word_data in self.all_words:
+                        if len(word_data['word']) != length:
+                            continue
+                        if first_word in word_data['clue'].lower():
+                            results.append(word_data)
+                            if len(results) >= max_words:
+                                break
+            
+            return results
+
     def get_clue_for_word(self, word: str) -> Dict:
         word_upper = word.upper()
         return self.word_to_data.get(word_upper, {
@@ -227,44 +234,3 @@ class DictionaryHelper:
             if max_words:
                 words = words[:max_words]
             return random.choice(words) if words else None
-            
-    def get_words_with_common_letters(self, letters: str, max_words: int = 20) -> List[Dict]:
-        results = []
-        letters_set = set(letters.upper())
-        
-        for word_data in self.all_words:
-            word_letters = set(word_data['word'].upper())
-            if letters_set.issubset(word_letters):
-                results.append(word_data)
-                if len(results) >= max_words:
-                    break
-        
-        return results
-    
-    def get_alternative_spellings(self, clue: str, length: int, max_words: int = 20) -> List[Dict]:
-
-        clue_lower = clue.lower()
-        results = []
-
-        for word_data in self.all_words:
-            if abs(len(word_data['word']) - length) > 1:
-                continue
-
-            similarity = difflib.SequenceMatcher(None, clue_lower, word_data['clue'].lower()).ratio()
-            if similarity > 0.6:
-                results.append(word_data)
-                if len(results) >= max_words:
-                    break
-
-        if not results:
-            for word_data in self.all_words:
-                if str(length) == str(len(word_data['word'])) and clue_lower.split(" ")[0] in word_data['clue'].lower():
-                    results.append(word_data)
-                    if len(results) >= max_words:
-                        break
-
-        if not results:
-            logger.debug(f"[Fallback] No fuzzy matches for '{clue}', using random words.")
-            results = self.get_words_by_length(length, max_words=max_words)
-
-        return results
