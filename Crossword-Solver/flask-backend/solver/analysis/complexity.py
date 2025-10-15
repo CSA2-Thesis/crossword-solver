@@ -30,14 +30,12 @@ class ComplexityTracker:
         if not self.operation_history:
             return {"big_o": "O(1)", "operations": 0, "growth_rate": 0}
             
-        # Simple approximation of time complexity
         final_ops = self.operations_count
         final_time = self.operation_history[-1][0] if self.operation_history else 0
         
-        # This is a simplified approach - in practice you'd need more sophisticated analysis
         if final_ops <= 1:
             complexity = "O(1)"
-        elif final_ops <= final_time * 10:  # Arbitrary threshold
+        elif final_ops <= final_time * 10:
             complexity = "O(n)"
         elif final_ops <= final_time * final_time:
             complexity = "O(n^2)"
@@ -57,7 +55,7 @@ class ComplexityTracker:
             
         max_memory = max(memory for _, memory in self.memory_usage) if self.memory_usage else 0
         
-        if max_memory <= 100:  # Arbitrary threshold in KB
+        if max_memory <= 100:
             complexity = "O(1)"
         elif max_memory <= 1000:
             complexity = "O(n)"

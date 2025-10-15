@@ -1,6 +1,69 @@
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
+/* Custom scrollbar for webkit browsers */
+
+@layer utilities {
+  /* Main scrollbar with glass effect compatibility */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(241, 241, 241, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 4px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(193, 193, 193, 0.6);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(168, 168, 168, 0.8);
+  }
+
+  /* Dark mode scrollbar */
+  .dark .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(31, 41, 55, 0.1);
+  }
+
+  .dark .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(75, 85, 99, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(107, 114, 128, 0.8);
+  }
+
+  /* Alternative subtle scrollbar for glass containers */
+  .glass-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .glass-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .glass-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 3px;
+    backdrop-filter: blur(5px);
+  }
+
+  .dark .glass-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
 
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -42,24 +105,6 @@ button, a, input {
   transition: all 0.2s ease;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #c7c7c7;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #a0a0a0;
-}
 body.modal-open {
   overflow: hidden;
 }
@@ -140,12 +185,3 @@ html {
 .min-h-screen {
   min-height: 100vh;
 }
-
-/* .fixed {
-  background: linear-gradient(
-    to bottom, 
-    #e0f2fe 0%, 
-    #bae6fd 30%, 
-    #7dd3fc 100%
-  );
-} */

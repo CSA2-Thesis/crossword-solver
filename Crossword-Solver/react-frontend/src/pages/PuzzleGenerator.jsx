@@ -20,8 +20,8 @@ export default function PuzzleGenerator() {
   const [isDownloading, setIsDownloading] = useState(false);
   const [showAnswers, setShowAnswers] = useState(false);
   const [showAlgorithmModal, setShowAlgorithmModal] = useState(false);
-  const [selectedAlgorithm, setSelectedAlgorithm] = useState("A*");
-  const [enableMemoryProfiling, setEnableMemoryProfiling] = useState(true);
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState("HYBRID");
+  const [enableMemoryProfiling, setEnableMemoryProfiling] = useState(false);
   const [showTooltip, setShowTooltip] = useState(false);
   const [tooltipHover, setTooltipHover] = useState(false);
 
