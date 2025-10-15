@@ -182,16 +182,6 @@ def visualize_complexity():
             "details": str(e)
         }), 500
 
-@app.route("/suggest", methods=["GET", "OPTIONS"])
-def suggest_words():
-    if request.method == "OPTIONS":
-        return _build_cors_preflight_response()
-        
-    clue = request.args.get("clue", "")
-    max_words = int(request.args.get("max", 20))
-    words = dict_helper.get_possible_words(clue=clue, max_words=max_words)
-    return _corsify_actual_response(jsonify(words))
-
 @app.route('/generate', methods=['POST', 'OPTIONS'])
 def generate():
     if request.method == "OPTIONS":
