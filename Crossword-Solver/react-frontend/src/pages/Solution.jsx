@@ -128,18 +128,34 @@ const Solution = () => {
   const maxMemory = metrics.peak_memory_kb || 0;
   const avgMemory = metrics.memory_usage_kb || 0;
   const memoryProfilingEnabled = metrics.memory_profiling_enabled || false;
-  const timeComplexity = metrics.time_complexity || {};
-  const spaceComplexity = metrics.space_complexity || {};
 
   if (hasError) {
     return (
-      <div className="text-center py-12 bg-white dark:bg-gray-900 transition-colors duration-200">
-        <FiXCircle className="w-16 h-16 text-red-500 dark:text-red-400 mx-auto" />
-        <h3 className="text-xl font-semibold text-red-600 dark:text-red-400 mt-4">Error Displaying Solution</h3>
-        <Button onClick={() => navigate(-1)} className="mt-4">Go Back</Button>
+      <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 flex items-center justify-center bg-white dark:bg-gray-900 transition-colors duration-200">
+        <div className="text-center max-w-md">
+          <FiXCircle className="w-16 h-16 text-red-500 dark:text-red-400 mx-auto mb-4" />
+          <h3 className="text-xl font-semibold text-red-600 dark:text-red-400 mb-2">Error Displaying Solution</h3>
+          <p className="text-gray-600 dark:text-gray-400 mb-6">Unable to load the solution data. Please try again.</p>
+          <Button onClick={() => navigate(-1)} variant="primary">
+            Go Back
+          </Button>
+        </div>
       </div>
     );
   }
+
+  const getOptimalCellSize = () => {
+    const gridSize = originalPuzzle?.grid?.length || 15;
+    const screenWidth = window.innerWidth;
+    
+    if (screenWidth < 640) {
+      return Math.max(16, Math.min(24, (screenWidth - 80) / gridSize));
+    } else if (screenWidth < 1024) {
+      return Math.max(20, Math.min(32, (screenWidth - 160) / gridSize));
+    } else {
+      return Math.max(24, Math.min(36, 600 / gridSize));
+    }
+  };
 
   const renderGrid = (
     grid,
@@ -217,7 +233,7 @@ const Solution = () => {
   const MemoryUsageCard = () => {
     if (!memoryProfilingEnabled) {
       return (
-        <div className="bg-gray-50 dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 opacity-75">
+        <div className="bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 opacity-75">
           <h3 className="text-sm font-medium text-gray-400 dark:text-gray-500 mb-2 flex items-center justify-center">
             <FiCpu className="mr-1" size={14} /> Memory Usage
           </h3>
@@ -229,7 +245,7 @@ const Solution = () => {
     }
 
     return (
-      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+      <div className="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
         <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center justify-center">
           <FiCpu className="mr-1" size={14} /> Memory Usage
           <span className="ml-1 px-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded">
@@ -237,7 +253,6 @@ const Solution = () => {
           </span>
         </h3>
         <div className="space-y-1">
-          
           <div className="flex justify-between text-sm">
             <span className="text-gray-600 dark:text-gray-400">Avg:</span>
             <span className="font-semibold text-blue-600 dark:text-blue-400">
@@ -256,20 +271,25 @@ const Solution = () => {
   };
 
   return (
-    <div className="min-h-screen py-8 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
+    <div className="min-h-screen py-4 sm:py-6 lg:py-8 px-3 sm:px-4 lg:px-6 transition-colors duration-200">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Solution Analysis</h1>
-          <p className="text-gray-600 dark:text-gray-300 mb-6">Review your crossword solution performance</p>
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-2">
+            Solution Analysis
+          </h1>
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            Review your crossword solution performance
+          </p>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
+        {/* Metrics Cards - Mobile Optimized */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
           {/* Accuracy Metrics */}
-          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
             <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Accuracy Metrics</h3>
             <div className="grid grid-cols-2 gap-2">
               <div className="text-center">
-                <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+                <div className="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400">
                   {totalCells > 0 ? `${Math.round(accuracy * 100)}%` : "N/A"}
                 </div>
                 <div className="text-xs text-gray-500 dark:text-gray-400">Cell Accuracy</div>
@@ -278,7 +298,7 @@ const Solution = () => {
                 </div>
               </div>
               <div className="text-center">
-                <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+                <div className="text-xl sm:text-2xl font-bold text-purple-600 dark:text-purple-400">
                   {totalWords > 0 ? `${Math.round(wordAccuracy * 100)}%` : "N/A"}
                 </div>
                 <div className="text-xs text-gray-500 dark:text-gray-400">Word Accuracy</div>
@@ -290,7 +310,7 @@ const Solution = () => {
           </div>
 
           {/* Performance Metrics */}
-          <div className="bg-white dark:bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
             <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center justify-center">
               <FaMemory className="mr-1" size={14} /> Performance
             </h3>
@@ -320,12 +340,12 @@ const Solution = () => {
           <MemoryUsageCard />
         </div>
 
-        {/* Fallback Usage Details */}
+        {/* Fallback Usage Details - Mobile Optimized */}
         {fallbackCount > 0 && (
-          <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-4 mb-6">
+          <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
             <div className="flex items-center mb-2">
-              <FiAlertTriangle className="text-yellow-600 dark:text-yellow-400 mr-2" />
-              <h3 className="font-semibold text-yellow-800 dark:text-yellow-300">Fallback System Used</h3>
+              <FiAlertTriangle className="text-yellow-600 dark:text-yellow-400 mr-2 flex-shrink-0" />
+              <h3 className="font-semibold text-yellow-800 dark:text-yellow-300 text-sm sm:text-base">Fallback System Used</h3>
             </div>
             <p className="text-sm text-yellow-700 dark:text-yellow-400 mb-2">
               The algorithm used fallback strategies <strong>{fallbackCount} time(s)</strong> to find suitable words when exact matches weren't available.
@@ -336,12 +356,12 @@ const Solution = () => {
           </div>
         )}
 
-        {/* Memory Profiling Status */}
+        {/* Memory Profiling Status - Mobile Optimized */}
         {memoryProfilingEnabled && (
-          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
+          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
             <div className="flex items-center mb-2">
-              <FiCpu className="text-blue-600 dark:text-blue-400 mr-2" />
-              <h3 className="font-semibold text-blue-800 dark:text-blue-300">Memory Profiling Enabled</h3>
+              <FiCpu className="text-blue-600 dark:text-blue-400 mr-2 flex-shrink-0" />
+              <h3 className="font-semibold text-blue-800 dark:text-blue-300 text-sm sm:text-base">Memory Profiling Enabled</h3>
             </div>
             <p className="text-sm text-blue-700 dark:text-blue-400">
               Detailed memory tracking was active during this solution. Some performance metrics may have been affected.
@@ -349,8 +369,8 @@ const Solution = () => {
           </div>
         )}
 
-        {/* Grid View Controls */}
-        <div className="flex flex-wrap gap-2 mb-6 justify-center">
+        {/* Grid View Controls - Mobile Optimized */}
+        <div className="flex flex-wrap gap-2 mb-4 sm:mb-6 justify-center">
           {[
             { id: "side-by-side", label: "Side by Side" },
             { id: "overlay", label: "Overlay" },
@@ -359,7 +379,7 @@ const Solution = () => {
             <button
               key={tab.id}
               onClick={() => setView(tab.id)}
-              className={`px-4 py-2 rounded-lg font-medium text-sm transition ${
+              className={`px-3 sm:px-4 py-2 rounded-lg font-medium text-sm transition ${
                 view === tab.id
                   ? "bg-blue-600 text-white"
                   : "bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
@@ -370,125 +390,132 @@ const Solution = () => {
           ))}
         </div>
 
-        {/* Grid Display */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-gray-700/50 p-6 border border-gray-200 dark:border-gray-700 mb-8 transition-colors duration-200">
+        {/* Grid Display - Fixed Container Issues */}
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-gray-700/50 p-3 sm:p-4 lg:p-6 border border-gray-200 dark:border-gray-700 mb-6 sm:mb-8 transition-colors duration-200">
           {view === "side-by-side" && (
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
               <div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4 text-center">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-white mb-3 sm:mb-4 text-center">
                   Your Solution
                 </h3>
-                {renderGrid(
-                  solvedResult?.solution,
-                  originalPuzzle?.clues,
-                  Math.min(36, 600 / (originalPuzzle?.grid?.length || 1)),
-                  false, 
-                  [],   
-                  false,
-                  []    
-                )}
+                <div className="flex justify-center">
+                  {renderGrid(
+                    solvedResult?.solution,
+                    originalPuzzle?.clues,
+                    getOptimalCellSize(),
+                    false, 
+                    [],   
+                    false,
+                    []    
+                  )}
+                </div>
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4 text-center">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-white mb-3 sm:mb-4 text-center">
                   Correct Answers
                 </h3>
-                {renderGrid(
-                  originalPuzzle?.grid,
-                  originalPuzzle?.clues,
-                  Math.min(36, 600 / (originalPuzzle?.grid?.length || 1)),
-                  false, 
-                  [],    
-                  false, 
-                  []     
-                )}
+                <div className="flex justify-center">
+                  {renderGrid(
+                    originalPuzzle?.grid,
+                    originalPuzzle?.clues,
+                    getOptimalCellSize(),
+                    false, 
+                    [],    
+                    false, 
+                    []     
+                  )}
+                </div>
               </div>
             </div>
           )}
           {view === "overlay" && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4 text-center">
-                Solution Overlay (Green = Correct, Red = Incorrect)
+              <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-white mb-3 sm:mb-4 text-center">
+                Solution Overlay <span className="text-sm font-normal">(Green = Correct, Red = Incorrect)</span>
               </h3>
               <div className="flex justify-center">
                 {renderGrid(
                   originalPuzzle?.grid,
                   originalPuzzle?.clues,
-                  Math.min(36, 800 / (originalPuzzle?.grid?.length || 1)),
+                  getOptimalCellSize(),
                   true,                   
                   incorrectPositions,     
                   true,                  
                   correctPositions         
                 )}
               </div>
-              <div className="flex justify-center mt-4 space-x-6 text-sm">
-                   <div className="flex items-center">
-                      <div className="w-4 h-4 bg-green-200 dark:bg-green-800 border border-gray-300 dark:border-gray-600 mr-1"></div>
-                      <span className="text-gray-700 dark:text-gray-300">Correct Letter</span>
-                   </div>
-                   <div className="flex items-center">
-                      <div className="w-4 h-4 bg-red-200 dark:bg-red-800 border border-gray-300 dark:border-gray-600 mr-1"></div>
-                      <span className="text-gray-700 dark:text-gray-300">Incorrect Letter</span>
-                   </div>
+              <div className="flex justify-center mt-4 space-x-4 sm:space-x-6 text-sm flex-wrap gap-2">
+                <div className="flex items-center">
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 bg-green-200 dark:bg-green-800 border border-gray-300 dark:border-gray-600 mr-1 sm:mr-2"></div>
+                  <span className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">Correct Letter</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 bg-red-200 dark:bg-red-800 border border-gray-300 dark:border-gray-600 mr-1 sm:mr-2"></div>
+                  <span className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">Incorrect Letter</span>
+                </div>
               </div>
             </div>
           )}
           {view === "differences" && incorrectPositions.length > 0 && (
             <div>
-              <h3 className="text-lg font-semibold text-gray-800 dark:text-white mb-4 text-center">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-white mb-3 sm:mb-4 text-center">
                 Incorrect Cells
               </h3>
               <div className="flex justify-center">
                 {renderGrid(
                   originalPuzzle?.grid, 
                   originalPuzzle?.clues,
-                  Math.min(36, 800 / (originalPuzzle?.grid?.length || 1)),
+                  getOptimalCellSize(),
                   true,              
                   incorrectPositions, 
                   false,             
                   []                 
                 )}
               </div>
-              <div className="flex justify-center mt-4 space-x-6 text-sm">
-                   <div className="flex items-center">
-                      <div className="w-4 h-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 mr-1"></div>
-                      <span className="text-gray-700 dark:text-gray-300">Correct Cell</span>
-                   </div>
-                   <div className="flex items-center">
-                      <div className="w-4 h-4 bg-red-200 dark:bg-red-800 border border-gray-300 dark:border-gray-600 mr-1"></div>
-                      <span className="text-gray-700 dark:text-gray-300">Incorrect Cell</span>
-                   </div>
+              <div className="flex justify-center mt-4 space-x-4 sm:space-x-6 text-sm flex-wrap gap-2">
+                <div className="flex items-center">
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 mr-1 sm:mr-2"></div>
+                  <span className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">Correct Cell</span>
+                </div>
+                <div className="flex items-center">
+                  <div className="w-3 h-3 sm:w-4 sm:h-4 bg-red-200 dark:bg-red-800 border border-gray-300 dark:border-gray-600 mr-1 sm:mr-2"></div>
+                  <span className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm">Incorrect Cell</span>
+                </div>
               </div>
             </div>
           )}
           {view === "differences" && incorrectPositions.length === 0 && (
-            <div className="text-center py-12">
-              <FiCheckCircle className="w-16 h-16 text-green-500 dark:text-green-400 mx-auto" />
-              <h3 className="text-xl font-semibold text-green-600 dark:text-green-400 mt-4">Perfect Solution!</h3>
-              <p className="text-gray-500 dark:text-gray-400">No errors found.</p>
+            <div className="text-center py-8 sm:py-12">
+              <FiCheckCircle className="w-12 h-12 sm:w-16 sm:h-16 text-green-500 dark:text-green-400 mx-auto mb-3 sm:mb-4" />
+              <h3 className="text-lg sm:text-xl font-semibold text-green-600 dark:text-green-400 mb-1 sm:mb-2">Perfect Solution!</h3>
+              <p className="text-gray-500 dark:text-gray-400 text-sm sm:text-base">No errors found.</p>
             </div>
           )}
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-wrap gap-4 justify-center">
+        {/* Action Buttons - Mobile Optimized */}
+        <div className="flex flex-wrap gap-3 sm:gap-4 justify-center">
           <Button
             onClick={handleBackToPuzzle}
             variant="secondary"
-            icon={<FiXCircle size={18} />}
+            icon={<FiXCircle size={16} className="sm:w-4 sm:h-4" />}
+            className="text-sm sm:text-base"
           >
             Back to Puzzle
           </Button>
           <Button
             onClick={handleDownloadSolution}
             variant="secondary"
-            icon={<FiDownload size={18} />}
+            icon={<FiDownload size={16} className="sm:w-4 sm:h-4" />}
+            className="text-sm sm:text-base"
           >
             Export Solution
           </Button>
           <Button
             onClick={handleShowAnalytics}
             variant="primary"
-            icon={<FiBarChart2 size={18} />}
+            icon={<FiBarChart2 size={16} className="sm:w-4 sm:h-4" />}
+            className="text-sm sm:text-base"
           >
             Save to Analytics
           </Button>
