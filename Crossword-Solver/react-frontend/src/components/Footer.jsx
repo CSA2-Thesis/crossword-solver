@@ -33,7 +33,7 @@ const Footer = ({ variant = "default", className = "" }) => {
               </h3>
             </div>
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed max-w-xs">
-              Exploring the boundaries of algorithmic performance through solving crossword puzzles.
+              Exploring the boundaries of the algorithmic performance of search algorithms by solving crossword puzzles.
             </p>
           </div>
           
@@ -113,7 +113,7 @@ const Footer = ({ variant = "default", className = "" }) => {
               </li>
               <li>
                 <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm transition-colors">
-                  Contact
+                  Licenses
                 </a>
               </li>
             </ul>

@@ -147,6 +147,7 @@ class BaseCrosswordSolver(ABC):
                 fitting.append((word, candidate))
         
         if len(fitting) == 0:
+            self._increment_fallback_count()
             return self.get_pattern_fallback(slot, grid)
         elif len(fitting) == 1:
             return [(fitting[0][0], 1000)]

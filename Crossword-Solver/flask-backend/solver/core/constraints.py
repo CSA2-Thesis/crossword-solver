@@ -19,7 +19,6 @@ class ConstraintChecker:
         return True
         
     def check_perpendicular_constraints(self, slot: Dict, word: str, slots: List[Dict]) -> bool:
-        """Check if word fits with intersecting perpendicular words."""
         slot_key = (slot['number'], slot['direction'])
         
         if slot_key not in self.slot_graph:

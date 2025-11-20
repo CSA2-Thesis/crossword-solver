@@ -9,11 +9,14 @@ import {
   getAllAnalyticsData,
   clearAnalyticsData,
   removeDuplicates,
+  exportAnalyticsData,
+  importAnalyticsData,
 } from "../utils/DataStorage";
 import {
   FiArrowLeft,
   FiTrash2,
   FiDownload,
+  FiUpload,
   FiCpu,
   FiFilter,
   FiX,
@@ -32,7 +35,10 @@ const Analytics = () => {
   const [algorithmBySizeData, setAlgorithmBySizeData] = useState([]);
   const [algorithmDetails, setAlgorithmDetails] = useState({});
   const [showFilters, setShowFilters] = useState(false);
+  const [importMessage, setImportMessage] = useState("");
+  const [isImporting, setIsImporting] = useState(false);
 
+  const fileInputRef = useRef(null);
   const processedRef = useRef({
     hasProcessed: false,
     timestamp: null,
@@ -175,20 +181,79 @@ const Analytics = () => {
     }
   };
 
-  const handleExportAllData = () => {
-    const jsonString = JSON.stringify(analyticsData, null, 2);
-    const blob = new Blob([jsonString], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
+  const handleExportAllData = async () => {
+    try {
+      const result = await exportAnalyticsData();
+      if (result.success) {
+        const blob = new Blob([JSON.stringify(result.data, null, 2)], { 
+          type: "application/json" 
+        });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `crossword-analytics-${
+          new Date().toISOString().split("T")[0]
+        }.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      } else {
+        alert("Export failed: " + result.error);
+      }
+    } catch (error) {
+      console.error("Export error:", error);
+      alert("Export failed: " + error.message);
+    }
+  };
 
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `crossword-analytics-${
-      new Date().toISOString().split("T")[0]
-    }.json`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+  const handleImportClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileSelect = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    setIsImporting(true);
+    setImportMessage("");
+
+    try {
+      const reader = new FileReader();
+      reader.onload = async (e) => {
+        try {
+          const jsonData = JSON.parse(e.target.result);
+          const result = await importAnalyticsData(jsonData);
+          
+          if (result.success) {
+            setImportMessage(
+              `Successfully imported ${result.importedCount} records. ` +
+              `${result.skippedCount} duplicates were skipped.`
+            );
+            
+            // Reload the data to show updated analytics
+            const data = await getAllAnalyticsData();
+            const uniqueData = removeDuplicates(data);
+            setAnalyticsData(uniqueData);
+            processData(uniqueData);
+          } else {
+            setImportMessage(`Import failed: ${result.error}`);
+          }
+        } catch (parseError) {
+          setImportMessage("Invalid JSON file format");
+        } finally {
+          setIsImporting(false);
+          // Reset file input
+          if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+          }
+        }
+      };
+      reader.readAsText(file);
+    } catch (error) {
+      setImportMessage("Error reading file: " + error.message);
+      setIsImporting(false);
+    }
   };
 
   const handleBack = () => navigate(-1);
@@ -217,7 +282,15 @@ const Analytics = () => {
   return (
     <div className="min-h-screen py-4 sm:py-6 lg:py-8 px-3 sm:px-4 lg:px-6 transition-colors duration-200">
       <div className="max-w-7xl mx-auto">
-        {/* Mobile-Optimized Header */}
+        {/* Hidden file input for import */}
+        <input
+          type="file"
+          ref={fileInputRef}
+          onChange={handleFileSelect}
+          accept=".json"
+          style={{ display: "none" }}
+        />
+
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 gap-4 sm:gap-0">
           <Button
             onClick={handleBack}
@@ -240,6 +313,15 @@ const Analytics = () => {
               Filters
             </Button>
             <Button
+              onClick={handleImportClick}
+              variant="secondary"
+              icon={<FiUpload size={16} className="sm:w-5 sm:h-5" />}
+              disabled={isImporting}
+              className="text-sm sm:text-base"
+            >
+              {isImporting ? "Importing..." : "Import"}
+            </Button>
+            <Button
               onClick={handleExportAllData}
               variant="secondary"
               icon={<FiDownload size={16} className="sm:w-5 sm:h-5" />}
@@ -260,7 +342,17 @@ const Analytics = () => {
           </div>
         </div>
 
-        {/* Mobile-Optimized Filter Panel */}
+        {/* Import message */}
+        {importMessage && (
+          <div className={`mb-4 p-3 rounded-md text-sm ${
+            importMessage.includes("failed") || importMessage.includes("Invalid")
+              ? "bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200"
+              : "bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200"
+          }`}>
+            {importMessage}
+          </div>
+        )}
+
         {showFilters && (
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4 sm:p-5 lg:p-6 mb-4 sm:mb-6">
             <div className="flex justify-between items-center mb-3 sm:mb-4">
@@ -313,7 +405,6 @@ const Analytics = () => {
           </div>
         )}
 
-        {/* Mobile-Optimized Empty State */}
         {analyticsData.length === 0 ? (
           <div className="text-center py-8 sm:py-12">
             <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center">
@@ -325,9 +416,19 @@ const Analytics = () => {
             <p className="text-gray-500 dark:text-gray-400 mb-4 sm:mb-6 text-sm sm:text-base">
               Solve some crossword puzzles to see performance analytics here.
             </p>
-            <Button onClick={() => navigate("/generate")} className="text-sm sm:text-base">
-              Generate a Puzzle
-            </Button>
+            <div className="flex gap-3 justify-center flex-wrap">
+              <Button onClick={() => navigate("/generate")} className="text-sm sm:text-base">
+                Generate a Puzzle
+              </Button>
+              <Button 
+                onClick={handleImportClick} 
+                variant="secondary" 
+                className="text-sm sm:text-base"
+                icon={<FiUpload size={16} />}
+              >
+                Import Data
+              </Button>
+            </div>
           </div>
         ) : (
           <>
@@ -336,10 +437,9 @@ const Analytics = () => {
               filteredData={filteredData}
             />
 
-            {/* Mobile-Optimized Tab Navigation */}
             <div className="mb-4 sm:mb-6 border-b border-gray-200 dark:border-gray-700">
               <nav className="flex space-x-2 sm:space-x-4 overflow-x-auto">
-                {["overview", "algorithms", "sizes", "history"].map((tab) => (
+                {["overview", "scatter plots", "history"].map((tab) => (
                   <button
                     key={tab}
                     onClick={() => setActiveTab(tab)}
@@ -355,7 +455,7 @@ const Analytics = () => {
               </nav>
             </div>
 
-            {/* Mobile-Optimized Tab Content */}
+            {/* Rest of your existing tabs and content remains exactly the same */}
             {activeTab === "overview" && (
               <div className="space-y-6 sm:space-y-8 mb-6 sm:mb-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
@@ -395,7 +495,7 @@ const Analytics = () => {
               </div>
             )}
 
-            {activeTab === "algorithms" && (
+            {activeTab === "scatter plots" && (
               <div className="space-y-6 sm:space-y-8 mb-6 sm:mb-8">
                 <div className="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-4 sm:p-5 lg:p-6">
                   <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white mb-3 sm:mb-4">
