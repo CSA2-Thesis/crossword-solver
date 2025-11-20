@@ -312,7 +312,7 @@ const Analytics = () => {
             >
               Filters
             </Button>
-            <Button
+            {/* <Button
               onClick={handleImportClick}
               variant="secondary"
               icon={<FiUpload size={16} className="sm:w-5 sm:h-5" />}
@@ -329,7 +329,7 @@ const Analytics = () => {
               className="text-sm sm:text-base"
             >
               Export
-            </Button>
+            </Button> */}
             <Button
               onClick={handleClearData}
               variant="secondary"

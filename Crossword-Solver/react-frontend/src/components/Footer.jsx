@@ -112,7 +112,7 @@ const Footer = ({ variant = "default", className = "" }) => {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm transition-colors">
+                <a href="license" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 text-sm transition-colors">
                   Licenses
                 </a>
               </li>
