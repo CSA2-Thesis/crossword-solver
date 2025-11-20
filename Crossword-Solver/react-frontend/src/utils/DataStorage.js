@@ -26,6 +26,118 @@ export const initDB = () => {
   });
 };
 
+// Export analytics data as JSON
+export const exportAnalyticsData = async () => {
+  try {
+    const data = await getAllAnalyticsData();
+    return {
+      success: true,
+      data: data,
+      exportDate: new Date().toISOString(),
+      totalRecords: data.length
+    };
+  } catch (error) {
+    console.error('Error exporting analytics data:', error);
+    return {
+      success: false,
+      error: error.message
+    };
+  }
+};
+
+// Import analytics data from JSON
+export const importAnalyticsData = async (jsonData) => {
+  try {
+    if (!jsonData || !Array.isArray(jsonData)) {
+      throw new Error('Invalid JSON data format. Expected an array.');
+    }
+
+    let importedCount = 0;
+    let skippedCount = 0;
+
+    for (const item of jsonData) {
+      // Validate required fields
+      if (!item.algorithm || !item.size || !item.difficulty) {
+        console.warn('Skipping invalid record:', item);
+        skippedCount++;
+        continue;
+      }
+
+      // Use storeAnalyticsData but with the imported timestamp
+      const success = await storeAnalyticsDataFromImport(item);
+      if (success) {
+        importedCount++;
+      } else {
+        skippedCount++;
+      }
+    }
+
+    return {
+      success: true,
+      importedCount,
+      skippedCount,
+      totalProcessed: jsonData.length
+    };
+  } catch (error) {
+    console.error('Error importing analytics data:', error);
+    return {
+      success: false,
+      error: error.message
+    };
+  }
+};
+
+// Modified version of storeAnalyticsData for imports that preserves original timestamps
+const storeAnalyticsDataFromImport = async (importedData) => {
+  try {
+    const db = await initDB();
+    
+    // Use the imported data directly, preserving the original timestamp
+    const analyticsData = {
+      timestamp: importedData.timestamp || new Date().toISOString(),
+      algorithm: importedData.algorithm,
+      size: importedData.size,
+      difficulty: importedData.difficulty,
+      cellAccuracy: importedData.cellAccuracy,
+      wordAccuracy: importedData.wordAccuracy,
+      executionTime: importedData.executionTime,
+      memoryUsage: importedData.memoryUsage,
+      wordsPlaced: importedData.wordsPlaced,
+      puzzleData: importedData.puzzleData || {
+        grid: importedData.grid || [],
+        emptyGrid: importedData.emptyGrid || [],
+        clues: importedData.clues || {}
+      }
+    };
+
+    // Check for duplicates using existing logic
+    const existingData = await getAllAnalyticsData();
+    const isDuplicate = existingData.some(item => 
+      item.algorithm === analyticsData.algorithm &&
+      item.size === analyticsData.size &&
+      item.difficulty === analyticsData.difficulty &&
+      Math.abs(item.executionTime - analyticsData.executionTime) < 0.001 &&
+      item.memoryUsage === analyticsData.memoryUsage &&
+      Math.abs(item.cellAccuracy - analyticsData.cellAccuracy) < 0.001
+    );
+    
+    if (isDuplicate) {
+      console.log('Skipping duplicate record:', analyticsData);
+      return false;
+    }
+
+    const transaction = db.transaction(['analytics'], 'readwrite');
+    const store = transaction.objectStore('analytics');
+    await store.add(analyticsData);
+
+    return true;
+  } catch (error) {
+    console.error('Error storing imported analytics data:', error);
+    return false;
+  }
+};
+
+// Keep your existing functions exactly as they are
 export const storeAnalyticsData = async (data, fixedTimestamp) => {
   try {
     const db = await initDB();

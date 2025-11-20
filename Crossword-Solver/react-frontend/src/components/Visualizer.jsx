@@ -18,12 +18,30 @@ export const formatMemory = (kb) => {
 
 export const ScatterTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length > 0) {
-    const data = payload[0].payload;
+    // Group payloads by their original data point
+    const dataPoints = {};
+    
+    payload.forEach(p => {
+      if (p.payload && p.payload.algorithm) {
+        const key = `${p.payload.algorithm}-${p.payload.executionTime}-${p.payload.memoryUsage}`;
+        if (!dataPoints[key]) {
+          dataPoints[key] = p.payload;
+        }
+      }
+    });
+    
+    // Find which data point was actually hovered by checking which payload has the closest coordinates
+    const hoveredDataPoint = Object.values(dataPoints)[0]; // For now, take the first one
+    
+    if (!hoveredDataPoint) return null;
+    
+    const data = hoveredDataPoint;
+    
     return (
       <div className="bg-white dark:bg-gray-800 p-3 border border-gray-300 dark:border-gray-600 rounded shadow-lg">
         <p className="font-semibold text-gray-900 dark:text-white">{`Algorithm: ${data.algorithm}`}</p>
         <p className="text-blue-600 dark:text-blue-400">{`Execution Time: ${data.executionTime.toFixed(3)}s`}</p>
-        <p className="text-green-600 dark:text-green-400">{`Memory Usage: ${data.memoryUsage}`}</p>
+        <p className="text-green-600 dark:text-green-400">{`Memory Usage: ${formatMemory(data.memoryUsage)}`}</p>
         <p className="text-orange-600 dark:text-orange-400">{`Accuracy: ${(data.cellAccuracy * 100).toFixed(2)}%`}</p>
         <p className="text-gray-600 dark:text-gray-400">{`Size: ${data.size}x${data.size}`}</p>
         <p className="text-gray-600 dark:text-gray-400">{`Difficulty: ${data.difficulty}`}</p>
@@ -37,14 +55,14 @@ export const MemoryAccuracyScatter = ({ data }) => (
   <ResponsiveContainer width="100%" height={400}>
     <ScatterChart margin={{ top: 20, right: 20, bottom: 80, left: 60 }}>
       <CartesianGrid strokeDasharray="3 3" />
-      <YAxis 
+      <XAxis 
         type="number"
         dataKey="memoryUsage" 
         name="Memory Usage"
         label={{ value: 'Memory Usage', position: 'insideBottom', offset: -10 }}
         tickFormatter={(value) => formatMemory(value)}
       />
-      <XAxis 
+      <YAxis 
         type="number"
         dataKey="cellAccuracy" 
         name="Accuracy"
@@ -136,14 +154,14 @@ export const TimeAccuracyScatter = ({ data }) => (
   <ResponsiveContainer width="100%" height={400}>
     <ScatterChart margin={{ top: 20, right: 20, bottom: 80, left: 60 }}>
       <CartesianGrid strokeDasharray="3 3" />
-      <YAxis 
+      <XAxis 
         type="number"
         dataKey="executionTime" 
         name="Execution Time"
         label={{ value: 'Execution Time (s)', position: 'insideBottom', offset: -10 }}
         tickFormatter={(value) => value.toFixed(2)}
       />
-      <XAxis 
+      <YAxis 
         type="number"
         dataKey="cellAccuracy" 
         name="Accuracy"
@@ -230,17 +248,20 @@ export const AlgorithmComparisonChart = ({ data }) => (
     <BarChart data={data}>
       <CartesianGrid strokeDasharray="3 3" />
       <XAxis dataKey="algorithm" />
-      <YAxis yAxisId="left" />
-      <YAxis yAxisId="right" orientation="right" />
-      <Tooltip formatter={(value, name) => {
-        if (name === 'avgExecutionTime') return [value.toFixed(3) + 's', 'Execution Time'];
-        if (name === 'avgMemoryUsage') return [formatMemory(value), 'Memory Usage'];
-        if (name === 'avgAccuracy') return [(value * 100).toFixed(2) + '%', 'Accuracy'];
-        return [value, name];
-      }} />
+      <YAxis />
+      <Tooltip 
+        formatter={(value, name) => {
+          if (name === 'Execution Time') return [`${value.toFixed(3)}s`, name];
+          if (name === 'Memory Usage') return [formatMemory(value), name];
+          if (name === 'Accuracy') return [`${(value * 100).toFixed(2)}%`, name];
+          return [value, name];
+        }}
+        labelFormatter={(label) => `Algorithm: ${label}`}
+      />
       <Legend />
-      <Bar yAxisId="left" dataKey="avgMemoryUsage" fill="#82ca9d" name="Memory Usage" />
-      <Bar yAxisId="right" dataKey="avgAccuracy" fill="#ffc658" name="Accuracy (%)" />
+      <Bar dataKey="avgExecutionTime" fill="#8884d8" name="Execution Time" />
+      <Bar dataKey="avgMemoryUsage" fill="#82ca9d" name="Memory Usage" />
+      <Bar dataKey="avgAccuracy" fill="#ffc658" name="Accuracy" />
     </BarChart>
   </ResponsiveContainer>
 );

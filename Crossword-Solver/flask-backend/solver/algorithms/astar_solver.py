@@ -1,5 +1,7 @@
 from typing import List, Dict, Set, Tuple
 import heapq
+import copy
+from collections import deque
 from ..core.base_solver import BaseCrosswordSolver
 
 class AStarState:
@@ -36,7 +38,7 @@ class AStarSolver(BaseCrosswordSolver):
         order = self.slot_ordering
         
         initial = AStarState(
-            grid=self.solution,
+            grid=copy.deepcopy(self.solution),
             filled_slots=set(),
             cost=0,
             slot_index=0
@@ -46,12 +48,21 @@ class AStarSolver(BaseCrosswordSolver):
         
         open_set = [initial]
         closed_set = set()
+        closed_set_deque = deque()
+        max_closed_size = 2000
         
         iteration = 0
         max_iter = 5000
         
         while open_set and iteration < max_iter:
             iteration += 1
+            
+            if len(closed_set) > max_closed_size:
+                remove_count = max_closed_size // 4
+                for _ in range(remove_count):
+                    if closed_set_deque:
+                        old_hash = closed_set_deque.popleft()
+                        closed_set.remove(old_hash)
             
             current = heapq.heappop(open_set)
             
@@ -63,6 +74,7 @@ class AStarSolver(BaseCrosswordSolver):
                 continue
             
             closed_set.add(current.grid_hash)
+            closed_set_deque.append(current.grid_hash)
             
             slot = order[current.slot_index]
             candidates = self.get_candidates(slot, current.grid)
@@ -86,16 +98,47 @@ class AStarSolver(BaseCrosswordSolver):
             self.complexity_tracker.increment_operations()
         
         if open_set:
-            best = min(open_set, key=lambda s: s.heuristic)
+            best = min(open_set, key=lambda s: (s.heuristic, -s.slot_index))
             self.solution = best.grid
             filled = self.count_filled_words()
             return self._create_result(False, filled, len(self.slots))
         
         return self._create_result(False, 0, len(self.slots))
     
-    def calc_heuristic(self, state: AStarState) -> int:
-        return (len(self.slots) - state.slot_index) * 10
+    def get_candidates(self, slot: Dict, grid: List[List[str]]) -> List[Tuple[str, int]]:
+        clue_candidates = self.get_clue_candidates(slot)
+        
+        fitting = []
+        for candidate in clue_candidates:
+            word = candidate['word'].upper()
+            if self.validate_placement(slot, word, grid):
+                fitting.append((word, candidate))
+        
+        if len(fitting) == 0:
+            self._increment_fallback_count()
+            return self.get_pattern_fallback(slot, grid)
+        elif len(fitting) == 1:
+            return [(fitting[0][0], 1000)]
+        else:
+            scored = []
+            for word, candidate_data in fitting:
+                score = self.calculate_score(slot, word, grid, candidate_data)
+                scored.append((word, score))
+            
+            scored.sort(key=lambda x: (-x[1]))
+            return scored[:3]
     
+    def calc_heuristic(self, state: AStarState) -> int:
+        remaining_slots = len(self.slots) - state.slot_index
+        base_cost = remaining_slots * 5
+        
+        certainty_penalty = 0
+        for i in range(state.slot_index, len(self.slots)):
+            slot = self.slots[i]
+            certainty = self.slot_certainty.get((slot['number'], slot['direction']), 0)
+            certainty_penalty += (3 - certainty) * 3
+        
+        return base_cost + certainty_penalty
     
     def place_word(self, grid: List[List[str]], slot: Dict, word: str) -> List[List[str]]:
         new_grid = [row[:] for row in grid]

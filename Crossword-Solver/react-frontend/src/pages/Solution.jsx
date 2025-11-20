@@ -20,6 +20,7 @@ function analyzeSolution(solvedGrid = [[]], correctGrid = [[]], clues = { across
   let correctWords = 0;
   let totalWords = allClues.length;
 
+  // Cell-level analysis
   for (let y = 0; y < height; y++) {
     for (let x = 0; x < width; x++) {
       const correct = correctGrid[y]?.[x] || ".";
@@ -35,11 +36,13 @@ function analyzeSolution(solvedGrid = [[]], correctGrid = [[]], clues = { across
     }
   }
 
+  // Word-level analysis - IMPROVED VERSION
   allClues.forEach(clue => {
     const { number, direction, x, y, length, answer } = clue;
     let solvedWord = "";
     let correctWord = "";
     let isComplete = true;
+    let isCorrect = true;
 
     try {
       if (direction === "across") {
@@ -48,7 +51,14 @@ function analyzeSolution(solvedGrid = [[]], correctGrid = [[]], clues = { across
           const correctChar = correctGrid[y]?.[x + i] || "";
           solvedWord += solvedChar;
           correctWord += correctChar;
-          if (!solvedChar) isComplete = false;
+          
+          // Check if cell is filled
+          if (!solvedChar.trim()) isComplete = false;
+          
+          // Check if character matches
+          if (solvedChar.toUpperCase() !== correctChar.toUpperCase()) {
+            isCorrect = false;
+          }
         }
       } else if (direction === "down") {
         for (let i = 0; i < length; i++) {
@@ -56,21 +66,50 @@ function analyzeSolution(solvedGrid = [[]], correctGrid = [[]], clues = { across
           const correctChar = correctGrid[y + i]?.[x] || "";
           solvedWord += solvedChar;
           correctWord += correctChar;
-          if (!solvedChar) isComplete = false;
+          
+          // Check if cell is filled
+          if (!solvedChar.trim()) isComplete = false;
+          
+          // Check if character matches
+          if (solvedChar.toUpperCase() !== correctChar.toUpperCase()) {
+            isCorrect = false;
+          }
         }
       }
     } catch (e) {
       console.error(`Error extracting words for clue ${number} ${direction}:`, e);
       isComplete = false;
+      isCorrect = false;
     }
 
-    if (isComplete && solvedWord.toUpperCase() === correctWord.toUpperCase()) {
+    // Debug log for each word
+    console.log(`Clue ${number} ${direction}:`, {
+      solved: solvedWord,
+      correct: correctWord,
+      isComplete,
+      isCorrect,
+      length
+    });
+
+    // A word is correct only if it's complete AND all characters match
+    if (isComplete && isCorrect) {
       correctWords++;
     }
   });
 
   const accuracy = totalCells > 0 ? correctCells / totalCells : 1;
   const wordAccuracy = totalWords > 0 ? correctWords / totalWords : 1;
+  
+  // Debug summary
+  console.log('Analysis Summary:', {
+    correctCells,
+    totalCells,
+    accuracy,
+    correctWords,
+    totalWords,
+    wordAccuracy,
+    incorrectPositionsCount: incorrectPositions.length
+  });
   
   return {
     correctCells,
@@ -115,19 +154,19 @@ const Solution = () => {
   } = analysis;
 
   const formatMemoryUsage = (kb) => {
-    if (!kb || kb <= 0) return "N/A";
-    if (kb >= 1024) {
-      return `${(kb / 1024).toFixed(2)} MB`;
+    if (!kb || kb === "N/A" || isNaN(Number(kb)) || Number(kb) <= 0) return "N/A";
+    const numKb = Number(kb);
+    if (numKb >= 1024) {
+      return `${(numKb / 1024).toFixed(2)} MB`;
     }
-    return `${kb.toFixed(2)} KB`;
+    return `${numKb.toFixed(2)} KB`;
   };
 
-  const metrics = solvedResult?.metrics || {};
+  const metrics = solvedResult?.metrics || solvedResult || {};
   const fallbackCount = metrics.fallback_usage_count || 0;
-  const minMemory = metrics.min_memory_kb || 0;
-  const maxMemory = metrics.peak_memory_kb || 0;
   const avgMemory = metrics.memory_usage_kb || 0;
-  const memoryProfilingEnabled = metrics.memory_profiling_enabled || false;
+  const peakMemory = metrics.peak_memory_kb || 0;
+
 
   if (hasError) {
     return (
@@ -231,44 +270,28 @@ const Solution = () => {
   };
 
   const MemoryUsageCard = () => {
-    if (!memoryProfilingEnabled) {
-      return (
-        <div className="bg-gray-50 dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 opacity-75">
-          <h3 className="text-sm font-medium text-gray-400 dark:text-gray-500 mb-2 flex items-center justify-center">
-            <FiCpu className="mr-1" size={14} /> Memory Usage
-          </h3>
-          <div className="text-center text-sm text-gray-400 dark:text-gray-500">
-            Profiling disabled
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <div className="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
-        <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center justify-center">
-          <FiCpu className="mr-1" size={14} /> Memory Usage
-          <span className="ml-1 px-1 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 text-xs rounded">
-            Profiling
+  return (
+    <div className="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+      <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center justify-center">
+        <FiCpu className="mr-1" size={14} /> Memory Usage
+      </h3>
+      <div className="space-y-1">
+        <div className="flex justify-between text-sm">
+          <span className="text-gray-600 dark:text-gray-400">Average:</span>
+          <span className="font-semibold text-blue-600 dark:text-blue-400">
+            {formatMemoryUsage(avgMemory)}
           </span>
-        </h3>
-        <div className="space-y-1">
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-600 dark:text-gray-400">Avg:</span>
-            <span className="font-semibold text-blue-600 dark:text-blue-400">
-              {formatMemoryUsage(avgMemory)}
-            </span>
-          </div>
-          <div className="flex justify-between text-sm">
-            <span className="text-gray-600 dark:text-gray-400">Peak:</span>
-            <span className="font-semibold text-red-600 dark:text-red-400">
-              {formatMemoryUsage(maxMemory)}
-            </span>
-          </div>
+        </div>
+        <div className="flex justify-between text-sm">
+          <span className="text-gray-600 dark:text-gray-400">Peak:</span>
+          <span className="font-semibold text-red-600 dark:text-red-400">
+            {formatMemoryUsage(peakMemory)}
+          </span>
         </div>
       </div>
-    );
-  };
+    </div>
+  );
+};
 
   return (
     <div className="min-h-screen py-4 sm:py-6 lg:py-8 px-3 sm:px-4 lg:px-6 transition-colors duration-200">
@@ -282,11 +305,9 @@ const Solution = () => {
           </p>
         </div>
         
-        {/* Metrics Cards - Mobile Optimized */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-6 sm:mb-8">
-          {/* Accuracy Metrics */}
           <div className="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
-            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2">Accuracy Metrics</h3>
+            <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 text-center">Accuracy Metrics</h3>
             <div className="grid grid-cols-2 gap-2">
               <div className="text-center">
                 <div className="text-xl sm:text-2xl font-bold text-blue-600 dark:text-blue-400">
@@ -309,7 +330,6 @@ const Solution = () => {
             </div>
           </div>
 
-          {/* Performance Metrics */}
           <div className="bg-white dark:bg-gray-800 p-3 sm:p-4 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
             <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 mb-2 flex items-center justify-center">
               <FaMemory className="mr-1" size={14} /> Performance
@@ -336,40 +356,24 @@ const Solution = () => {
             </div>
           </div>
 
-          {/* Memory Usage Metrics - Conditionally Rendered */}
           <MemoryUsageCard />
         </div>
 
-        {/* Fallback Usage Details - Mobile Optimized */}
         {fallbackCount > 0 && (
           <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
             <div className="flex items-center mb-2">
               <FiAlertTriangle className="text-yellow-600 dark:text-yellow-400 mr-2 flex-shrink-0" />
-              <h3 className="font-semibold text-yellow-800 dark:text-yellow-300 text-sm sm:text-base">Fallback System Used</h3>
+              <h3 className="font-semibold text-yellow-800 dark:text-yellow-300 text-sm sm:text-base">Pattern Matching Fallback System Used</h3>
             </div>
             <p className="text-sm text-yellow-700 dark:text-yellow-400 mb-2">
-              The algorithm used fallback strategies <strong>{fallbackCount} time(s)</strong> to find suitable words when exact matches weren't available.
+              The algorithm used the last fallback strategy <strong>{fallbackCount} time(s)</strong> to find suitable words in a slot based on the pattern.
             </p>
             <div className="text-xs text-yellow-600 dark:text-yellow-500">
-              This indicates the puzzle required alternative word-finding approaches beyond standard dictionary lookups.
+              This indicates the puzzle used the pattern matching approach to find the correct answer and may result to answers that may more likely be wrong.
             </div>
           </div>
         )}
 
-        {/* Memory Profiling Status - Mobile Optimized */}
-        {memoryProfilingEnabled && (
-          <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-3 sm:p-4 mb-4 sm:mb-6">
-            <div className="flex items-center mb-2">
-              <FiCpu className="text-blue-600 dark:text-blue-400 mr-2 flex-shrink-0" />
-              <h3 className="font-semibold text-blue-800 dark:text-blue-300 text-sm sm:text-base">Memory Profiling Enabled</h3>
-            </div>
-            <p className="text-sm text-blue-700 dark:text-blue-400">
-              Detailed memory tracking was active during this solution. Some performance metrics may have been affected.
-            </p>
-          </div>
-        )}
-
-        {/* Grid View Controls - Mobile Optimized */}
         <div className="flex flex-wrap gap-2 mb-4 sm:mb-6 justify-center">
           {[
             { id: "side-by-side", label: "Side by Side" },
@@ -390,7 +394,6 @@ const Solution = () => {
           ))}
         </div>
 
-        {/* Grid Display - Fixed Container Issues */}
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm dark:shadow-gray-700/50 p-3 sm:p-4 lg:p-6 border border-gray-200 dark:border-gray-700 mb-6 sm:mb-8 transition-colors duration-200">
           {view === "side-by-side" && (
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
@@ -493,7 +496,6 @@ const Solution = () => {
           )}
         </div>
 
-        {/* Action Buttons - Mobile Optimized */}
         <div className="flex flex-wrap gap-3 sm:gap-4 justify-center">
           <Button
             onClick={handleBackToPuzzle}

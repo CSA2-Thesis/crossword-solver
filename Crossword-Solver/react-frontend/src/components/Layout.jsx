@@ -36,7 +36,6 @@ function Layout() {
     };
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setShowMobileMenu(false);
   }, [window.location.pathname]);
@@ -65,7 +64,6 @@ function Layout() {
 
   return (
     <div className="min-h-screen text-gray-900 dark:text-gray-100 transition-colors duration-200">
-      {/* Background layers */}
       <div className="fixed inset-0 -z-50">
         <Body />
       </div>
@@ -73,13 +71,10 @@ function Layout() {
         <div className="absolute inset-0 bg-white/10 dark:bg-gray-800/10 backdrop-blur-md" />
       </div>
 
-      {/* Main content structure */}
       <div className="relative z-10 min-h-screen flex flex-col">
-        {/* Mobile-optimized Header */}
         <header className="sticky top-0 z-40 bg-white/90 dark:bg-gray-800/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-700">
           <nav className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
             <div className="flex justify-between h-14 sm:h-16 items-center">
-              {/* Logo - responsive sizing */}
               <Link
                 to="/"
                 className="text-lg sm:text-xl font-bold text-gray-900 dark:text-white flex-shrink-0 flex items-center"
@@ -92,7 +87,6 @@ function Layout() {
                 <span className="text-blue-600 dark:text-blue-400">Puzzly </span>Logic
               </Link>
 
-              {/* Desktop Navigation - hidden on mobile */}
               <div className="hidden md:flex justify-center flex-1">
                 <div className="flex items-center gap-4 lg:gap-8">
                   <NavLink to="/generate">Create Puzzle</NavLink>
@@ -101,9 +95,7 @@ function Layout() {
                 </div>
               </div>
 
-              {/* Mobile Controls */}
               <div className="flex items-center gap-2 sm:gap-3">
-                {/* Theme Toggle - smaller on mobile */}
                 <button
                   onClick={toggleTheme}
                   className="p-1.5 sm:p-2 rounded-full text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:bg-gray-700 transition-colors duration-200"
@@ -129,7 +121,6 @@ function Layout() {
                   </div>
                 </button>
                 
-                {/* Settings Dropdown - smaller on mobile */}
                 <div className="relative" ref={dropdownRef}>
                   <button
                     onClick={() => setShowSettingsDropdown(!showSettingsDropdown)}
@@ -139,7 +130,6 @@ function Layout() {
                     <FiSettings size={16} className="sm:w-5 sm:h-5" />
                   </button>
 
-                  {/* Responsive dropdown - full width on mobile */}
                   <div
                     className={`absolute right-0 top-full mt-2 w-48 max-w-[calc(100vw-1rem)] bg-white/95 dark:bg-gray-800/95 backdrop-blur-md rounded-md shadow-lg z-50 border border-gray-200 dark:border-gray-700 transform transition-all duration-200 ease-out origin-top-right ${
                       showSettingsDropdown
@@ -185,7 +175,6 @@ function Layout() {
                   </div>
                 </div>
 
-                {/* Mobile Menu Button - only visible on mobile */}
                 <button
                   onClick={toggleMobileMenu}
                   className="md:hidden p-1.5 rounded-full text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:bg-gray-700 transition-colors"
@@ -197,7 +186,6 @@ function Layout() {
             </div>
           </nav>
 
-          {/* Mobile Navigation Menu */}
           <div
             ref={mobileMenuRef}
             className={`md:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-gray-800/95 backdrop-blur-md border-b border-gray-200 dark:border-gray-700 transform transition-all duration-300 ease-out origin-top ${
@@ -220,7 +208,6 @@ function Layout() {
           </div>
         </header>
 
-        {/* Main content - mobile optimized */}
         <main className="flex-1 relative">
           <div className="absolute inset-0 bg-white/5 dark:bg-gray-800/5 backdrop-blur-sm pointer-events-none" />
           
