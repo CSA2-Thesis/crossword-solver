@@ -1,4 +1,5 @@
 Before anything else, to access the application, the user must have the following prerequisite installations before installing the application.
+====================================================
 Prerequisites:
 
 1.	Python - the user is required to have the Python programming language version 3.13 and above installed beforehand. If in the case that the user does not meet this prerequisite, it is advised that the user follows the following steps:
