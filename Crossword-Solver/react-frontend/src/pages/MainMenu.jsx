@@ -207,7 +207,7 @@ function MainMenu() {
 
           <div className="text-center py-12">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
-              Ready to Explore Algorithm Performance?
+              Ready to Generate your First Puzzle?
             </h2>
             <div className="flex flex-col sm:flex-row justify-center gap-6">
               <Link
