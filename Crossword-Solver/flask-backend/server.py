@@ -1,8 +1,11 @@
 import logging
 import random
 import time
+import uuid
+import threading
 from flask import Flask, make_response, request, jsonify
 from flask_cors import CORS
+from flask_socketio import SocketIO, emit
 from dictionary_helper import DictionaryHelper
 from generate_downloadables import generate_png_image, generate_pdf
 from generator.crossword_generator import CrosswordGenerator
@@ -13,14 +16,210 @@ from solver.algorithms.hybrid_solver import HybridSolver
 from solver.analysis.visualizer import ComplexityVisualizer
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = 'crossword-secret-key'
 CORS(app) 
+
+socketio = SocketIO(app, cors_allowed_origins="http://localhost:5173", async_mode='threading')
 
 dict_helper = DictionaryHelper("dictionary")
 
 complexity_trackers = {}
+solving_sessions = {}
+
+@socketio.on('connect')
+def handle_connect():
+    logging.info(f"Client connected: {request.sid}")
+    emit('connection_status', {'status': 'connected', 'message': 'Successfully connected to solver'})
+
+@socketio.on('disconnect')
+def handle_disconnect():
+    logging.info(f"Client disconnected: {request.sid}")
+
+@socketio.on('join_session')
+def handle_join_session(data):
+    session_id = data.get('session_id')
+    if session_id in solving_sessions:
+        emit('session_joined', {'session_id': session_id, 'status': 'joined'})
+        logging.info(f"Client joined session: {session_id}")
+    else:
+        emit('session_error', {'error': 'Session not found'})
+
+@socketio.on('cancel_solve')
+def handle_cancel_solve(data):
+    session_id = data.get('session_id')
+    if session_id in solving_sessions:
+        solving_sessions[session_id]['cancelled'] = True
+        emit('solve_cancelled', {'session_id': session_id})
+        logging.info(f"Solve cancelled for session: {session_id}")
+
+def emit_progress(session_id, progress_data):
+    """Emit progress update to specific session"""
+    socketio.emit('progress_update', {
+        'session_id': session_id,
+        **progress_data
+    }, room=session_id)
+
+def emit_placement(session_id, placement_data):
+    """Emit word placement to specific session"""
+    socketio.emit('word_placed', {
+        'session_id': session_id,
+        **placement_data
+    }, room=session_id)
+
+def emit_backtrack(session_id, backtrack_data):
+    """Emit backtrack event to specific session"""
+    socketio.emit('backtrack_event', {
+        'session_id': session_id,
+        **backtrack_data
+    }, room=session_id)
+
+def create_progress_callback(session_id):
+    """Create a progress callback function for a specific session"""
+    def progress_callback(progress_data):
+        emit_progress(session_id, progress_data)
+    return progress_callback
+
+def create_placement_callback(session_id):
+    """Create a placement callback function for a specific session"""
+    def placement_callback(placement_data):
+        emit_placement(session_id, placement_data)
+    return placement_callback
+
+def create_backtrack_callback(session_id):
+    """Create a backtrack callback function for a specific session"""
+    def backtrack_callback(backtrack_data):
+        emit_backtrack(session_id, backtrack_data)
+    return backtrack_callback
+
+def run_solver_in_thread(session_id, data):
+    """Run the solver in a separate thread with progress callbacks"""
+    try:
+        grid = data.get("grid")
+        clues = data.get("clues")
+        algorithm = data.get("algorithm", "HYBRID").upper()
+        enable_memory_profiling = data.get("enable_memory_profiling", False)
+
+        progress_cb = create_progress_callback(session_id)
+        placement_cb = create_placement_callback(session_id)
+        backtrack_cb = create_backtrack_callback(session_id)
+
+        if algorithm == "DFS":
+            solver = DFSSolver(grid, clues, dict_helper, enable_memory_profiling, 
+                             progress_callback=progress_cb,
+                             placement_callback=placement_cb,
+                             backtrack_callback=backtrack_cb)
+        elif algorithm == "A*":
+            solver = AStarSolver(grid, clues, dict_helper, enable_memory_profiling,
+                               progress_callback=progress_cb,
+                               placement_callback=placement_cb, 
+                               backtrack_callback=backtrack_cb)
+        elif algorithm == "HYBRID":
+            solver = HybridSolver(grid, clues, dict_helper, enable_memory_profiling,
+                                progress_callback=progress_cb,
+                                placement_callback=placement_cb,
+                                backtrack_callback=backtrack_cb)
+        else:
+            solving_sessions[session_id] = {
+                'status': 'error',
+                'error': 'Invalid algorithm',
+                'progress': 0
+            }
+            return
+
+        solving_sessions[session_id] = {
+            'status': 'running',
+            'algorithm': algorithm,
+            'progress': 0,
+            'start_time': time.time()
+        }
+
+        result = solver.solve()
+        execution_time = time.time() - solving_sessions[session_id]['start_time']
+
+        debug_info = result.get("debug_info", {})
+        solving_steps_count = len(result.get("solving_steps", []))
+        debug_steps_count = debug_info.get("debug_steps_count", 0)
+        
+        logging.info(f"Solve completed for session {session_id} in {execution_time:.2f}s - "
+                    f"{solving_steps_count} final placements, {debug_steps_count} debug steps")
+
+        solving_sessions[session_id] = {
+            'status': 'completed',
+            'result': result,
+            'progress': 100,
+            'execution_time': execution_time,
+            'algorithm': algorithm
+        }
+
+        socketio.emit('solve_completed', {
+            'session_id': session_id,
+            'result': result,
+            'execution_time': execution_time
+        }, room=session_id)
+
+    except Exception as e:
+        logging.error(f"Solve error in session {session_id}: {str(e)}", exc_info=True)
+        solving_sessions[session_id] = {
+            'status': 'error',
+            'error': str(e),
+            'progress': 0
+        }
+        socketio.emit('solve_error', {
+            'session_id': session_id,
+            'error': str(e)
+        }, room=session_id)
 
 @app.route("/solve", methods=["POST", "OPTIONS"])
 def solve():
+    if request.method == "OPTIONS":
+        return _build_cors_preflight_response()
+
+    try:
+        data = request.get_json()
+        if not data:
+            return jsonify({"error": "No data received"}), 400
+
+        grid = data.get("grid")
+        clues = data.get("clues")
+        algorithm = data.get("algorithm", "HYBRID").upper()
+        enable_memory_profiling = data.get("enable_memory_profiling", False)
+
+        if not grid or not clues:
+            return jsonify({"error": "Missing grid or clues"}), 400
+
+        session_id = str(uuid.uuid4())
+
+        thread = threading.Thread(target=run_solver_in_thread, args=(session_id, data))
+        thread.daemon = True
+        thread.start()
+
+        return _corsify_actual_response(jsonify({
+            "session_id": session_id,
+            "status": "started",
+            "algorithm": algorithm,
+            "message": f"Solver started with session ID: {session_id}"
+        }))
+
+    except Exception as e:
+        logging.error(f"Solve error: {str(e)}", exc_info=True)
+        return jsonify({
+            "error": "Internal server error",
+            "details": str(e)
+        }), 500
+
+@app.route("/solve_status/<session_id>", methods=["GET"])
+def get_solve_status(session_id):
+    """Get current status of a solving session"""
+    if session_id in solving_sessions:
+        return _corsify_actual_response(jsonify(solving_sessions[session_id]))
+    else:
+        return _corsify_actual_response(jsonify({
+            "error": "Session not found"
+        }), 404)
+
+@app.route("/solve_sync", methods=["POST", "OPTIONS"])
+def solve_sync():
+    """Synchronous solve endpoint for backward compatibility"""
     if request.method == "OPTIONS":
         return _build_cors_preflight_response()
 
@@ -50,10 +249,15 @@ def solve():
 
         complexity_trackers[algorithm] = solver.complexity_tracker
         
+        # MODIFY THIS: Add periodic cancellation check during solving
         result = solver.solve()
         execution_time = time.time() - start_time
 
-        # Enhanced memory metrics
+        # Check if client is still connected before sending response
+        # This helps prevent sending data to disconnected clients
+        # Note: This is a basic check - for more robust cancellation, 
+        # you'd need to modify the solver algorithms to support interruption
+        
         memory_metrics = {
             "memory_usage_kb": result.get("memory_usage_kb", 0),
             "min_memory_kb": result.get("min_memory_kb", 0),
@@ -61,10 +265,18 @@ def solve():
             "memory_profiling_enabled": enable_memory_profiling
         }
 
+        solving_steps = result.get("solving_steps", [])
+        across_placements = result.get("across_placements", [])
+        down_placements = result.get("down_placements", [])
+        
+        debug_info = result.get("debug_info", {})
+        logging.info(f"Sync solve completed - {len(solving_steps)} final placements, "
+                    f"{debug_info.get('debug_steps_count', 0)} debug steps")
+
         response_data = {
             "method": algorithm,
             "success": result.get("status", "").lower() == "success",
-            "solution": result.get("grid", []), 
+            "solution": result.get("solution", result.get("grid", [])),
             "metrics": {
                 "execution_time": f"{execution_time:.4f}s",
                 **memory_metrics,
@@ -76,7 +288,12 @@ def solve():
             "details": {
                 "status": result.get("status", "unknown"),
                 "algorithm": algorithm
-            }
+            },
+            "solving_steps": solving_steps,
+            "across_placements": across_placements,
+            "down_placements": down_placements,
+            "progress_data": result.get("progress_data", {}),
+            "debug_info": debug_info
         }
 
         return _corsify_actual_response(jsonify(response_data))
@@ -119,9 +336,17 @@ def analyze_complexity():
             
             complexity_trackers[algo_name] = solver.complexity_tracker
             
+            # Log algorithm-specific debug info
+            debug_info = result.get("debug_info", {})
+            solving_steps_count = len(result.get("solving_steps", []))
+            debug_steps_count = debug_info.get("debug_steps_count", 0)
+            
+            logging.info(f"Algorithm {algo_name}: {solving_steps_count} final placements, "
+                        f"{debug_steps_count} debug steps, {execution_time:.3f}s")
+            
             results[algo_name] = {
                 "success": result.get("status", "").lower() == "success",
-                "solution": result.get("grid", []),
+                "solution": result.get("solution", result.get("grid", [])),
                 "metrics": {
                     "execution_time": f"{execution_time:.4f}s",
                     "memory_usage_kb": result.get("memory_usage_kb", 0),
@@ -131,7 +356,13 @@ def analyze_complexity():
                 },
                 "details": {
                     "status": result.get("status", "unknown")
-                }
+                },
+                # Include clean solving steps for frontend
+                "solving_steps": result.get("solving_steps", []),
+                "across_placements": result.get("across_placements", []),
+                "down_placements": result.get("down_placements", []),
+                # Include debug info for analysis
+                "debug_info": debug_info
             }
 
         return _corsify_actual_response(jsonify(results))
@@ -284,21 +515,26 @@ def generate():
                           f"(target: {min_density:.2%}-{max_density:.2%})")
 
         if final_puzzle:
-            empty_grid = final_puzzle.empty_grid
-            
-            across, down = final_puzzle.analyze_grid(for_empty_grid=True)
-            numbered_positions = {(slot.x, slot.y): slot.number for slot in across + down}
-            
+            # Create proper empty grid - maintain structure but make word cells empty
+            empty_grid = []
             for y in range(final_puzzle.height):
+                row = []
                 for x in range(final_puzzle.width):
-                    if (x, y) in numbered_positions:
-                        empty_grid[y][x] = str(numbered_positions[(x, y)])
+                    # Copy the structure but make word cells empty
+                    if final_puzzle.grid[y][x] == '.':
+                        row.append('.')  # Black cell
+                    else:
+                        row.append('')   # Empty cell for words
+                empty_grid.append(row)
+            
+            # Get the clues - this should already include proper numbering
+            clues = final_puzzle.get_clues()
             
             return _corsify_actual_response(jsonify({
                 "success": True,
                 "grid": final_puzzle.grid,
                 "empty_grid": empty_grid,   
-                "clues": final_puzzle.get_clues(),
+                "clues": clues,
                 "stats": {
                     "word_count": len(final_puzzle.words),
                     "difficulty": difficulty,
@@ -306,7 +542,7 @@ def generate():
                     "density": final_puzzle.calculate_density()
                 }
             }))
-
+        
     except Exception as e:
         logging.error(f"Generation error: {str(e)}", exc_info=True)
         return _corsify_actual_response(jsonify({
@@ -359,4 +595,5 @@ def _corsify_actual_response(response, status_code=None):
     return response
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    logging.info("Starting Crossword Solver Server with WebSocket support...")
+    socketio.run(app, debug=True, port=5000, allow_unsafe_werkzeug=True)

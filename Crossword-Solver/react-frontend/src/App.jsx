@@ -5,6 +5,7 @@ import PuzzleGenerator from './pages/PuzzleGenerator';
 import Analytics from './pages/Analytics';
 import Solution from './pages/Solution';
 import About from './pages/About';
+import License from './pages/License';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="analytics" element={<Analytics />} />
           <Route path="solution" element={<Solution />} />
           <Route path="about" element={<About />} />
+          <Route path="license" element={<License />} />
         </Route>
       </Routes>
     </Router>
